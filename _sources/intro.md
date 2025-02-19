@@ -1,11 +1,9 @@
-# Welcome to your Jupyter Book
+# THIS IS MY DATA MINING INFORMATION PAGE
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
+Ini adalah halaman matakuliah penambangan data saya yang memuat informasi seputar penambangan data atau data mining
+Dengan halaman ini, kita bisa belajar ilmu tentang data mining.
 
-Check out the content pages bundled with this sample book to see more.
+Semoga para pengunjung mendapat ilmu yang bermanfaat
 
 ```{tableofcontents}
 ```
