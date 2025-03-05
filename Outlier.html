@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>📌 Penjelasan Outlier &#8212; My sample book</title>
+    <title>Outlier &#8212; My sample book</title>
   
   
   
@@ -57,6 +57,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Outlier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -180,7 +182,8 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html">Data Understanding</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">📌 <strong>Penjelasan Outlier</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Outlier</strong></a></li>
+
 
 </ul>
 
@@ -367,7 +370,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>📌 Penjelasan Outlier</h1>
+    <h1>Outlier</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,17 +380,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📌 <strong>Penjelasan Outlier</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu"><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Outlier</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-menggunakan-algoritma-k-nn"><strong>Deteksi Outlier Menggunakan Algoritma K-NN</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu"><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><strong>Data</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier"><strong>Langkah-Langkah Deteksi Outlier</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-antar-titik"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-outlier"><strong>2. Menentukan Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-rata-rata-jarak-ke-k-tetangga-terdekat"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>2. Menentukan Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maka"><strong>Maka</strong></a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code">✅Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</a></li>
 </ul>
 
             </nav>
@@ -400,22 +408,193 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="penjelasan-outlier">
-<h1>📌 <strong>Penjelasan Outlier</strong><a class="headerlink" href="#penjelasan-outlier" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="outlier">
+<h1><strong>Outlier</strong><a class="headerlink" href="#outlier" title="Link to this heading">#</a></h1>
 <p>🔍 <strong>Apa itu Outlier?</strong><br />
 Outlier adalah data yang memiliki nilai yang sangat berbeda dibandingkan dengan data lainnya dalam suatu dataset.</p>
 <p>⚠ <strong>Mengapa Outlier Muncul?</strong><br />
 Outlier bisa terjadi karena:<br />
 ✅ <strong>Kesalahan pengukuran</strong> –<br />
-✅ <strong>Kesalahan input data</strong> –
-✅ <strong>Fenomena yang jarang terjadi</strong> –</p>
+✅ <strong>Kesalahan input data</strong> –</p>
+<p>✅ <strong>Fenomena yang jarang terjadi</strong> –</p>
 <p>🧐 <strong>Mengapa Outlier Penting?</strong></p>
 <ul class="simple">
 <li><p>Karena Bisa menyebabkan hasil analisis yang bias.</p></li>
 <li><p>Karena Dapat menunjukkan kejadian khusus yang perlu dianalisis lebih lanjut.</p></li>
 <li><p>Karena Bisa membantu dalam deteksi anomali dalam sebuah data.</p></li>
 </ul>
-<p>#✅Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="deteksi-outlier-menggunakan-algoritma-k-nn">
+<h1><strong>Deteksi Outlier Menggunakan Algoritma K-NN</strong><a class="headerlink" href="#deteksi-outlier-menggunakan-algoritma-k-nn" title="Link to this heading">#</a></h1>
+<hr class="docutils" />
+<p><strong>1. Rumus Jarak Euclidean</strong><br />
+Rumus <strong>jarak Euclidean</strong> untuk satu dimensi (misalnya suhu):</p>
+<div class="math notranslate nohighlight">
+\[
+d(x_i, x_j) = |x_i - x_j|
+\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p>( x_i ) = nilai suhu titik data ke-( i )</p></li>
+<li><p>( x_j ) = nilai suhu titik data ke-( j )</p></li>
+</ul>
+<blockquote>
+<div><p>🔹 Untuk <strong>multi-dimensi</strong>, gunakan rumus:<br />
+$<span class="math notranslate nohighlight">\(
+d(x_i, x_j) = \sqrt{\sum_{k=1}^{n} (x_{ik} - x_{jk})^2}
+\)</span>$</p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>2. Rata-rata Jarak ke K Tetangga Terdekat</strong><br />
+Setelah menghitung jarak ke semua titik, kita pilih <strong>K tetangga terdekat</strong> dan hitung <strong>rata-rata jaraknya</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+\bar{d}_i = \frac{1}{K} \sum_{j=1}^{K} d(x_i, x_j)
+\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p>( 𝑑𝑖 ) = rata-rata jarak ke <strong>K</strong> tetangga terdekat dari titik <strong>( x_i )</strong></p></li>
+<li><p>( K ) = jumlah tetangga terdekat (misalnya <strong>K = 2</strong>)</p></li>
+<li><p>( 𝑑(x_i, x_j) ) = jarak dari titik <strong>( x_i )</strong> ke <strong>tetangga ke-( j )</strong></p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>3. Menentukan Threshold Outlier</strong><br />
+Gunakan <strong>mean + 2 * standar deviasi</strong> sebagai batas outlier:</p>
+<div class="math notranslate nohighlight">
+\[
+Threshold = \mu + 2\sigma
+\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p>( μ ) = <strong>mean</strong> dari semua (𝑑𝑖)</p></li>
+<li><p>( σ ) = <strong>standar deviasi</strong> dari (𝑑𝑖)</p></li>
+</ul>
+<p>Jika <strong>rata-rata jarak suatu titik lebih besar dari threshold</strong>, maka titik tersebut <strong>outlier</strong>.</p>
+<hr class="docutils" />
+<section id="contoh-deteksi-manual-outlier-dengan-k-nn-suhu">
+<h2><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong><a class="headerlink" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu" title="Link to this heading">#</a></h2>
+<p>Metode <strong>K-Nearest Neighbors (K-NN)</strong> dapat digunakan untuk mendeteksi outlier dengan menghitung rata-rata jarak suatu titik data ke tetangga terdekatnya. Jika jaraknya jauh lebih besar dibandingkan data lain, maka titik tersebut bisa dianggap sebagai <strong>outlier</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="data">
+<h2><strong>Data</strong><a class="headerlink" href="#data" title="Link to this heading">#</a></h2>
+<p>Misalkan kita memiliki data suhu harian selama 10 hari (dalam °C):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X = [28, 29, 30, 31, 29, 32, 30, 28, 27, 40]
+</pre></div>
+</div>
+<p>Saya menggunakan <strong>K = 2</strong> dan <strong>jarak Euclidean</strong> untuk mendeteksi outlier.</p>
+</section>
+<hr class="docutils" />
+<section id="langkah-langkah-deteksi-outlier">
+<h2><strong>Langkah-Langkah Deteksi Outlier</strong><a class="headerlink" href="#langkah-langkah-deteksi-outlier" title="Link to this heading">#</a></h2>
+<section id="hitung-jarak-antar-titik">
+<h3><strong>1. Hitung Jarak Antar Titik</strong><a class="headerlink" href="#hitung-jarak-antar-titik" title="Link to this heading">#</a></h3>
+<p>Hitung Jarak Antara Setiap Titik Data</p>
+<ul class="simple">
+<li><p>Gunakan metrik Euclidean Distance (jarak antara dua titik dalam satu dimensi).</p></li>
+</ul>
+</section>
+<section id="menentukan-outlier">
+<h3><strong>2. Menentukan Outlier</strong><a class="headerlink" href="#menentukan-outlier" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Nilai K = 2 (dua tetangga terdekat).</p></li>
+</ul>
+</section>
+<section id="hitung-rata-rata-jarak-ke-k-tetangga-terdekat">
+<h3><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong><a class="headerlink" href="#hitung-rata-rata-jarak-ke-k-tetangga-terdekat" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Jika rata-rata jarak suatu titik jauh lebih besar dibandingkan dengan titik lain, maka titik tersebut dianggap sebagai outlier.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3><strong>1. Hitung Jarak Antar Titik</strong><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Gunakan <strong>jarak Euclidean</strong> (selisih absolut antara dua titik dalam satu dimensi).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Suhu (°C)</p></th>
+<th class="head"><p>Tetangga 1</p></th>
+<th class="head"><p>Jarak</p></th>
+<th class="head"><p>Tetangga 2</p></th>
+<th class="head"><p>Jarak</p></th>
+<th class="head"><p>Rata-rata Jarak</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>28</p></td>
+<td><p>27</p></td>
+<td><p>1</p></td>
+<td><p>29</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>29</p></td>
+<td><p>28</p></td>
+<td><p>1</p></td>
+<td><p>30</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>29</p></td>
+<td><p>1</p></td>
+<td><p>31</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>30</p></td>
+<td><p>1</p></td>
+<td><p>32</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>31</p></td>
+<td><p>1</p></td>
+<td><p>30</p></td>
+<td><p>2</p></td>
+<td><p>(1+2)/2 = 1.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>28</p></td>
+<td><p>1</p></td>
+<td><p>29</p></td>
+<td><p>2</p></td>
+<td><p>(1+2)/2 = 1.5</p></td>
+</tr>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>32</p></td>
+<td><p>8</p></td>
+<td><p>31</p></td>
+<td><p>9</p></td>
+<td><p>(8+9)/2 = 8.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id2">
+<h3><strong>2. Menentukan Outlier</strong><a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Hampir semua titik memiliki rata-rata jarak <strong>1 - 1.5</strong>.</p></li>
+<li><p><strong>Suhu 40°C memiliki rata-rata jarak ke tetangga sebesar 8.5</strong>, jauh lebih besar dibandingkan lainnya.</p></li>
+<li><p>Maka, <strong>suhu 40°C adalah outlier</strong>.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Rata-rata jarak kebanyakan nilai = 1.0 hingga 1.5</p></li>
+<li><p>Suhu 40°C memiliki rata-rata jarak 8.5, yang jauh lebih besar dibandingkan yang lain.</p></li>
+<li><p>Maka Metode <strong>K-NN Outlier</strong> mendeteksi bahwa <strong>40°C</strong> adalah outlier dalam data ini.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code">
+<h1>✅Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code<a class="headerlink" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql<span class="w"> </span>#Install<span class="w"> </span>library<span class="w"> </span>Python<span class="w"> </span>yang<span class="w"> </span>menjadi<span class="w"> </span>koneksi<span class="w"> </span>dan<span class="w"> </span>interaksi<span class="w"> </span>dengan<span class="w"> </span>database<span class="w"> </span>MySQL
@@ -427,9 +606,7 @@ Outlier bisa terjadi karena:<br />
   Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
 Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">1.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">3.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -450,12 +627,10 @@ Successfully installed pymysql-1.1.1
   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
 Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/3.0 MB</span> <span class=" -Color -Color-Red">2.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
-   ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.6/3.0 MB</span> <span class=" -Color -Color-Red">9.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━ <span class=" -Color -Color-Green">2.9/3.0 MB</span> <span class=" -Color -Color-Red">27.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━ <span class=" -Color -Color-Green">2.7/3.0 MB</span> <span class=" -Color -Color-Red">76.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">21.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">47.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -488,13 +663,15 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span> <span class="c1">#koneksi database menggunakan SQLAlchemy.</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#Operasi numerik dan array multidimensi.</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span> <span class="c1">#Algoritma machine learning untuk pencarian tetangga terdekat (Nearest Neighbors).</span>
 <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span> <span class="c1">#menampilkan data dalam format tabel</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>#Cek koneksi Database MySQL</p>
+<p>#Cek koneksi Database MySQL
+Periksa apakah code berhasil import data dari Database MySQL</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
@@ -536,7 +713,8 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </div>
-<p>#Cek koneksi Database Postgre</p>
+<p>#Cek koneksi Database PostgreSQL
+Memeriksa apakah code berhasil import data dari Database PostgreSQL</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -948,7 +1126,7 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span> <span class="c1">#import model Nearest Neighbors dari Library scikit-learn.</span>
 <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
 
 <span class="c1"># Menentukan fitur yang digunakan dalam perhitungan jarak</span>
@@ -1294,8 +1472,8 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="n">Q3</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df_features</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
 
 <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
 
@@ -1304,6 +1482,8 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 <span class="n">batas_atas</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
 
 <span class="c1"># Ambil data outlier</span>
+<span class="c1"># Merge df_features with df_combined to have all columns for outlier analysis</span>
+<span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_combined</span><span class="p">,</span> <span class="n">df_features</span><span class="p">[[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]],</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">outliers</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[(</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">batas_bawah</span><span class="p">)</span> <span class="o">|</span>
                       <span class="p">(</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">batas_atas</span><span class="p">)]</span>
 <span class="n">outlier_terbesar</span> <span class="o">=</span> <span class="n">outliers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outliers</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
@@ -1314,48 +1494,12 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">/usr/local/lib/python3.11/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3804</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3805</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3806</span>         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-
-<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
-
-<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
-
-<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
-
-<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
-
-<span class="ne">KeyError</span>: &#39;euclidean_distance&#39;
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-9-9c1872d44e4a&gt;</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Q1</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">Q3</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-
-<span class="nn">/usr/local/lib/python3.11/dist-packages/pandas/core/frame.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4100</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">4101</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">4102</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4103</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">4104</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
-
-<span class="nn">/usr/local/lib/python3.11/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3810</span>             <span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3811</span>                 <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">3812</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
-<span class="g g-Whitespace">   </span><span class="mi">3813</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3814</span>             <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
-
-<span class="ne">KeyError</span>: &#39;euclidean_distance&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outlier Terbesar:
++-----+------+-------------+----------------+---------------+----------------+---------------+----------------------+
+|     |   id | Class       |   sepal length |   sepal width |   petal length |   petal width |   euclidean_distance |
++=====+======+=============+================+===============+================+===============+======================+
+| 149 |    2 | Iris-setosa |           40.9 |            30 |             14 |             2 |              34.5513 |
++-----+------+-------------+----------------+---------------+----------------+---------------+----------------------+
 </pre></div>
 </div>
 </div>
@@ -1388,107 +1532,12 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4a540469109afc494dd0319677c1835ce17e43fff29cd9ebf9674510da206e8d.png" src="_images/4a540469109afc494dd0319677c1835ce17e43fff29cd9ebf9674510da206e8d.png" />
+<img alt="_images/6f5a4892aef38a7102af3a0d5bac87cc2225ecd20fdd743b32a851a64c655d7d.png" src="_images/6f5a4892aef38a7102af3a0d5bac87cc2225ecd20fdd743b32a851a64c655d7d.png" />
 </div>
 </div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="contoh-deteksi-manual-outlier-dengan-k-nn-suhu">
-<h1><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong><a class="headerlink" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu" title="Link to this heading">#</a></h1>
-<p>Metode <strong>K-Nearest Neighbors (K-NN)</strong> dapat digunakan untuk mendeteksi outlier dengan menghitung rata-rata jarak suatu titik data ke tetangga terdekatnya. Jika jaraknya jauh lebih besar dibandingkan data lain, maka titik tersebut bisa dianggap sebagai <strong>outlier</strong>.</p>
-<hr class="docutils" />
-<section id="dataset">
-<h2><strong>Dataset</strong><a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
-<p>Misalkan kita memiliki data suhu harian selama 10 hari (dalam °C):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X = [28, 29, 30, 31, 29, 32, 30, 28, 27, 40]
-</pre></div>
-</div>
-<p>Saya menggunakan <strong>K = 2</strong> dan <strong>jarak Euclidean</strong> untuk mendeteksi outlier.</p>
-</section>
-<hr class="docutils" />
-<section id="langkah-langkah-deteksi-outlier">
-<h2><strong>Langkah-Langkah Deteksi Outlier</strong><a class="headerlink" href="#langkah-langkah-deteksi-outlier" title="Link to this heading">#</a></h2>
-<section id="hitung-jarak-antar-titik">
-<h3><strong>1. Hitung Jarak Antar Titik</strong><a class="headerlink" href="#hitung-jarak-antar-titik" title="Link to this heading">#</a></h3>
-<p>Gunakan <strong>jarak Euclidean</strong> (selisih absolut antara dua titik dalam satu dimensi).</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Suhu (°C)</p></th>
-<th class="head"><p>Tetangga 1</p></th>
-<th class="head"><p>Jarak</p></th>
-<th class="head"><p>Tetangga 2</p></th>
-<th class="head"><p>Jarak</p></th>
-<th class="head"><p>Rata-rata Jarak</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>28</p></td>
-<td><p>27</p></td>
-<td><p>1</p></td>
-<td><p>29</p></td>
-<td><p>1</p></td>
-<td><p>(1+1)/2 = 1.0</p></td>
-</tr>
-<tr class="row-odd"><td><p>29</p></td>
-<td><p>28</p></td>
-<td><p>1</p></td>
-<td><p>30</p></td>
-<td><p>1</p></td>
-<td><p>(1+1)/2 = 1.0</p></td>
-</tr>
-<tr class="row-even"><td><p>30</p></td>
-<td><p>29</p></td>
-<td><p>1</p></td>
-<td><p>31</p></td>
-<td><p>1</p></td>
-<td><p>(1+1)/2 = 1.0</p></td>
-</tr>
-<tr class="row-odd"><td><p>31</p></td>
-<td><p>30</p></td>
-<td><p>1</p></td>
-<td><p>32</p></td>
-<td><p>1</p></td>
-<td><p>(1+1)/2 = 1.0</p></td>
-</tr>
-<tr class="row-even"><td><p>32</p></td>
-<td><p>31</p></td>
-<td><p>1</p></td>
-<td><p>30</p></td>
-<td><p>2</p></td>
-<td><p>(1+2)/2 = 1.5</p></td>
-</tr>
-<tr class="row-odd"><td><p>27</p></td>
-<td><p>28</p></td>
-<td><p>1</p></td>
-<td><p>29</p></td>
-<td><p>2</p></td>
-<td><p>(1+2)/2 = 1.5</p></td>
-</tr>
-<tr class="row-even"><td><p>40</p></td>
-<td><p>32</p></td>
-<td><p>8</p></td>
-<td><p>31</p></td>
-<td><p>9</p></td>
-<td><p>(8+9)/2 = 8.5</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<hr class="docutils" />
-<section id="menentukan-outlier">
-<h3><strong>2. Menentukan Outlier</strong><a class="headerlink" href="#menentukan-outlier" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Hampir semua titik memiliki rata-rata jarak <strong>1 - 1.5</strong>.</p></li>
-<li><p><strong>Suhu 40°C memiliki rata-rata jarak ke tetangga sebesar 8.5</strong>, jauh lebih besar dibandingkan lainnya.</p></li>
-<li><p>Maka, <strong>suhu 40°C adalah outlier</strong>.</p></li>
+<li><p>Dapat dilihat bahwa mem-visualisasikan data sangat efektif untuk mendeteksi Outlier</p></li>
 </ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="maka">
-<h2><strong>Maka</strong><a class="headerlink" href="#maka" title="Link to this heading">#</a></h2>
-<p>Metode <strong>K-NN Outlier</strong> mendeteksi bahwa <strong>40°C</strong> adalah outlier dalam data ini.</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1546,17 +1595,22 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📌 <strong>Penjelasan Outlier</strong></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu"><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>Outlier</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier-menggunakan-algoritma-k-nn"><strong>Deteksi Outlier Menggunakan Algoritma K-NN</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu"><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data"><strong>Data</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier"><strong>Langkah-Langkah Deteksi Outlier</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-antar-titik"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-outlier"><strong>2. Menentukan Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-rata-rata-jarak-ke-k-tetangga-terdekat"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>2. Menentukan Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maka"><strong>Maka</strong></a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code">✅Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</a></li>
 </ul>
 
   </nav></div>
