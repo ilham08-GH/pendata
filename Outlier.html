@@ -1,0 +1,1615 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>📌 Penjelasan Outlier &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Outlier';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Data Understanding" href="Data_Understanding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MY DATA MINING INFORMATION PAGE
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html">Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">📌 <strong>Penjelasan Outlier</strong></a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FOutlier.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Outlier.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>📌 Penjelasan Outlier</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📌 <strong>Penjelasan Outlier</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu"><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier"><strong>Langkah-Langkah Deteksi Outlier</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-antar-titik"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-outlier"><strong>2. Menentukan Outlier</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maka"><strong>Maka</strong></a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="penjelasan-outlier">
+<h1>📌 <strong>Penjelasan Outlier</strong><a class="headerlink" href="#penjelasan-outlier" title="Link to this heading">#</a></h1>
+<p>🔍 <strong>Apa itu Outlier?</strong><br />
+Outlier adalah data yang memiliki nilai yang sangat berbeda dibandingkan dengan data lainnya dalam suatu dataset.</p>
+<p>⚠ <strong>Mengapa Outlier Muncul?</strong><br />
+Outlier bisa terjadi karena:<br />
+✅ <strong>Kesalahan pengukuran</strong> –<br />
+✅ <strong>Kesalahan input data</strong> –
+✅ <strong>Fenomena yang jarang terjadi</strong> –</p>
+<p>🧐 <strong>Mengapa Outlier Penting?</strong></p>
+<ul class="simple">
+<li><p>Karena Bisa menyebabkan hasil analisis yang bias.</p></li>
+<li><p>Karena Dapat menunjukkan kejadian khusus yang perlu dianalisis lebih lanjut.</p></li>
+<li><p>Karena Bisa membantu dalam deteksi anomali dalam sebuah data.</p></li>
+</ul>
+<p>#✅Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql<span class="w"> </span>#Install<span class="w"> </span>library<span class="w"> </span>Python<span class="w"> </span>yang<span class="w"> </span>menjadi<span class="w"> </span>koneksi<span class="w"> </span>dan<span class="w"> </span>interaksi<span class="w"> </span>dengan<span class="w"> </span>database<span class="w"> </span>MySQL
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymysql
+  Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
+Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">1.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pymysql
+Successfully installed pymysql-1.1.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>psycopg2-binary<span class="w"> </span>#Install<span class="w"> </span>library<span class="w"> </span>Python<span class="w"> </span>yang<span class="w"> </span>menjadi<span class="w"> </span>koneksi<span class="w"> </span>dan<span class="w"> </span>interaksi<span class="w"> </span>dengan<span class="w"> </span>database<span class="w"> </span>MySQL
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
+  Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/3.0 MB</span> <span class=" -Color -Color-Red">2.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+   ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.6/3.0 MB</span> <span class=" -Color -Color-Red">9.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━ <span class=" -Color -Color-Green">2.9/3.0 MB</span> <span class=" -Color -Color-Red">27.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">21.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
+Successfully installed psycopg2-binary-2.9.10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql<span class="w"> </span>pandas<span class="w"> </span>#instal<span class="w"> </span>PyMySQL<span class="w"> </span><span class="o">(</span>untuk<span class="w"> </span>koneksi<span class="w"> </span>MySQL<span class="o">)</span><span class="w"> </span>dan<span class="w"> </span>pandas<span class="w"> </span><span class="o">(</span>untuk<span class="w"> </span>manipulasi<span class="w"> </span>data<span class="w"> </span>dalam<span class="w"> </span>bentuk<span class="w"> </span>tabel<span class="o">)</span>.
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
+Requirement already satisfied: pandas in /usr/local/lib/python3.11/dist-packages (2.2.2)
+Requirement already satisfied: numpy&gt;=1.23.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (1.26.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span> <span class="c1">#koneksi database menggunakan SQLAlchemy.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#Operasi numerik dan array multidimensi.</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span> <span class="c1">#Algoritma machine learning untuk pencarian tetangga terdekat (Nearest Neighbors).</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span> <span class="c1">#menampilkan data dalam format tabel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>#Cek koneksi Database MySQL</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
+
+<span class="c1"># Konfigurasi koneksi</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;mysqlpendata-ilhamalmafazt-dm.h.aivencloud.com&quot;</span>  <span class="c1"># Ganti host dengan host dari Aiven.io</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">19867</span>    <span class="c1"># Ganti posrt dengan posrt dari Aiven.io</span>
+<span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span> <span class="c1"># Ganti user dengan user dari Aiven.io</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;AVNS_vnxDk9lOvZgFnuKlezN&quot;</span> <span class="c1"># Ganti password dengan password dari Aiven.io</span>
+<span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span> <span class="c1"># Ganti database dengan database dari Aiven.io</span>
+
+<span class="c1"># Buat koneksi</span>
+<span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
+    <span class="n">ssl</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;ssl&#39;</span><span class="p">:</span> <span class="p">{}}</span>  <span class="c1"># Jika menggunakan SSL</span>
+<span class="p">)</span>
+
+<span class="c1">#menampilkan data</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">mysql_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM iris_sql.iris LIMIT 5;&quot;</span><span class="p">)</span>
+<span class="n">tampil</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tampil</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">mysql_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, &#39;Iris-setosa&#39;, 1.4, 0.2)
+(2, &#39;Iris-setosa&#39;, 14.0, 2.0)
+(3, &#39;Iris-setosa&#39;, 1.3, 0.2)
+(4, &#39;Iris-setosa&#39;, 1.5, 0.2)
+(5, &#39;Iris-setosa&#39;, 1.4, 0.2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>#Cek koneksi Database Postgre</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+
+<span class="c1"># Konfigurasi koneksi</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;postgrependata-ilhamalmafazt-dm.i.aivencloud.com&quot;</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">19867</span>
+<span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;avnadmin&quot;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;AVNS_yBhPcNuf-iJ2fja4CBU&quot;</span>
+<span class="n">database</span> <span class="o">=</span> <span class="s2">&quot;defaultdb&quot;</span>
+
+<span class="c1"># Buat koneksi</span>
+<span class="n">postgres_conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
+    <span class="n">sslmode</span><span class="o">=</span><span class="s2">&quot;require&quot;</span>
+<span class="p">)</span>
+
+<span class="c1">#menampilkan data</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">postgres_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM postgre.postgre LIMIT 5;&quot;</span><span class="p">)</span>
+<span class="n">tampil</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">tampil</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">postgres_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, &#39;Iris-setosa&#39;, 5.1, 3.5)
+(3, &#39;Iris-setosa&#39;, 4.7, 3.2)
+(4, &#39;Iris-setosa&#39;, 4.6, 3.1)
+(5, &#39;Iris-setosa&#39;, 5.0, 3.6)
+(6, &#39;Iris-setosa&#39;, 5.4, 3.9)
+</pre></div>
+</div>
+</div>
+</div>
+<p>#MERGING DATA
+Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Konfigurasi koneksi MySQL (Aiven.io)</span>
+<span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;mysqlpendata-ilhamalmafazt-dm.h.aivencloud.com&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">19867</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_vnxDk9lOvZgFnuKlezN&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Konfigurasi koneksi PostgreSQL (Aiven.io)</span>
+<span class="n">postgres_conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;postgrependata-ilhamalmafazt-dm.i.aivencloud.com&quot;</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">19867</span><span class="p">,</span>
+    <span class="n">user</span><span class="o">=</span><span class="s2">&quot;avnadmin&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;AVNS_yBhPcNuf-iJ2fja4CBU&quot;</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;defaultdb&quot;</span><span class="p">,</span>
+    <span class="n">sslmode</span><span class="o">=</span><span class="s2">&quot;require&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Ambil data dari MySQL</span>
+<span class="n">mysql_query</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, `petal length`, `petal width` FROM iris_sql.iris;&quot;</span>
+<span class="n">df_mysql</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">mysql_query</span><span class="p">,</span> <span class="n">mysql_conn</span><span class="p">)</span>
+
+<span class="c1"># Ambil data dari PostgreSQL</span>
+<span class="n">postgres_query</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM postgre.postgre;&quot;</span>
+<span class="n">df_postgres</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">postgres_query</span><span class="p">,</span> <span class="n">postgres_conn</span><span class="p">)</span>
+
+<span class="c1"># Tutup koneksi</span>
+<span class="n">mysql_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">postgres_conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Gabungkan data secara vertikal</span>
+<span class="n">df_combined</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_postgres</span><span class="p">,</span> <span class="n">df_mysql</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan data dalam format tabel yang lebih rapi</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df_combined</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-7-42938d1cca3b&gt;:27: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_mysql = pd.read_sql(mysql_query, mysql_conn)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-7-42938d1cca3b&gt;:31: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  df_postgres = pd.read_sql(postgres_query, postgres_conn)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+-----+------+-----------------+----------------+---------------+----------------+---------------+
+|     |   id | Class           |   sepal length |   sepal width |   petal length |   petal width |
++=====+======+=================+================+===============+================+===============+
+|   0 |    1 | Iris-setosa     |            5.1 |           3.5 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   1 |    3 | Iris-setosa     |            4.7 |           3.2 |            1.3 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   2 |    4 | Iris-setosa     |            4.6 |           3.1 |            1.5 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   3 |    5 | Iris-setosa     |            5   |           3.6 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   4 |    6 | Iris-setosa     |            5.4 |           3.9 |            1.7 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   5 |    7 | Iris-setosa     |            4.6 |           3.4 |            1.4 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   6 |    8 | Iris-setosa     |            5   |           3.4 |            1.5 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   7 |    9 | Iris-setosa     |            4.4 |           2.9 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   8 |   10 | Iris-setosa     |            4.9 |           3.1 |            1.5 |           0.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|   9 |   11 | Iris-setosa     |            5.4 |           3.7 |            1.5 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  10 |   12 | Iris-setosa     |            4.8 |           3.4 |            1.6 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  11 |   13 | Iris-setosa     |            4.8 |           3   |            1.4 |           0.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  12 |   14 | Iris-setosa     |            4.3 |           3   |            1.1 |           0.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  13 |   15 | Iris-setosa     |            5.8 |           4   |            1.2 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  14 |   16 | Iris-setosa     |            5.7 |           4.4 |            1.5 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  15 |   17 | Iris-setosa     |            5.4 |           3.9 |            1.3 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  16 |   18 | Iris-setosa     |            5.1 |           3.5 |            1.4 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  17 |   19 | Iris-setosa     |            5.7 |           3.8 |            1.7 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  18 |   20 | Iris-setosa     |            5.1 |           3.8 |            1.5 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  19 |   21 | Iris-setosa     |            5.4 |           3.4 |            1.7 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  20 |   22 | Iris-setosa     |            5.1 |           3.7 |            1.5 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  21 |   23 | Iris-setosa     |            4.6 |           3.6 |            1   |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  22 |   24 | Iris-setosa     |            5.1 |           3.3 |            1.7 |           0.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  23 |   25 | Iris-setosa     |            4.8 |           3.4 |            1.9 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  24 |   26 | Iris-setosa     |            5   |           3   |            1.6 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  25 |   27 | Iris-setosa     |            5   |           3.4 |            1.6 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  26 |   28 | Iris-setosa     |            5.2 |           3.5 |            1.5 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  27 |   29 | Iris-setosa     |            5.2 |           3.4 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  28 |   30 | Iris-setosa     |            4.7 |           3.2 |            1.6 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  29 |   31 | Iris-setosa     |            4.8 |           3.1 |            1.6 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  30 |   32 | Iris-setosa     |            5.4 |           3.4 |            1.5 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  31 |   33 | Iris-setosa     |            5.2 |           4.1 |            1.5 |           0.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  32 |   34 | Iris-setosa     |            5.5 |           4.2 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  33 |   35 | Iris-setosa     |            4.9 |           3.1 |            1.5 |           0.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  34 |   36 | Iris-setosa     |            5   |           3.2 |            1.2 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  35 |   37 | Iris-setosa     |            5.5 |           3.5 |            1.3 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  36 |   38 | Iris-setosa     |            4.9 |           3.1 |            1.5 |           0.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  37 |   39 | Iris-setosa     |            4.4 |           3   |            1.3 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  38 |   40 | Iris-setosa     |            5.1 |           3.4 |            1.5 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  39 |   41 | Iris-setosa     |            5   |           3.5 |            1.3 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  40 |   42 | Iris-setosa     |            4.5 |           2.3 |            1.3 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  41 |   43 | Iris-setosa     |            4.4 |           3.2 |            1.3 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  42 |   44 | Iris-setosa     |            5   |           3.5 |            1.6 |           0.6 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  43 |   45 | Iris-setosa     |            5.1 |           3.8 |            1.9 |           0.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  44 |   46 | Iris-setosa     |            4.8 |           3   |            1.4 |           0.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  45 |   47 | Iris-setosa     |            5.1 |           3.8 |            1.6 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  46 |   48 | Iris-setosa     |            4.6 |           3.2 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  47 |   49 | Iris-setosa     |            5.3 |           3.7 |            1.5 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  48 |   50 | Iris-setosa     |            5   |           3.3 |            1.4 |           0.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  49 |   51 | Iris-versicolor |            7   |           3.2 |            4.7 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  50 |   52 | Iris-versicolor |            6.4 |           3.2 |            4.5 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  51 |   53 | Iris-versicolor |            6.9 |           3.1 |            4.9 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  52 |   54 | Iris-versicolor |            5.5 |           2.3 |            4   |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  53 |   55 | Iris-versicolor |            6.5 |           2.8 |            4.6 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  54 |   56 | Iris-versicolor |            5.7 |           2.8 |            4.5 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  55 |   57 | Iris-versicolor |            6.3 |           3.3 |            4.7 |           1.6 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  56 |   58 | Iris-versicolor |            4.9 |           2.4 |            3.3 |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  57 |   59 | Iris-versicolor |            6.6 |           2.9 |            4.6 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  58 |   60 | Iris-versicolor |            5.2 |           2.7 |            3.9 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  59 |   61 | Iris-versicolor |            5   |           2   |            3.5 |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  60 |   62 | Iris-versicolor |            5.9 |           3   |            4.2 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  61 |   63 | Iris-versicolor |            6   |           2.2 |            4   |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  62 |   64 | Iris-versicolor |            6.1 |           2.9 |            4.7 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  63 |   65 | Iris-versicolor |            5.6 |           2.9 |            3.6 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  64 |   66 | Iris-versicolor |            6.7 |           3.1 |            4.4 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  65 |   67 | Iris-versicolor |            5.6 |           3   |            4.5 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  66 |   68 | Iris-versicolor |            5.8 |           2.7 |            4.1 |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  67 |   69 | Iris-versicolor |            6.2 |           2.2 |            4.5 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  68 |   70 | Iris-versicolor |            5.6 |           2.5 |            3.9 |           1.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  69 |   71 | Iris-versicolor |            5.9 |           3.2 |            4.8 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  70 |   72 | Iris-versicolor |            6.1 |           2.8 |            4   |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  71 |   73 | Iris-versicolor |            6.3 |           2.5 |            4.9 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  72 |   74 | Iris-versicolor |            6.1 |           2.8 |            4.7 |           1.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  73 |   75 | Iris-versicolor |            6.4 |           2.9 |            4.3 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  74 |   76 | Iris-versicolor |            6.6 |           3   |            4.4 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  75 |   77 | Iris-versicolor |            6.8 |           2.8 |            4.8 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  76 |   78 | Iris-versicolor |            6.7 |           3   |            5   |           1.7 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  77 |   79 | Iris-versicolor |            6   |           2.9 |            4.5 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  78 |   80 | Iris-versicolor |            5.7 |           2.6 |            3.5 |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  79 |   81 | Iris-versicolor |            5.5 |           2.4 |            3.8 |           1.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  80 |   82 | Iris-versicolor |            5.5 |           2.4 |            3.7 |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  81 |   83 | Iris-versicolor |            5.8 |           2.7 |            3.9 |           1.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  82 |   84 | Iris-versicolor |            6   |           2.7 |            5.1 |           1.6 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  83 |   85 | Iris-versicolor |            5.4 |           3   |            4.5 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  84 |   86 | Iris-versicolor |            6   |           3.4 |            4.5 |           1.6 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  85 |   87 | Iris-versicolor |            6.7 |           3.1 |            4.7 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  86 |   88 | Iris-versicolor |            6.3 |           2.3 |            4.4 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  87 |   89 | Iris-versicolor |            5.6 |           3   |            4.1 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  88 |   90 | Iris-versicolor |            5.5 |           2.5 |            4   |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  89 |   91 | Iris-versicolor |            5.5 |           2.6 |            4.4 |           1.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  90 |   92 | Iris-versicolor |            6.1 |           3   |            4.6 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  91 |   93 | Iris-versicolor |            5.8 |           2.6 |            4   |           1.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  92 |   94 | Iris-versicolor |            5   |           2.3 |            3.3 |           1   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  93 |   95 | Iris-versicolor |            5.6 |           2.7 |            4.2 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  94 |   96 | Iris-versicolor |            5.7 |           3   |            4.2 |           1.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  95 |   97 | Iris-versicolor |            5.7 |           2.9 |            4.2 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  96 |   98 | Iris-versicolor |            6.2 |           2.9 |            4.3 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  97 |   99 | Iris-versicolor |            5.1 |           2.5 |            3   |           1.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  98 |  100 | Iris-versicolor |            5.7 |           2.8 |            4.1 |           1.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+|  99 |  101 | Iris-virginica  |            6.3 |           3.3 |            6   |           2.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 100 |  102 | Iris-virginica  |            5.8 |           2.7 |            5.1 |           1.9 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 101 |  103 | Iris-virginica  |            7.1 |           3   |            5.9 |           2.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 102 |  104 | Iris-virginica  |            6.3 |           2.9 |            5.6 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 103 |  105 | Iris-virginica  |            6.5 |           3   |            5.8 |           2.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 104 |  106 | Iris-virginica  |            7.6 |           3   |            6.6 |           2.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 105 |  107 | Iris-virginica  |            4.9 |           2.5 |            4.5 |           1.7 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 106 |  108 | Iris-virginica  |            7.3 |           2.9 |            6.3 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 107 |  109 | Iris-virginica  |            6.7 |           2.5 |            5.8 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 108 |  110 | Iris-virginica  |            7.2 |           3.6 |            6.1 |           2.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 109 |  111 | Iris-virginica  |            6.5 |           3.2 |            5.1 |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 110 |  112 | Iris-virginica  |            6.4 |           2.7 |            5.3 |           1.9 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 111 |  113 | Iris-virginica  |            6.8 |           3   |            5.5 |           2.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 112 |  114 | Iris-virginica  |            5.7 |           2.5 |            5   |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 113 |  115 | Iris-virginica  |            5.8 |           2.8 |            5.1 |           2.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 114 |  116 | Iris-virginica  |            6.4 |           3.2 |            5.3 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 115 |  117 | Iris-virginica  |            6.5 |           3   |            5.5 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 116 |  118 | Iris-virginica  |            7.7 |           3.8 |            6.7 |           2.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 117 |  119 | Iris-virginica  |            7.7 |           2.6 |            6.9 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 118 |  120 | Iris-virginica  |            6   |           2.2 |            5   |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 119 |  121 | Iris-virginica  |            6.9 |           3.2 |            5.7 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 120 |  122 | Iris-virginica  |            5.6 |           2.8 |            4.9 |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 121 |  123 | Iris-virginica  |            7.7 |           2.8 |            6.7 |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 122 |  124 | Iris-virginica  |            6.3 |           2.7 |            4.9 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 123 |  125 | Iris-virginica  |            6.7 |           3.3 |            5.7 |           2.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 124 |  126 | Iris-virginica  |            7.2 |           3.2 |            6   |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 125 |  127 | Iris-virginica  |            6.2 |           2.8 |            4.8 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 126 |  128 | Iris-virginica  |            6.1 |           3   |            4.9 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 127 |  129 | Iris-virginica  |            6.4 |           2.8 |            5.6 |           2.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 128 |  130 | Iris-virginica  |            7.2 |           3   |            5.8 |           1.6 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 129 |  131 | Iris-virginica  |            7.4 |           2.8 |            6.1 |           1.9 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 130 |  132 | Iris-virginica  |            7.9 |           3.8 |            6.4 |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 131 |  133 | Iris-virginica  |            6.4 |           2.8 |            5.6 |           2.2 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 132 |  134 | Iris-virginica  |            6.3 |           2.8 |            5.1 |           1.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 133 |  135 | Iris-virginica  |            6.1 |           2.6 |            5.6 |           1.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 134 |  136 | Iris-virginica  |            7.7 |           3   |            6.1 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 135 |  137 | Iris-virginica  |            6.3 |           3.4 |            5.6 |           2.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 136 |  138 | Iris-virginica  |            6.4 |           3.1 |            5.5 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 137 |  139 | Iris-virginica  |            6   |           3   |            4.8 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 138 |  140 | Iris-virginica  |            6.9 |           3.1 |            5.4 |           2.1 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 139 |  141 | Iris-virginica  |            6.7 |           3.1 |            5.6 |           2.4 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 140 |  142 | Iris-virginica  |            6.9 |           3.1 |            5.1 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 141 |  143 | Iris-virginica  |            5.8 |           2.7 |            5.1 |           1.9 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 142 |  144 | Iris-virginica  |            6.8 |           3.2 |            5.9 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 143 |  145 | Iris-virginica  |            6.7 |           3.3 |            5.7 |           2.5 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 144 |  146 | Iris-virginica  |            6.7 |           3   |            5.2 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 145 |  147 | Iris-virginica  |            6.3 |           2.5 |            5   |           1.9 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 146 |  148 | Iris-virginica  |            6.5 |           3   |            5.2 |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 147 |  149 | Iris-virginica  |            6.2 |           3.4 |            5.4 |           2.3 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 148 |  150 | Iris-virginica  |            5.9 |           3   |            5.1 |           1.8 |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 149 |    2 | Iris-setosa     |           40.9 |          30   |           14   |           2   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+| 150 |  nan | ?               |            5.8 |           1   |          nan   |         nan   |
++-----+------+-----------------+----------------+---------------+----------------+---------------+
+</pre></div>
+</div>
+</div>
+</div>
+<p>#Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">NearestNeighbors</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Menentukan fitur yang digunakan dalam perhitungan jarak</span>
+<span class="n">feature_column</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;petal length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal width&#39;</span><span class="p">]</span>
+
+<span class="c1"># Mengambil data fitur dari dataframe df_combined</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="n">feature_column</span><span class="p">]</span>
+
+<span class="c1"># Mengisi nilai yang kosong (NaN) dengan rata-rata dari masing-masing kolom</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1"># jumlah tetangga terdekat (k)</span>
+<span class="n">nilai_k</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># model Nearest Neighbors dengan matriks Euclidean</span>
+<span class="n">knn</span> <span class="o">=</span> <span class="n">NearestNeighbors</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">nilai_k</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+<span class="n">knn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Menghitung jarak Euclidean terdekat</span>
+<span class="n">distances</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">knn</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Membuat dataframe baru untuk menyimpan fitur dan jarak Euclidean rata-rata</span>
+<span class="n">df_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_column</span><span class="p">)</span>
+
+<span class="c1"># rata-rata jarak ke tetangga terdekat</span>
+<span class="n">df_features</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil dari perhitungan jarak menggunakan Euclidean&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df_features</span><span class="p">[[</span><span class="s2">&quot;sepal length&quot;</span><span class="p">,</span> <span class="s2">&quot;sepal width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal length&quot;</span><span class="p">,</span> <span class="s2">&quot;petal width&quot;</span><span class="p">,</span> <span class="s2">&quot;euclidean_distance&quot;</span><span class="p">]],</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hasil dari perhitungan jarak menggunakan Euclidean
++-----+----------------+---------------+----------------+---------------+----------------------+
+|     |   sepal length |   sepal width |   petal length |   petal width |   euclidean_distance |
++=====+================+===============+================+===============+======================+
+|   0 |            5.1 |           3.5 |        1.4     |       0.2     |             0.104853 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   1 |            4.7 |           3.2 |        1.3     |       0.2     |             0.183104 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   2 |            4.6 |           3.1 |        1.5     |       0.2     |             0.156636 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   3 |            5   |           3.6 |        1.4     |       0.2     |             0.142288 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   4 |            5.4 |           3.9 |        1.7     |       0.4     |             0.282559 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   5 |            4.6 |           3.4 |        1.4     |       0.3     |             0.220882 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   6 |            5   |           3.4 |        1.5     |       0.2     |             0.122925 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   7 |            4.4 |           2.9 |        1.4     |       0.2     |             0.220812 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   8 |            4.9 |           3.1 |        1.5     |       0.1     |             0.069282 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|   9 |            5.4 |           3.7 |        1.5     |       0.2     |             0.202901 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  10 |            4.8 |           3.4 |        1.6     |       0.2     |             0.206011 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  11 |            4.8 |           3   |        1.4     |       0.1     |             0.143923 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  12 |            4.3 |           3   |        1.1     |       0.1     |             0.277434 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  13 |            5.8 |           4   |        1.2     |       0.2     |             0.39717  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  14 |            5.7 |           4.4 |        1.5     |       0.4     |             0.428232 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  15 |            5.4 |           3.9 |        1.3     |       0.4     |             0.296312 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  16 |            5.1 |           3.5 |        1.4     |       0.3     |             0.117566 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  17 |            5.7 |           3.8 |        1.7     |       0.3     |             0.339581 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  18 |            5.1 |           3.8 |        1.5     |       0.3     |             0.158473 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  19 |            5.4 |           3.4 |        1.7     |       0.2     |             0.260791 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  20 |            5.1 |           3.7 |        1.5     |       0.4     |             0.179179 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  21 |            4.6 |           3.6 |        1       |       0.2     |             0.405258 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  22 |            5.1 |           3.3 |        1.7     |       0.5     |             0.245208 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  23 |            4.8 |           3.4 |        1.9     |       0.2     |             0.302148 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  24 |            5   |           3   |        1.6     |       0.2     |             0.164721 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  25 |            5   |           3.4 |        1.6     |       0.4     |             0.178433 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  26 |            5.2 |           3.5 |        1.5     |       0.2     |             0.119494 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  27 |            5.2 |           3.4 |        1.4     |       0.2     |             0.119494 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  28 |            4.7 |           3.2 |        1.6     |       0.2     |             0.152368 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  29 |            4.8 |           3.1 |        1.6     |       0.2     |             0.132207 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  30 |            5.4 |           3.4 |        1.5     |       0.4     |             0.239814 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  31 |            5.2 |           4.1 |        1.5     |       0.1     |             0.29825  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  32 |            5.5 |           4.2 |        1.4     |       0.2     |             0.301315 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  33 |            4.9 |           3.1 |        1.5     |       0.1     |             0.069282 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  34 |            5   |           3.2 |        1.2     |       0.2     |             0.243581 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  35 |            5.5 |           3.5 |        1.3     |       0.2     |             0.25886  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  36 |            4.9 |           3.1 |        1.5     |       0.1     |             0.069282 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  37 |            4.4 |           3   |        1.3     |       0.2     |             0.177274 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  38 |            5.1 |           3.4 |        1.5     |       0.2     |             0.104853 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  39 |            5   |           3.5 |        1.3     |       0.3     |             0.146556 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  40 |            4.5 |           2.3 |        1.3     |       0.3     |             0.577556 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  41 |            4.4 |           3.2 |        1.3     |       0.2     |             0.204721 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  42 |            5   |           3.5 |        1.6     |       0.6     |             0.235715 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  43 |            5.1 |           3.8 |        1.9     |       0.4     |             0.311868 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  44 |            4.8 |           3   |        1.4     |       0.3     |             0.19482  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  45 |            5.1 |           3.8 |        1.6     |       0.2     |             0.186264 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  46 |            4.6 |           3.2 |        1.4     |       0.2     |             0.146011 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  47 |            5.3 |           3.7 |        1.5     |       0.2     |             0.162701 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  48 |            5   |           3.3 |        1.4     |       0.2     |             0.152368 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  49 |            7   |           3.2 |        4.7     |       1.4     |             0.298077 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  50 |            6.4 |           3.2 |        4.5     |       1.5     |             0.260276 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  51 |            6.9 |           3.1 |        4.9     |       1.5     |             0.242011 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  52 |            5.5 |           2.3 |        4       |       1.3     |             0.250424 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  53 |            6.5 |           2.8 |        4.6     |       1.5     |             0.261902 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  54 |            5.7 |           2.8 |        4.5     |       1.3     |             0.252824 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  55 |            6.3 |           3.3 |        4.7     |       1.6     |             0.304253 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  56 |            4.9 |           2.4 |        3.3     |       1       |             0.341618 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  57 |            6.6 |           2.9 |        4.6     |       1.3     |             0.224471 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  58 |            5.2 |           2.7 |        3.9     |       1.4     |             0.389193 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  59 |            5   |           2   |        3.5     |       1       |             0.440755 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  60 |            5.9 |           3   |        4.2     |       1.5     |             0.270555 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  61 |            6   |           2.2 |        4       |       1       |             0.428066 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  62 |            6.1 |           2.9 |        4.7     |       1.4     |             0.206848 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  63 |            5.6 |           2.9 |        3.6     |       1.3     |             0.380199 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  64 |            6.7 |           3.1 |        4.4     |       1.4     |             0.224057 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  65 |            5.6 |           3   |        4.5     |       1.5     |             0.259922 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  66 |            5.8 |           2.7 |        4.1     |       1       |             0.244002 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  67 |            6.2 |           2.2 |        4.5     |       1.5     |             0.398245 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  68 |            5.6 |           2.5 |        3.9     |       1.1     |             0.189461 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  69 |            5.9 |           3.2 |        4.8     |       1.8     |             0.261685 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  70 |            6.1 |           2.8 |        4       |       1.3     |             0.290448 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  71 |            6.3 |           2.5 |        4.9     |       1.5     |             0.311537 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  72 |            6.1 |           2.8 |        4.7     |       1.2     |             0.269359 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  73 |            6.4 |           2.9 |        4.3     |       1.3     |             0.242486 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  74 |            6.6 |           3   |        4.4     |       1.4     |             0.193435 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  75 |            6.8 |           2.8 |        4.8     |       1.4     |             0.276643 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  76 |            6.7 |           3   |        5       |       1.7     |             0.305394 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  77 |            6   |           2.9 |        4.5     |       1.5     |             0.224604 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  78 |            5.7 |           2.6 |        3.5     |       1       |             0.330756 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  79 |            5.5 |           2.4 |        3.8     |       1.1     |             0.182925 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  80 |            5.5 |           2.4 |        3.7     |       1       |             0.237659 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  81 |            5.8 |           2.7 |        3.9     |       1.2     |             0.197768 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  82 |            6   |           2.7 |        5.1     |       1.6     |             0.285388 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  83 |            5.4 |           3   |        4.5     |       1.5     |             0.316358 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  84 |            6   |           3.4 |        4.5     |       1.6     |             0.345146 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  85 |            6.7 |           3.1 |        4.7     |       1.5     |             0.249392 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  86 |            6.3 |           2.3 |        4.4     |       1.3     |             0.407783 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  87 |            5.6 |           3   |        4.1     |       1.3     |             0.177249 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  88 |            5.5 |           2.5 |        4       |       1.3     |             0.20899  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  89 |            5.5 |           2.6 |        4.4     |       1.2     |             0.285866 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  90 |            6.1 |           3   |        4.6     |       1.4     |             0.197566 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  91 |            5.8 |           2.6 |        4       |       1.2     |             0.183104 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  92 |            5   |           2.3 |        3.3     |       1       |             0.30747  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  93 |            5.6 |           2.7 |        4.2     |       1.3     |             0.192277 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  94 |            5.7 |           3   |        4.2     |       1.2     |             0.178248 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  95 |            5.7 |           2.9 |        4.2     |       1.3     |             0.135931 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  96 |            6.2 |           2.9 |        4.3     |       1.3     |             0.244897 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  97 |            5.1 |           2.5 |        3       |       1.1     |             0.457886 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  98 |            5.7 |           2.8 |        4.1     |       1.3     |             0.156636 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+|  99 |            6.3 |           3.3 |        6       |       2.5     |             0.398188 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 100 |            5.8 |           2.7 |        5.1     |       1.9     |             0.182493 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 101 |            7.1 |           3   |        5.9     |       2.1     |             0.331573 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 102 |            6.3 |           2.9 |        5.6     |       1.8     |             0.241772 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 103 |            6.5 |           3   |        5.8     |       2.2     |             0.272816 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 104 |            7.6 |           3   |        6.6     |       2.1     |             0.377834 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 105 |            4.9 |           2.5 |        4.5     |       1.7     |             0.633529 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 106 |            7.3 |           2.9 |        6.3     |       1.8     |             0.355468 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 107 |            6.7 |           2.5 |        5.8     |       1.8     |             0.477932 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 108 |            7.2 |           3.6 |        6.1     |       2.5     |             0.553073 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 109 |            6.5 |           3.2 |        5.1     |       2       |             0.28926  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 110 |            6.4 |           2.7 |        5.3     |       1.9     |             0.296408 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 111 |            6.8 |           3   |        5.5     |       2.1     |             0.250867 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 112 |            5.7 |           2.5 |        5       |       2       |             0.276086 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 113 |            5.8 |           2.8 |        5.1     |       2.4     |             0.405863 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 114 |            6.4 |           3.2 |        5.3     |       2.3     |             0.287126 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 115 |            6.5 |           3   |        5.5     |       1.8     |             0.226845 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 116 |            7.7 |           3.8 |        6.7     |       2.2     |             0.619213 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 117 |            7.7 |           2.6 |        6.9     |       2.3     |             0.556364 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 118 |            6   |           2.2 |        5       |       1.5     |             0.415423 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 119 |            6.9 |           3.2 |        5.7     |       2.3     |             0.217636 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 120 |            5.6 |           2.8 |        4.9     |       2       |             0.284475 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 121 |            7.7 |           2.8 |        6.7     |       2       |             0.392679 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 122 |            6.3 |           2.7 |        4.9     |       1.8     |             0.227853 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 123 |            6.7 |           3.3 |        5.7     |       2.1     |             0.272912 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 124 |            7.2 |           3.2 |        6       |       1.8     |             0.327728 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 125 |            6.2 |           2.8 |        4.8     |       1.8     |             0.217659 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 126 |            6.1 |           3   |        4.9     |       1.8     |             0.193843 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 127 |            6.4 |           2.8 |        5.6     |       2.1     |             0.224411 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 128 |            7.2 |           3   |        5.8     |       1.6     |             0.386541 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 129 |            7.4 |           2.8 |        6.1     |       1.9     |             0.340355 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 130 |            7.9 |           3.8 |        6.4     |       2       |             0.631117 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 131 |            6.4 |           2.8 |        5.6     |       2.2     |             0.252031 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 132 |            6.3 |           2.8 |        5.1     |       1.5     |             0.300455 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 133 |            6.1 |           2.6 |        5.6     |       1.4     |             0.468343 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 134 |            7.7 |           3   |        6.1     |       2.3     |             0.485559 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 135 |            6.3 |           3.4 |        5.6     |       2.4     |             0.29848  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 136 |            6.4 |           3.1 |        5.5     |       1.8     |             0.241912 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 137 |            6   |           3   |        4.8     |       1.8     |             0.19282  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 138 |            6.9 |           3.1 |        5.4     |       2.1     |             0.253696 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 139 |            6.7 |           3.1 |        5.6     |       2.4     |             0.240469 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 140 |            6.9 |           3.1 |        5.1     |       2.3     |             0.31689  |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 141 |            5.8 |           2.7 |        5.1     |       1.9     |             0.182493 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 142 |            6.8 |           3.2 |        5.9     |       2.3     |             0.240494 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 143 |            6.7 |           3.3 |        5.7     |       2.5     |             0.252235 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 144 |            6.7 |           3   |        5.2     |       2.3     |             0.268045 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 145 |            6.3 |           2.5 |        5       |       1.9     |             0.283745 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 146 |            6.5 |           3   |        5.2     |       2       |             0.258225 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 147 |            6.2 |           3.4 |        5.4     |       2.3     |             0.343633 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 148 |            5.9 |           3   |        5.1     |       1.8     |             0.252479 |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 149 |           40.9 |          30   |       14       |       2       |            34.5513   |
++-----+----------------+---------------+----------------+---------------+----------------------+
+| 150 |            5.8 |           1   |        3.84267 |       1.21067 |             1.074    |
++-----+----------------+---------------+----------------+---------------+----------------------+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q1</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="c1"># Menentukan batas bawah dan atas</span>
+<span class="n">batas_bawah</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">batas_atas</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="c1"># Ambil data outlier</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[(</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">batas_bawah</span><span class="p">)</span> <span class="o">|</span>
+                      <span class="p">(</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">batas_atas</span><span class="p">)]</span>
+<span class="n">outlier_terbesar</span> <span class="o">=</span> <span class="n">outliers</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">outliers</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier Terbesar:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">outlier_terbesar</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.11/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3804</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">3805</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">casted_key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3806</span>         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">index.pyx</span> in <span class="ni">pandas._libs.index.IndexEngine.get_loc</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="nn">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ni">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="nt">()</span>
+
+<span class="ne">KeyError</span>: &#39;euclidean_distance&#39;
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">KeyError</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-9-9c1872d44e4a&gt;</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Q1</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">Q3</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/pandas/core/frame.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4100</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">nlevels</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4101</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getitem_multilevel</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">4102</span>             <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4103</span>             <span class="k">if</span> <span class="n">is_integer</span><span class="p">(</span><span class="n">indexer</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">4104</span>                 <span class="n">indexer</span> <span class="o">=</span> <span class="p">[</span><span class="n">indexer</span><span class="p">]</span>
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/pandas/core/indexes/base.py</span> in <span class="ni">get_loc</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3810</span>             <span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3811</span>                 <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3812</span>             <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
+<span class="g g-Whitespace">   </span><span class="mi">3813</span>         <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3814</span>             <span class="c1"># If we have a listlike key, _check_indexing_error will raise</span>
+
+<span class="ne">KeyError</span>: &#39;euclidean_distance&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Membuat figure dengan ukuran 10x6</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Scatter plot Euclidean Distance dengan warna merah untuk outlier</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_combined</span><span class="p">)),</span> <span class="n">y</span><span class="o">=</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">],</span>
+                <span class="n">hue</span><span class="o">=</span><span class="n">df_combined</span><span class="p">[</span><span class="s1">&#39;euclidean_distance&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">batas_atas</span><span class="p">,</span>
+                <span class="n">palette</span><span class="o">=</span><span class="p">{</span><span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">})</span>
+
+<span class="c1"># garis batas bawah dan atas</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">batas_atas</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Batas Atas (Outlier)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">batas_bawah</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Batas Bawah (Outlier)&quot;</span><span class="p">)</span>
+
+<span class="c1"># judul, dan label sumbu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scatter Plot Euclidean Distance (Menentukan Outlier)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Index Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Euclidean Distance&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4a540469109afc494dd0319677c1835ce17e43fff29cd9ebf9674510da206e8d.png" src="_images/4a540469109afc494dd0319677c1835ce17e43fff29cd9ebf9674510da206e8d.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="contoh-deteksi-manual-outlier-dengan-k-nn-suhu">
+<h1><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong><a class="headerlink" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu" title="Link to this heading">#</a></h1>
+<p>Metode <strong>K-Nearest Neighbors (K-NN)</strong> dapat digunakan untuk mendeteksi outlier dengan menghitung rata-rata jarak suatu titik data ke tetangga terdekatnya. Jika jaraknya jauh lebih besar dibandingkan data lain, maka titik tersebut bisa dianggap sebagai <strong>outlier</strong>.</p>
+<hr class="docutils" />
+<section id="dataset">
+<h2><strong>Dataset</strong><a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Misalkan kita memiliki data suhu harian selama 10 hari (dalam °C):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>X = [28, 29, 30, 31, 29, 32, 30, 28, 27, 40]
+</pre></div>
+</div>
+<p>Saya menggunakan <strong>K = 2</strong> dan <strong>jarak Euclidean</strong> untuk mendeteksi outlier.</p>
+</section>
+<hr class="docutils" />
+<section id="langkah-langkah-deteksi-outlier">
+<h2><strong>Langkah-Langkah Deteksi Outlier</strong><a class="headerlink" href="#langkah-langkah-deteksi-outlier" title="Link to this heading">#</a></h2>
+<section id="hitung-jarak-antar-titik">
+<h3><strong>1. Hitung Jarak Antar Titik</strong><a class="headerlink" href="#hitung-jarak-antar-titik" title="Link to this heading">#</a></h3>
+<p>Gunakan <strong>jarak Euclidean</strong> (selisih absolut antara dua titik dalam satu dimensi).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Suhu (°C)</p></th>
+<th class="head"><p>Tetangga 1</p></th>
+<th class="head"><p>Jarak</p></th>
+<th class="head"><p>Tetangga 2</p></th>
+<th class="head"><p>Jarak</p></th>
+<th class="head"><p>Rata-rata Jarak</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>28</p></td>
+<td><p>27</p></td>
+<td><p>1</p></td>
+<td><p>29</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>29</p></td>
+<td><p>28</p></td>
+<td><p>1</p></td>
+<td><p>30</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>29</p></td>
+<td><p>1</p></td>
+<td><p>31</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>30</p></td>
+<td><p>1</p></td>
+<td><p>32</p></td>
+<td><p>1</p></td>
+<td><p>(1+1)/2 = 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>31</p></td>
+<td><p>1</p></td>
+<td><p>30</p></td>
+<td><p>2</p></td>
+<td><p>(1+2)/2 = 1.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>28</p></td>
+<td><p>1</p></td>
+<td><p>29</p></td>
+<td><p>2</p></td>
+<td><p>(1+2)/2 = 1.5</p></td>
+</tr>
+<tr class="row-even"><td><p>40</p></td>
+<td><p>32</p></td>
+<td><p>8</p></td>
+<td><p>31</p></td>
+<td><p>9</p></td>
+<td><p>(8+9)/2 = 8.5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="menentukan-outlier">
+<h3><strong>2. Menentukan Outlier</strong><a class="headerlink" href="#menentukan-outlier" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Hampir semua titik memiliki rata-rata jarak <strong>1 - 1.5</strong>.</p></li>
+<li><p><strong>Suhu 40°C memiliki rata-rata jarak ke tetangga sebesar 8.5</strong>, jauh lebih besar dibandingkan lainnya.</p></li>
+<li><p>Maka, <strong>suhu 40°C adalah outlier</strong>.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="maka">
+<h2><strong>Maka</strong><a class="headerlink" href="#maka" title="Link to this heading">#</a></h2>
+<p>Metode <strong>K-NN Outlier</strong> mendeteksi bahwa <strong>40°C</strong> adalah outlier dalam data ini.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Data_Understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Understanding</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📌 <strong>Penjelasan Outlier</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-deteksi-manual-outlier-dengan-k-nn-suhu"><strong>Contoh Deteksi Manual Outlier dengan K-NN (Suhu)</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset"><strong>Dataset</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier"><strong>Langkah-Langkah Deteksi Outlier</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-jarak-antar-titik"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-outlier"><strong>2. Menentukan Outlier</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maka"><strong>Maka</strong></a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Ilham Adila Almafaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
