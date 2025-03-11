@@ -180,10 +180,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Data Understanding</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
-
-
 </ul>
 
     </div>
@@ -392,8 +390,8 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
-<h1>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
-<p>Data understanding merupakan langkah awal yang bertujuan untuk memahami data secara mendalam sebelum melakukan analisis lebih lanjut. Pemahaman data yang baik sangat krusial karena akan memengaruhi keberhasilan seluruh proses data mining.</p>
+<h1><strong>Data Understanding</strong><a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<p><strong>Data understanding</strong> Merupakan langkah awal yang bertujuan untuk memahami data secara mendalam sebelum melakukan analisis lebih lanjut. Pemahaman data yang baik sangat krusial karena akan memengaruhi keberhasilan seluruh proses data mining.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql
@@ -405,7 +403,7 @@ document.write(`
   Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
 Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">1.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">2.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -449,7 +447,7 @@ Successfully installed pymysql-1.1.1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, &#39;Iris-setosa&#39;, 1.4, 0.2)
-(2, &#39;Iris-setosa&#39;, 1.4, 0.2)
+(2, &#39;Iris-setosa&#39;, 50.0, 20.0)
 (3, &#39;Iris-setosa&#39;, 1.3, 0.2)
 (4, &#39;Iris-setosa&#39;, 1.5, 0.2)
 (5, &#39;Iris-setosa&#39;, 1.4, 0.2)
@@ -502,10 +500,10 @@ Successfully installed pymysql-1.1.1
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, &#39;Iris-setosa&#39;, 5.1, 3.5)
-(2, &#39;Iris-setosa&#39;, 4.9, 3.0)
 (3, &#39;Iris-setosa&#39;, 4.7, 3.2)
 (4, &#39;Iris-setosa&#39;, 4.6, 3.1)
 (5, &#39;Iris-setosa&#39;, 5.0, 3.6)
+(6, &#39;Iris-setosa&#39;, 5.4, 3.9)
 </pre></div>
 </div>
 </div>
@@ -583,12 +581,12 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
   df_postgres = pd.read_sql(postgres_query, postgres_conn)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   id        Class  sepal length  sepal width  petal length  petal width
-0   1  Iris-setosa           5.1          3.5           1.4          0.2
-1   2  Iris-setosa           4.9          3.0           1.4          0.2
-2   3  Iris-setosa           4.7          3.2           1.3          0.2
-3   4  Iris-setosa           4.6          3.1           1.5          0.2
-4   5  Iris-setosa           5.0          3.6           1.4          0.2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    id        Class  sepal length  sepal width  petal length  petal width
+0  1.0  Iris-setosa           5.1          3.5           1.4          0.2
+1  3.0  Iris-setosa           4.7          3.2           1.3          0.2
+2  4.0  Iris-setosa           4.6          3.1           1.5          0.2
+3  5.0  Iris-setosa           5.0          3.6           1.4          0.2
+4  6.0  Iris-setosa           5.4          3.9           1.7          0.4
 </pre></div>
 </div>
 </div>
@@ -606,16 +604,16 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+--------------------+--------------------+
-|        |    sepal length    |    sepal width     |    petal length    |    petal width     |
-+--------+--------------------+--------------------+--------------------+--------------------+
-|  mean  | 5.843333333333334  | 3.0540000000000003 | 3.758666666666666  | 1.1986666666666668 |
-| modus  |        5.0         |        3.0         |        1.5         |        0.2         |
-| median |        5.8         |        3.0         |        4.35        |        1.3         |
-|  std   | 0.8280661279778629 | 0.4335943113621737 | 1.7644204199522617 | 0.7631607417008414 |
-|  min   |        4.3         |        2.0         |        1.0         |        0.1         |
-|  max   |        7.9         |        4.4         |        6.9         |        2.5         |
-+--------+--------------------+--------------------+--------------------+--------------------+
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+--------+--------------------+--------------------+-------------------+--------------------+
+|        |    sepal length    |    sepal width     |   petal length    |    petal width     |
++--------+--------------------+--------------------+-------------------+--------------------+
+|  mean  | 6.081456953642384  | 3.2192052980132453 | 4.082666666666666 | 1.3306666666666669 |
+| modus  |        5.0         |        3.0         |        1.5        |        0.2         |
+| median |        5.8         |        3.0         |        4.4        |        1.3         |
+|  std   | 2.9683756270281325 | 2.2423117604171545 | 4.161839207951354 | 1.7118986149912467 |
+|  min   |        4.3         |        1.0         |        1.0        |        0.1         |
+|  max   |        40.9        |        30.0        |       50.0        |        20.0        |
++--------+--------------------+--------------------+-------------------+--------------------+
 </pre></div>
 </div>
 </div>
@@ -641,7 +639,9 @@ Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3
 Requirement already satisfied: pandas&gt;=1.2 in /usr/local/lib/python3.11/dist-packages (from seaborn) (2.2.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
 Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.17.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.17.0)
 </pre></div>
 </div>
 </div>
@@ -674,7 +674,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/34da52e547c826962a44a18479322503d7b72de0f9cc2eac8231b2c2bdd98f30.png" src="_images/34da52e547c826962a44a18479322503d7b72de0f9cc2eac8231b2c2bdd98f30.png" />
+<img alt="_images/d04ffed943468b1f5fdac6fb085910e194d6f4d8384cd01c948921963bf935e5.png" src="_images/d04ffed943468b1f5fdac6fb085910e194d6f4d8384cd01c948921963bf935e5.png" />
 </div>
 </div>
 <p>##Visualisasi Berdasarkan Kelas</p>
@@ -733,27 +733,49 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
   sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
-&lt;ipython-input-10-fae5b1b0c188&gt;:18: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
-&lt;ipython-input-10-fae5b1b0c188&gt;:28: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
-&lt;ipython-input-10-fae5b1b0c188&gt;:38: FutureWarning: 
-
-Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
-
-  sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
 </pre></div>
 </div>
-<img alt="_images/86ecd4210c01e7e781b9021c4736da65c7d10f4b2e9c2865b9866832c96bdc83.png" src="_images/86ecd4210c01e7e781b9021c4736da65c7d10f4b2e9c2865b9866832c96bdc83.png" />
-<img alt="_images/c149db1e3246a4bd359a9ba8ba19b103645e111419981301533b9b97a44902ad.png" src="_images/c149db1e3246a4bd359a9ba8ba19b103645e111419981301533b9b97a44902ad.png" />
-<img alt="_images/1e4a658589d03617b0fd1c2358217c8da66c60ccd81bd3801b04daa04acb7fc1.png" src="_images/1e4a658589d03617b0fd1c2358217c8da66c60ccd81bd3801b04daa04acb7fc1.png" />
-<img alt="_images/07cb1b80337196de352ea57c3091ea83f34660a32c0f1e959a25c8b6534b6481.png" src="_images/07cb1b80337196de352ea57c3091ea83f34660a32c0f1e959a25c8b6534b6481.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-10-fae5b1b0c188&gt;</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> 
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">color</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Iris-setosa&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;Iris-versicolor&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;Iris-virginica&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">}</span>
+<span class="ne">----&gt; </span><span class="mi">8</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_combined</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">class_col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">kolom</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Class&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">kolom</span><span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/seaborn/categorical.py</span> in <span class="ni">boxplot</span><span class="nt">(data, x, y, hue, order, hue_order, orient, color, palette, saturation, fill, dodge, width, gap, whis, linecolor, linewidth, fliersize, hue_norm, native_scale, log_scale, formatter, legend, ax, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1624</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1625</span>     <span class="n">saturation</span> <span class="o">=</span> <span class="n">saturation</span> <span class="k">if</span> <span class="n">fill</span> <span class="k">else</span> <span class="mi">1</span>
+<span class="ne">-&gt; </span><span class="mi">1626</span>     <span class="n">p</span><span class="o">.</span><span class="n">map_hue</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">hue_order</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">hue_norm</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="n">saturation</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1627</span>     <span class="n">color</span> <span class="o">=</span> <span class="n">_default_color</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1628</span>         <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">,</span> <span class="n">hue</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/seaborn/_base.py</span> in <span class="ni">map_hue</span><span class="nt">(self, palette, order, norm, saturation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">836</span> 
+<span class="g g-Whitespace">    </span><span class="mi">837</span>     <span class="k">def</span> <span class="nf">map_hue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">saturation</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">838</span>         <span class="n">mapping</span> <span class="o">=</span> <span class="n">HueMapping</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">saturation</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">839</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_hue_map</span> <span class="o">=</span> <span class="n">mapping</span>
+<span class="g g-Whitespace">    </span><span class="mi">840</span> 
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/seaborn/_base.py</span> in <span class="ni">__init__</span><span class="nt">(self, plotter, palette, order, norm, saturation)</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span> 
+<span class="g g-Whitespace">    </span><span class="mi">149</span>                 <span class="n">cmap</span> <span class="o">=</span> <span class="n">norm</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">150</span>                 <span class="n">levels</span><span class="p">,</span> <span class="n">lookup_table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">categorical_mapping</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">151</span>                     <span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>                 <span class="p">)</span>
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/seaborn/_base.py</span> in <span class="ni">categorical_mapping</span><span class="nt">(self, data, palette, order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">232</span>             <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">missing</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span>                 <span class="n">err</span> <span class="o">=</span> <span class="s2">&quot;The palette dictionary is missing keys: </span><span class="si">{}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">234</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">missing</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">235</span> 
+<span class="g g-Whitespace">    </span><span class="mi">236</span>             <span class="n">lookup_table</span> <span class="o">=</span> <span class="n">palette</span>
+
+<span class="ne">ValueError</span>: The palette dictionary is missing keys: {&#39;?&#39;}
+</pre></div>
+</div>
+<img alt="_images/1e252fde075eb0fcceb6d860d6e89bdaa47b759c68933dce01f4dc24b5dee85c.png" src="_images/1e252fde075eb0fcceb6d860d6e89bdaa47b759c68933dce01f4dc24b5dee85c.png" />
 </div>
 </div>
 </section>

@@ -1,0 +1,113 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import seaborn as sns
+
+kolom = "sepal width"
+class_col = "Class"
+plt.figure(figsize=(6, 3))
+
+color = {"Iris-setosa": "blue", "Iris-versicolor": "red", "Iris-virginica": "green"}
+sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
+plt.xlabel("Class")
+plt.ylabel(kolom)
+plt.title("Box Plot Sepal Width berdasarkan Class")
+
+kolom = "sepal length"
+class_col = "Class"
+plt.figure(figsize=(6, 3))
+
+color = {"Iris-setosa": "blue", "Iris-versicolor": "red", "Iris-virginica": "green"}
+sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
+plt.xlabel("Class")
+plt.ylabel(kolom)
+plt.title("Box Plot Sepal Lenght berdasarkan Class")
+
+kolom = "petal width"
+class_col = "Class"
+plt.figure(figsize=(6, 3))
+
+color = {"Iris-setosa": "blue", "Iris-versicolor": "red", "Iris-virginica": "green"}
+sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
+plt.xlabel("Class")
+plt.ylabel(kolom)
+plt.title("Box Plot Petal Width berdasarkan Class")
+
+kolom = "petal length"
+class_col = "Class"
+plt.figure(figsize=(6, 3))
+
+color = {"Iris-setosa": "blue", "Iris-versicolor": "red", "Iris-virginica": "green"}
+sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
+plt.xlabel("Class")
+plt.ylabel(kolom)
+plt.title("Box Plot Petal Length berdasarkan Class")
+
+
+plt.show()
+------------------
+
+----- stderr -----
+<ipython-input-10-fae5b1b0c188>:8: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=df_combined, x=class_col, y=kolom, palette=color)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-10-fae5b1b0c188>[0m in [0;36m<cell line: 0>[0;34m()[0m
+[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m [0mcolor[0m [0;34m=[0m [0;34m{[0m[0;34m"Iris-setosa"[0m[0;34m:[0m [0;34m"blue"[0m[0;34m,[0m [0;34m"Iris-versicolor"[0m[0;34m:[0m [0;34m"red"[0m[0;34m,[0m [0;34m"Iris-virginica"[0m[0;34m:[0m [0;34m"green"[0m[0;34m}[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 8[0;31m [0msns[0m[0;34m.[0m[0mboxplot[0m[0;34m([0m[0mdata[0m[0;34m=[0m[0mdf_combined[0m[0;34m,[0m [0mx[0m[0;34m=[0m[0mclass_col[0m[0;34m,[0m [0my[0m[0;34m=[0m[0mkolom[0m[0;34m,[0m [0mpalette[0m[0;34m=[0m[0mcolor[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      9[0m [0mplt[0m[0;34m.[0m[0mxlabel[0m[0;34m([0m[0;34m"Class"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     10[0m [0mplt[0m[0;34m.[0m[0mylabel[0m[0;34m([0m[0mkolom[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.11/dist-packages/seaborn/categorical.py[0m in [0;36mboxplot[0;34m(data, x, y, hue, order, hue_order, orient, color, palette, saturation, fill, dodge, width, gap, whis, linecolor, linewidth, fliersize, hue_norm, native_scale, log_scale, formatter, legend, ax, **kwargs)[0m
+[1;32m   1624[0m [0;34m[0m[0m
+[1;32m   1625[0m     [0msaturation[0m [0;34m=[0m [0msaturation[0m [0;32mif[0m [0mfill[0m [0;32melse[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1626[0;31m     [0mp[0m[0;34m.[0m[0mmap_hue[0m[0;34m([0m[0mpalette[0m[0;34m=[0m[0mpalette[0m[0;34m,[0m [0morder[0m[0;34m=[0m[0mhue_order[0m[0;34m,[0m [0mnorm[0m[0;34m=[0m[0mhue_norm[0m[0;34m,[0m [0msaturation[0m[0;34m=[0m[0msaturation[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1627[0m     color = _default_color(
+[1;32m   1628[0m         [0max[0m[0;34m.[0m[0mfill_between[0m[0;34m,[0m [0mhue[0m[0;34m,[0m [0mcolor[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.11/dist-packages/seaborn/_base.py[0m in [0;36mmap_hue[0;34m(self, palette, order, norm, saturation)[0m
+[1;32m    836[0m [0;34m[0m[0m
+[1;32m    837[0m     [0;32mdef[0m [0mmap_hue[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mpalette[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0morder[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0mnorm[0m[0;34m=[0m[0;32mNone[0m[0;34m,[0m [0msaturation[0m[0;34m=[0m[0;36m1[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 838[0;31m         [0mmapping[0m [0;34m=[0m [0mHueMapping[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mpalette[0m[0;34m,[0m [0morder[0m[0;34m,[0m [0mnorm[0m[0;34m,[0m [0msaturation[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    839[0m         [0mself[0m[0;34m.[0m[0m_hue_map[0m [0;34m=[0m [0mmapping[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    840[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.11/dist-packages/seaborn/_base.py[0m in [0;36m__init__[0;34m(self, plotter, palette, order, norm, saturation)[0m
+[1;32m    148[0m [0;34m[0m[0m
+[1;32m    149[0m                 [0mcmap[0m [0;34m=[0m [0mnorm[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 150[0;31m                 levels, lookup_table = self.categorical_mapping(
+[0m[1;32m    151[0m                     [0mdata[0m[0;34m,[0m [0mpalette[0m[0;34m,[0m [0morder[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    152[0m                 )
+
+[0;32m/usr/local/lib/python3.11/dist-packages/seaborn/_base.py[0m in [0;36mcategorical_mapping[0;34m(self, data, palette, order)[0m
+[1;32m    232[0m             [0;32mif[0m [0many[0m[0;34m([0m[0mmissing[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    233[0m                 [0merr[0m [0;34m=[0m [0;34m"The palette dictionary is missing keys: {}"[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 234[0;31m                 [0;32mraise[0m [0mValueError[0m[0;34m([0m[0merr[0m[0;34m.[0m[0mformat[0m[0;34m([0m[0mmissing[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    235[0m [0;34m[0m[0m
+[1;32m    236[0m             [0mlookup_table[0m [0;34m=[0m [0mpalette[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: The palette dictionary is missing keys: {'?'}
+
