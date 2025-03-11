@@ -182,6 +182,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Data Understanding</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF) dalam Data Mining</strong></a></li>
 </ul>
 
     </div>
@@ -378,6 +379,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-mysql">Cek koneksi MySQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-postgre">Cek Koneksi Postgre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data">Merging Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data-bunga-iris">Profiling Data Bunga Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-berdasarkan-kolom">Visualisasi Berdasarkan Kolom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-berdasarkan-kelas">Visualisasi Berdasarkan Kelas</a></li>
 </ul>
             </nav>
         </div>
@@ -403,7 +409,7 @@ document.write(`
   Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
 Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">2.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">2.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -467,7 +473,9 @@ Successfully installed pymysql-1.1.1
 </div>
 </div>
 </div>
-<p>##Cek Koneksi Postgre</p>
+</section>
+<section id="cek-koneksi-postgre">
+<h2>Cek Koneksi Postgre<a class="headerlink" href="#cek-koneksi-postgre" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -526,7 +534,9 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </div>
-<p>##Merging Data</p>
+</section>
+<section id="merging-data">
+<h2>Merging Data<a class="headerlink" href="#merging-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
@@ -591,7 +601,9 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </div>
-<p>##Profiling Data Bunga Iris</p>
+</section>
+<section id="profiling-data-bunga-iris">
+<h2>Profiling Data Bunga Iris<a class="headerlink" href="#profiling-data-bunga-iris" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kolom</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[[</span><span class="s2">&quot;sepal length&quot;</span><span class="p">,</span><span class="s2">&quot;sepal width&quot;</span><span class="p">,</span> <span class="s2">&quot;petal length&quot;</span><span class="p">,</span><span class="s2">&quot;petal width&quot;</span><span class="p">]]</span>
@@ -638,15 +650,17 @@ Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.11/
 Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (2.8.2)
 Requirement already satisfied: pandas&gt;=1.2 in /usr/local/lib/python3.11/dist-packages (from seaborn) (2.2.2)
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.17.0)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.17.0)
 </pre></div>
 </div>
 </div>
 </div>
-<p>##Visualisasi Berdasarkan Kolom</p>
+</section>
+<section id="visualisasi-berdasarkan-kolom">
+<h2>Visualisasi Berdasarkan Kolom<a class="headerlink" href="#visualisasi-berdasarkan-kolom" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -677,7 +691,9 @@ Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/di
 <img alt="_images/d04ffed943468b1f5fdac6fb085910e194d6f4d8384cd01c948921963bf935e5.png" src="_images/d04ffed943468b1f5fdac6fb085910e194d6f4d8384cd01c948921963bf935e5.png" />
 </div>
 </div>
-<p>##Visualisasi Berdasarkan Kelas</p>
+</section>
+<section id="visualisasi-berdasarkan-kelas">
+<h2>Visualisasi Berdasarkan Kelas<a class="headerlink" href="#visualisasi-berdasarkan-kelas" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -846,6 +862,11 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-mysql">Cek koneksi MySQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-postgre">Cek Koneksi Postgre</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data">Merging Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#profiling-data-bunga-iris">Profiling Data Bunga Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-berdasarkan-kolom">Visualisasi Berdasarkan Kolom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-berdasarkan-kelas">Visualisasi Berdasarkan Kelas</a></li>
 </ul>
   </nav></div>
 

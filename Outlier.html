@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Outlier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Local Outlier Factor (LOF) dalam Data Mining" href="LOF.html" />
     <link rel="prev" title="Data Understanding" href="Data_Understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -183,6 +184,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html"><strong>Data Understanding</strong></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Outlier</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF) dalam Data Mining</strong></a></li>
 </ul>
 
     </div>
@@ -390,7 +392,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-mysql">Cek koneksi Database MySQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-postgresql">Cek koneksi Database PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data">MERGING DATA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance">Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -611,12 +619,9 @@ Threshold = \mu + 2\sigma
   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
 Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/3.0 MB</span> <span class=" -Color -Color-Red">3.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.9/3.0 MB</span> <span class=" -Color -Color-Red">12.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">32.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">24.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.3/3.0 MB</span> <span class=" -Color -Color-Red">9.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━ <span class=" -Color -Color-Green">2.7/3.0 MB</span> <span class=" -Color -Color-Red">39.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">33.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -656,8 +661,9 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </div>
-<p>##Cek koneksi Database MySQL
-Periksa apakah code berhasil import data dari Database MySQL</p>
+<section id="cek-koneksi-database-mysql">
+<h3>Cek koneksi Database MySQL<a class="headerlink" href="#cek-koneksi-database-mysql" title="Link to this heading">#</a></h3>
+<p>Periksa apakah code berhasil import data dari Database MySQL</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
@@ -699,8 +705,10 @@ Periksa apakah code berhasil import data dari Database MySQL</p>
 </div>
 </div>
 </div>
-<p>##Cek koneksi Database PostgreSQL
-Memeriksa apakah code berhasil import data dari Database PostgreSQL</p>
+</section>
+<section id="cek-koneksi-database-postgresql">
+<h3>Cek koneksi Database PostgreSQL<a class="headerlink" href="#cek-koneksi-database-postgresql" title="Link to this heading">#</a></h3>
+<p>Memeriksa apakah code berhasil import data dari Database PostgreSQL</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -742,8 +750,10 @@ Memeriksa apakah code berhasil import data dari Database PostgreSQL</p>
 </div>
 </div>
 </div>
-<p>##MERGING DATA
-Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p>
+</section>
+<section id="merging-data">
+<h3>MERGING DATA<a class="headerlink" href="#merging-data" title="Link to this heading">#</a></h3>
+<p>Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymysql</span>
@@ -1108,7 +1118,9 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 </div>
 </div>
 </div>
-<p>##Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</p>
+</section>
+<section id="code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance">
+<h3>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance<a class="headerlink" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1579,6 +1591,7 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1619,6 +1632,15 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
         <p class="prev-next-title"><strong>Data Understanding</strong></p>
       </div>
     </a>
+    <a class="right-next"
+       href="LOF.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><strong>Local Outlier Factor (LOF) dalam Data Mining</strong></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1647,7 +1669,13 @@ Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-mysql">Cek koneksi Database MySQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-postgresql">Cek koneksi Database PostgreSQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data">MERGING DATA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance">Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
