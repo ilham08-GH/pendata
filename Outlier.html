@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Outlier';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Local Outlier Factor (LOF) dalam Data Mining" href="LOF.html" />
+    <link rel="next" title="Local Outlier Factor (LOF)" href="LOF.html" />
     <link rel="prev" title="Data Understanding" href="Data_Understanding.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -184,7 +184,7 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html"><strong>Data Understanding</strong></a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Outlier</strong></a></li>
-<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF) dalam Data Mining</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
 </ul>
 
     </div>
@@ -603,7 +603,16 @@ Threshold = \mu + 2\sigma
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymysql
+  Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
+Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">3.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pymysql
+Successfully installed pymysql-1.1.1
 </pre></div>
 </div>
 </div>
@@ -619,9 +628,8 @@ Threshold = \mu + 2\sigma
   Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
 Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
 ?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.3/3.0 MB</span> <span class=" -Color -Color-Red">9.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━ <span class=" -Color -Color-Green">2.7/3.0 MB</span> <span class=" -Color -Color-Red">39.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">33.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━ <span class=" -Color -Color-Green">2.7/3.0 MB</span> <span class=" -Color -Color-Red">81.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">50.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
 ?25h
 </pre></div>
 </div>
@@ -729,7 +737,6 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
     <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
     <span class="n">sslmode</span><span class="o">=</span><span class="s2">&quot;require&quot;</span>
 <span class="p">)</span>
-
 <span class="c1">#menampilkan data</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">postgres_conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM postgre.postgre LIMIT 5;&quot;</span><span class="p">)</span>
@@ -1538,53 +1545,387 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
 
-<span class="c1"># Menentukan fitur yang digunakan dalam perhitungan</span>
-<span class="n">feature_column</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;petal length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal width&#39;</span><span class="p">]</span>
+<span class="c1"># Create an imputer to replace NaN values with the mean</span>
+<span class="n">imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
 
-<span class="c1"># Mengambil data fitur dari dataframe df_combined</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df_combined</span><span class="p">[</span><span class="n">feature_column</span><span class="p">]</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>  <span class="c1"># Mengisi nilai yang kosong dengan rata-rata</span>
+<span class="c1"># Fit the imputer on your data and transform it</span>
+<span class="c1"># Replace result_df with df_combined</span>
+<span class="n">X_imputed</span> <span class="o">=</span> <span class="n">imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_combined</span><span class="p">[[</span><span class="s1">&#39;petal length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal width&#39;</span><span class="p">]])</span> <span class="c1"># Updated line</span>
 
-<span class="c1"># Menjalankan model LocalOutlierFactor</span>
+<span class="c1"># Now, use the imputed data for LocalOutlierFactor</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">X_scores</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">negative_outlier_factor_</span>
+<span class="c1"># Replace result_df with df_combined</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X_imputed</span><span class="p">)</span> <span class="c1"># Updated line</span>
 
-<span class="c1"># Menambahkan skor dan label outlier ke dataframe</span>
-<span class="n">outlier_df</span> <span class="o">=</span> <span class="n">df_combined</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">outlier_df</span><span class="p">[</span><span class="s1">&#39;outlier_score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_scores</span>
-<span class="n">outlier_df</span><span class="p">[</span><span class="s1">&#39;outlier&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_pred</span>  <span class="c1"># Menyimpan hasil outlier asli dari model</span>
+<span class="c1"># ... (rest of your code)</span>
 
-<span class="c1"># Filter hanya yang merupakan outlier (-1)</span>
-<span class="n">outliers</span> <span class="o">=</span> <span class="n">outlier_df</span><span class="p">[</span><span class="n">outlier_df</span><span class="p">[</span><span class="s1">&#39;outlier&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Instead of comparing against ground_truth (which has different size),</span>
+<span class="c1"># evaluate using the model&#39;s inbuilt outlier prediction</span>
+<span class="n">outlier_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Outlier are labeled -1 by LOF</span>
 
-<span class="c1"># Menampilkan ID dan status outlier</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier IDs and their scores:&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">outliers</span><span class="p">[[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;outlier_score&#39;</span><span class="p">]])</span>
+<span class="c1"># Print outliers</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data yang diduga outlier (menggunakan LocalOutlierFactor):&quot;</span><span class="p">)</span>
+<span class="c1"># Replace result_df with df_combined</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_combined</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">outlier_index</span><span class="p">])</span> <span class="c1"># Updated line</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;y_pred&quot;</span><span class="p">],</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">))</span>
+<span class="c1"># Replace result_df with df_combined</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah total data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_combined</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># Updated line</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Outlier IDs and their scores:
-        id  outlier_score
-13    15.0      -1.462876
-14    16.0      -1.654049
-40    42.0      -1.780002
-56    58.0      -1.432891
-59    61.0      -1.395791
-92    94.0      -1.401342
-97    99.0      -1.511868
-104  106.0      -1.397031
-105  107.0      -1.373468
-116  118.0      -1.570164
-117  119.0      -1.621738
-121  123.0      -1.488682
-130  132.0      -1.544506
-149    2.0     -65.979769
-150    NaN      -2.047458
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data yang diduga outlier (menggunakan LocalOutlierFactor):
+        id            Class  sepal length  sepal width  petal length  \
+13    15.0      Iris-setosa           5.8          4.0           1.2   
+14    16.0      Iris-setosa           5.7          4.4           1.5   
+40    42.0      Iris-setosa           4.5          2.3           1.3   
+56    58.0  Iris-versicolor           4.9          2.4           3.3   
+59    61.0  Iris-versicolor           5.0          2.0           3.5   
+92    94.0  Iris-versicolor           5.0          2.3           3.3   
+97    99.0  Iris-versicolor           5.1          2.5           3.0   
+104  106.0   Iris-virginica           7.6          3.0           6.6   
+105  107.0   Iris-virginica           4.9          2.5           4.5   
+116  118.0   Iris-virginica           7.7          3.8           6.7   
+117  119.0   Iris-virginica           7.7          2.6           6.9   
+121  123.0   Iris-virginica           7.7          2.8           6.7   
+130  132.0   Iris-virginica           7.9          3.8           6.4   
+149    2.0      Iris-setosa          40.9         30.0          50.0   
+150    NaN                ?           5.8          1.0           NaN   
+
+     petal width  euclidean_distance  
+13           0.2            0.397170  
+14           0.4            0.428232  
+40           0.3            0.577556  
+56           1.0            0.341618  
+59           1.0            0.440755  
+92           1.0            0.307470  
+97           1.1            0.457886  
+104          2.1            0.377834  
+105          1.7            0.633529  
+116          2.2            0.619213  
+117          2.3            0.556364  
+121          2.0            0.392679  
+130          2.0            0.631117  
+149         20.0           50.668410  
+150          NaN            1.074407  
+[ 1  1  1  1  1  1  1  1  1  1  1  1  1 -1 -1  1  1  1  1  1  1  1  1  1
+  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1  1
+  1  1  1  1  1  1  1  1 -1  1  1 -1  1  1  1  1  1  1  1  1  1  1  1  1
+  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1
+  1 -1  1  1  1  1  1  1 -1 -1  1  1  1  1  1  1  1  1  1  1 -1 -1  1  1
+  1 -1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1  1  1  1  1  1  1  1
+  1  1  1  1  1 -1 -1]
++---------+----------+
+|   Index |   y_pred |
++=========+==========+
+|       0 |        1 |
++---------+----------+
+|       1 |        1 |
++---------+----------+
+|       2 |        1 |
++---------+----------+
+|       3 |        1 |
++---------+----------+
+|       4 |        1 |
++---------+----------+
+|       5 |        1 |
++---------+----------+
+|       6 |        1 |
++---------+----------+
+|       7 |        1 |
++---------+----------+
+|       8 |        1 |
++---------+----------+
+|       9 |        1 |
++---------+----------+
+|      10 |        1 |
++---------+----------+
+|      11 |        1 |
++---------+----------+
+|      12 |        1 |
++---------+----------+
+|      13 |       -1 |
++---------+----------+
+|      14 |       -1 |
++---------+----------+
+|      15 |        1 |
++---------+----------+
+|      16 |        1 |
++---------+----------+
+|      17 |        1 |
++---------+----------+
+|      18 |        1 |
++---------+----------+
+|      19 |        1 |
++---------+----------+
+|      20 |        1 |
++---------+----------+
+|      21 |        1 |
++---------+----------+
+|      22 |        1 |
++---------+----------+
+|      23 |        1 |
++---------+----------+
+|      24 |        1 |
++---------+----------+
+|      25 |        1 |
++---------+----------+
+|      26 |        1 |
++---------+----------+
+|      27 |        1 |
++---------+----------+
+|      28 |        1 |
++---------+----------+
+|      29 |        1 |
++---------+----------+
+|      30 |        1 |
++---------+----------+
+|      31 |        1 |
++---------+----------+
+|      32 |        1 |
++---------+----------+
+|      33 |        1 |
++---------+----------+
+|      34 |        1 |
++---------+----------+
+|      35 |        1 |
++---------+----------+
+|      36 |        1 |
++---------+----------+
+|      37 |        1 |
++---------+----------+
+|      38 |        1 |
++---------+----------+
+|      39 |        1 |
++---------+----------+
+|      40 |       -1 |
++---------+----------+
+|      41 |        1 |
++---------+----------+
+|      42 |        1 |
++---------+----------+
+|      43 |        1 |
++---------+----------+
+|      44 |        1 |
++---------+----------+
+|      45 |        1 |
++---------+----------+
+|      46 |        1 |
++---------+----------+
+|      47 |        1 |
++---------+----------+
+|      48 |        1 |
++---------+----------+
+|      49 |        1 |
++---------+----------+
+|      50 |        1 |
++---------+----------+
+|      51 |        1 |
++---------+----------+
+|      52 |        1 |
++---------+----------+
+|      53 |        1 |
++---------+----------+
+|      54 |        1 |
++---------+----------+
+|      55 |        1 |
++---------+----------+
+|      56 |       -1 |
++---------+----------+
+|      57 |        1 |
++---------+----------+
+|      58 |        1 |
++---------+----------+
+|      59 |       -1 |
++---------+----------+
+|      60 |        1 |
++---------+----------+
+|      61 |        1 |
++---------+----------+
+|      62 |        1 |
++---------+----------+
+|      63 |        1 |
++---------+----------+
+|      64 |        1 |
++---------+----------+
+|      65 |        1 |
++---------+----------+
+|      66 |        1 |
++---------+----------+
+|      67 |        1 |
++---------+----------+
+|      68 |        1 |
++---------+----------+
+|      69 |        1 |
++---------+----------+
+|      70 |        1 |
++---------+----------+
+|      71 |        1 |
++---------+----------+
+|      72 |        1 |
++---------+----------+
+|      73 |        1 |
++---------+----------+
+|      74 |        1 |
++---------+----------+
+|      75 |        1 |
++---------+----------+
+|      76 |        1 |
++---------+----------+
+|      77 |        1 |
++---------+----------+
+|      78 |        1 |
++---------+----------+
+|      79 |        1 |
++---------+----------+
+|      80 |        1 |
++---------+----------+
+|      81 |        1 |
++---------+----------+
+|      82 |        1 |
++---------+----------+
+|      83 |        1 |
++---------+----------+
+|      84 |        1 |
++---------+----------+
+|      85 |        1 |
++---------+----------+
+|      86 |        1 |
++---------+----------+
+|      87 |        1 |
++---------+----------+
+|      88 |        1 |
++---------+----------+
+|      89 |        1 |
++---------+----------+
+|      90 |        1 |
++---------+----------+
+|      91 |        1 |
++---------+----------+
+|      92 |       -1 |
++---------+----------+
+|      93 |        1 |
++---------+----------+
+|      94 |        1 |
++---------+----------+
+|      95 |        1 |
++---------+----------+
+|      96 |        1 |
++---------+----------+
+|      97 |       -1 |
++---------+----------+
+|      98 |        1 |
++---------+----------+
+|      99 |        1 |
++---------+----------+
+|     100 |        1 |
++---------+----------+
+|     101 |        1 |
++---------+----------+
+|     102 |        1 |
++---------+----------+
+|     103 |        1 |
++---------+----------+
+|     104 |       -1 |
++---------+----------+
+|     105 |       -1 |
++---------+----------+
+|     106 |        1 |
++---------+----------+
+|     107 |        1 |
++---------+----------+
+|     108 |        1 |
++---------+----------+
+|     109 |        1 |
++---------+----------+
+|     110 |        1 |
++---------+----------+
+|     111 |        1 |
++---------+----------+
+|     112 |        1 |
++---------+----------+
+|     113 |        1 |
++---------+----------+
+|     114 |        1 |
++---------+----------+
+|     115 |        1 |
++---------+----------+
+|     116 |       -1 |
++---------+----------+
+|     117 |       -1 |
++---------+----------+
+|     118 |        1 |
++---------+----------+
+|     119 |        1 |
++---------+----------+
+|     120 |        1 |
++---------+----------+
+|     121 |       -1 |
++---------+----------+
+|     122 |        1 |
++---------+----------+
+|     123 |        1 |
++---------+----------+
+|     124 |        1 |
++---------+----------+
+|     125 |        1 |
++---------+----------+
+|     126 |        1 |
++---------+----------+
+|     127 |        1 |
++---------+----------+
+|     128 |        1 |
++---------+----------+
+|     129 |        1 |
++---------+----------+
+|     130 |       -1 |
++---------+----------+
+|     131 |        1 |
++---------+----------+
+|     132 |        1 |
++---------+----------+
+|     133 |        1 |
++---------+----------+
+|     134 |        1 |
++---------+----------+
+|     135 |        1 |
++---------+----------+
+|     136 |        1 |
++---------+----------+
+|     137 |        1 |
++---------+----------+
+|     138 |        1 |
++---------+----------+
+|     139 |        1 |
++---------+----------+
+|     140 |        1 |
++---------+----------+
+|     141 |        1 |
++---------+----------+
+|     142 |        1 |
++---------+----------+
+|     143 |        1 |
++---------+----------+
+|     144 |        1 |
++---------+----------+
+|     145 |        1 |
++---------+----------+
+|     146 |        1 |
++---------+----------+
+|     147 |        1 |
++---------+----------+
+|     148 |        1 |
++---------+----------+
+|     149 |       -1 |
++---------+----------+
+|     150 |       -1 |
++---------+----------+
+Jumlah total data: 151
 </pre></div>
 </div>
 </div>
@@ -1637,7 +1978,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><strong>Local Outlier Factor (LOF) dalam Data Mining</strong></p>
+        <p class="prev-next-title"><strong>Local Outlier Factor (LOF)</strong></p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
