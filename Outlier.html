@@ -403,8 +403,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-kode"><strong>Fungsi Kode</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-data-yang-diduga-outlier-menggunakan-euclidean-distance"><strong>Mencari Data yang Diduga Outlier (menggunakan Euclidean Distance):</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat-kode"><strong>Penjelasan Singkat Kode</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-data-yang-diduga-outlier-menggunakan-euclidean-distance"><strong>Mencari Data yang Diduga Outlier (menggunakan Euclidean Distance):</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat-kode"><strong>Penjelasan Singkat Kode</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-bersih-dari-outlier"><strong>Data Bersih dari Outlier</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Penjelasan Singkat Kode</strong></a></li>
 </ul>
@@ -623,16 +625,7 @@ Threshold = \mu + 2\sigma
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymysql
-  Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
-Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">2.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pymysql
-Successfully installed pymysql-1.1.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
 </pre></div>
 </div>
 </div>
@@ -644,17 +637,7 @@ Successfully installed pymysql-1.1.1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
-  Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
-Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━ <span class=" -Color -Color-Green">2.2/3.0 MB</span> <span class=" -Color -Color-Red">66.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">46.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
-Successfully installed psycopg2-binary-2.9.10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2-binary in /usr/local/lib/python3.11/dist-packages (2.9.10)
 </pre></div>
 </div>
 </div>
@@ -1724,9 +1707,8 @@ Jumlah total data setelah filtering: 135
 </section>
 <section id="mencari-data-yang-diduga-outlier-menggunakan-euclidean-distance">
 <h2><strong>Mencari Data yang Diduga Outlier (menggunakan Euclidean Distance):</strong><a class="headerlink" href="#mencari-data-yang-diduga-outlier-menggunakan-euclidean-distance" title="Link to this heading">#</a></h2>
-</section>
 <section id="penjelasan-singkat-kode">
-<h2><strong>Penjelasan Singkat Kode</strong><a class="headerlink" href="#penjelasan-singkat-kode" title="Link to this heading">#</a></h2>
+<h3><strong>Penjelasan Singkat Kode</strong><a class="headerlink" href="#penjelasan-singkat-kode" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>✅ Mendeteksi data <strong>outlier</strong> menggunakan <strong>Local Outlier Factor (LOF)</strong></p></li>
 <li><p>✅ Menentukan data mana yang terdeteksi sebagai <strong>outlier</strong></p></li>
@@ -1789,6 +1771,7 @@ Total Outlier (LOF 10%): 15 dari 150 data
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="data-bersih-dari-outlier">
 <h2><strong>Data Bersih dari Outlier</strong><a class="headerlink" href="#data-bersih-dari-outlier" title="Link to this heading">#</a></h2>
@@ -2412,8 +2395,10 @@ Akurasi: 0.9259
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-kode"><strong>Fungsi Kode</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-data-yang-diduga-outlier-menggunakan-euclidean-distance"><strong>Mencari Data yang Diduga Outlier (menggunakan Euclidean Distance):</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat-kode"><strong>Penjelasan Singkat Kode</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-data-yang-diduga-outlier-menggunakan-euclidean-distance"><strong>Mencari Data yang Diduga Outlier (menggunakan Euclidean Distance):</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat-kode"><strong>Penjelasan Singkat Kode</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-bersih-dari-outlier"><strong>Data Bersih dari Outlier</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><strong>Penjelasan Singkat Kode</strong></a></li>
 </ul>
