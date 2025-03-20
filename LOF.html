@@ -381,10 +381,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof"><strong>Apa Itu LOF?</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-sk-learn">Perhitungan SK Learn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-local-outlier-factor-lof-secara-manual"><strong>Tahapan Perhitungan Local Outlier Factor (LOF) secara Manual</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-reachability-distance-rd"><strong>1️⃣ Hitung <em>Reachability Distance (RD)</em></strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-reachability-density-lrd"><strong>2️⃣ Hitung Local Reachability Density (LRD)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-outlier-factor-lof"><strong>3️⃣ Hitung Local Outlier Factor (LOF)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-local-outlier-factor-lof-secara-manual"><strong>Tahapan Perhitungan Local Outlier Factor (LOF) secara Manual</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-reachability-distance-rd"><strong>1️⃣ Hitung <em>Reachability Distance (RD)</em></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-reachability-density-lrd"><strong>2️⃣ Hitung Local Reachability Density (LRD)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-outlier-factor-lof"><strong>3️⃣ Hitung Local Outlier Factor (LOF)</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code-python">Implementasi Code Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-menggunakan-scatter-plot">Visualisasi Menggunakan Scatter Plot</a></li>
 </ul>
@@ -411,10 +413,9 @@ Jika suatu titik memiliki <strong>kepadatan jauh lebih rendah</strong> dibanding
 </section>
 <section id="tahapan-perhitungan-local-outlier-factor-lof-secara-manual">
 <h2><strong>Tahapan Perhitungan Local Outlier Factor (LOF) secara Manual</strong><a class="headerlink" href="#tahapan-perhitungan-local-outlier-factor-lof-secara-manual" title="Link to this heading">#</a></h2>
-</section>
 <hr class="docutils" />
 <section id="hitung-reachability-distance-rd">
-<h2><strong>1️⃣ Hitung <em>Reachability Distance (RD)</em></strong><a class="headerlink" href="#hitung-reachability-distance-rd" title="Link to this heading">#</a></h2>
+<h3><strong>1️⃣ Hitung <em>Reachability Distance (RD)</em></strong><a class="headerlink" href="#hitung-reachability-distance-rd" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 RD_k(p, o) = \max(k\text{-distance}(o), d(p, o))
@@ -427,7 +428,7 @@ RD_k(p, o) = \max(k\text{-distance}(o), d(p, o))
 </section>
 <hr class="docutils" />
 <section id="hitung-local-reachability-density-lrd">
-<h2><strong>2️⃣ Hitung Local Reachability Density (LRD)</strong><a class="headerlink" href="#hitung-local-reachability-density-lrd" title="Link to this heading">#</a></h2>
+<h3><strong>2️⃣ Hitung Local Reachability Density (LRD)</strong><a class="headerlink" href="#hitung-local-reachability-density-lrd" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 LRD_k(p) = \frac{k}{\sum_{o \in kNN(p)} RD_k(p, o)}
@@ -587,7 +588,7 @@ LRD_k(41) = \frac{3}{1.0+9.0+9.5} = 0.10
 </section>
 <hr class="docutils" />
 <section id="hitung-local-outlier-factor-lof">
-<h2><strong>3️⃣ Hitung Local Outlier Factor (LOF)</strong><a class="headerlink" href="#hitung-local-outlier-factor-lof" title="Link to this heading">#</a></h2>
+<h3><strong>3️⃣ Hitung Local Outlier Factor (LOF)</strong><a class="headerlink" href="#hitung-local-outlier-factor-lof" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 LOF_k(p) = \frac{\sum_{o \in kNN(p)} \frac{LRD_k(o)}{LRD_k(p)}}{k}
@@ -618,6 +619,7 @@ LOF_k(41) = \frac{\left( \frac{LRD(40)}{LRD(41)} + \frac{LRD(33)}{LRD(41)} + \fr
 = \frac{(1.1 + 6.1 + 8.0)}{3} = \frac{15.2}{3} = 5.07
 \]</div>
 <p><strong>LOF(41) ≈ 5.07</strong>, juga lebih tinggi dari 1, sehingga suhu <strong>41°C adalah OUTLIER</strong>.</p>
+</section>
 </section>
 <hr class="docutils" />
 <section id="implementasi-code-python">
@@ -774,10 +776,12 @@ LOF_k(41) = \frac{\left( \frac{LRD(40)}{LRD(41)} + \frac{LRD(33)}{LRD(41)} + \fr
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-lof"><strong>Apa Itu LOF?</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-sk-learn">Perhitungan SK Learn</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-local-outlier-factor-lof-secara-manual"><strong>Tahapan Perhitungan Local Outlier Factor (LOF) secara Manual</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-reachability-distance-rd"><strong>1️⃣ Hitung <em>Reachability Distance (RD)</em></strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-reachability-density-lrd"><strong>2️⃣ Hitung Local Reachability Density (LRD)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-outlier-factor-lof"><strong>3️⃣ Hitung Local Outlier Factor (LOF)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tahapan-perhitungan-local-outlier-factor-lof-secara-manual"><strong>Tahapan Perhitungan Local Outlier Factor (LOF) secara Manual</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-reachability-distance-rd"><strong>1️⃣ Hitung <em>Reachability Distance (RD)</em></strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-reachability-density-lrd"><strong>2️⃣ Hitung Local Reachability Density (LRD)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-local-outlier-factor-lof"><strong>3️⃣ Hitung Local Outlier Factor (LOF)</strong></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-code-python">Implementasi Code Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-menggunakan-scatter-plot">Visualisasi Menggunakan Scatter Plot</a></li>
 </ul>
