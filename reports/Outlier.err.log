@@ -18,65 +18,78 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-Q1 = df_combined['euclidean_distance'].quantile(0.25)
-Q3 = df_combined['euclidean_distance'].quantile(0.75)
+import pymysql
 
-IQR = Q3 - Q1
+# Konfigurasi koneksi
+host = "mysqlpendata-ilhamalmafazt-dm.h.aivencloud.com"  # Ganti host dengan host dari Aiven.io
+port = 19867    # Ganti posrt dengan posrt dari Aiven.io
+user = "avnadmin" # Ganti user dengan user dari Aiven.io
+password = "AVNS_vnxDk9lOvZgFnuKlezN" # Ganti password dengan password dari Aiven.io
+database = "defaultdb" # Ganti database dengan database dari Aiven.io
 
-# Menentukan batas bawah dan atas
-batas_bawah = Q1 - 1.5 * IQR
-batas_atas = Q3 + 1.5 * IQR
+# Buat koneksi
+mysql_conn = pymysql.connect(
+    host=host,
+    port=port,
+    user=user,
+    password=password,
+    database=database,
+    ssl={'ssl': {}}  # Jika menggunakan SSL
+)
 
-# Ambil data outlier
-outliers = df_combined[(df_combined['euclidean_distance'] < batas_bawah) |
-                      (df_combined['euclidean_distance'] > batas_atas)]
-outlier_terbesar = outliers.loc[outliers['euclidean_distance'].idxmax()]
+#menampilkan data
+cursor = mysql_conn.cursor()
+cursor.execute("SELECT * FROM iris_sql.iris LIMIT 5;")
+tampil = cursor.fetchall()
+for data in tampil:
+    print(data)
+mysql_conn.close()
 
-print("Outlier Terbesar:")
-print(tabulate(outlier_terbesar.to_frame().T, headers="keys", tablefmt="grid"))
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m/usr/local/lib/python3.11/dist-packages/pandas/core/indexes/base.py[0m in [0;36mget_loc[0;34m(self, key)[0m
-[1;32m   3804[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 3805[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mcasted_key[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   3806[0m         [0;32mexcept[0m [0mKeyError[0m [0;32mas[0m [0merr[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;31mgaierror[0m                                  Traceback (most recent call last)
+[0;32m/usr/local/lib/python3.11/dist-packages/pymysql/connections.py[0m in [0;36mconnect[0;34m(self, sock)[0m
+[1;32m    648[0m                         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 649[0;31m                             sock = socket.create_connection(
+[0m[1;32m    650[0m                                 [0;34m([0m[0mself[0m[0;34m.[0m[0mhost[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mport[0m[0;34m)[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mconnect_timeout[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32mindex.pyx[0m in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+[0;32m/usr/lib/python3.11/socket.py[0m in [0;36mcreate_connection[0;34m(address, timeout, source_address, all_errors)[0m
+[1;32m    838[0m     [0mexceptions[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 839[0;31m     [0;32mfor[0m [0mres[0m [0;32min[0m [0mgetaddrinfo[0m[0;34m([0m[0mhost[0m[0;34m,[0m [0mport[0m[0;34m,[0m [0;36m0[0m[0;34m,[0m [0mSOCK_STREAM[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    840[0m         [0maf[0m[0;34m,[0m [0msocktype[0m[0;34m,[0m [0mproto[0m[0;34m,[0m [0mcanonname[0m[0;34m,[0m [0msa[0m [0;34m=[0m [0mres[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32mindex.pyx[0m in [0;36mpandas._libs.index.IndexEngine.get_loc[0;34m()[0m
+[0;32m/usr/lib/python3.11/socket.py[0m in [0;36mgetaddrinfo[0;34m(host, port, family, type, proto, flags)[0m
+[1;32m    973[0m     [0maddrlist[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 974[0;31m     [0;32mfor[0m [0mres[0m [0;32min[0m [0m_socket[0m[0;34m.[0m[0mgetaddrinfo[0m[0;34m([0m[0mhost[0m[0;34m,[0m [0mport[0m[0;34m,[0m [0mfamily[0m[0;34m,[0m [0mtype[0m[0;34m,[0m [0mproto[0m[0;34m,[0m [0mflags[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    975[0m         [0maf[0m[0;34m,[0m [0msocktype[0m[0;34m,[0m [0mproto[0m[0;34m,[0m [0mcanonname[0m[0;34m,[0m [0msa[0m [0;34m=[0m [0mres[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32mpandas/_libs/hashtable_class_helper.pxi[0m in [0;36mpandas._libs.hashtable.PyObjectHashTable.get_item[0;34m()[0m
+[0;31mgaierror[0m: [Errno -2] Name or service not known
 
-[0;32mpandas/_libs/hashtable_class_helper.pxi[0m in [0;36mpandas._libs.hashtable.PyObjectHashTable.get_item[0;34m()[0m
+During handling of the above exception, another exception occurred:
 
-[0;31mKeyError[0m: 'euclidean_distance'
+[0;31mOperationalError[0m                          Traceback (most recent call last)
+[0;32m<ipython-input-5-adead79589bd>[0m in [0;36m<cell line: 0>[0;34m()[0m
+[1;32m      9[0m [0;34m[0m[0m
+[1;32m     10[0m [0;31m# Buat koneksi[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 11[0;31m mysql_conn = pymysql.connect(
+[0m[1;32m     12[0m     [0mhost[0m[0;34m=[0m[0mhost[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     13[0m     [0mport[0m[0;34m=[0m[0mport[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
 
-The above exception was the direct cause of the following exception:
+[0;32m/usr/local/lib/python3.11/dist-packages/pymysql/connections.py[0m in [0;36m__init__[0;34m(self, user, password, host, database, unix_socket, port, charset, collation, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_key_password, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)[0m
+[1;32m    359[0m             [0mself[0m[0;34m.[0m[0m_sock[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    360[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 361[0;31m             [0mself[0m[0;34m.[0m[0mconnect[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    362[0m [0;34m[0m[0m
+[1;32m    363[0m     [0;32mdef[0m [0m__enter__[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mKeyError[0m                                  Traceback (most recent call last)
-[0;32m<ipython-input-9-9c1872d44e4a>[0m in [0;36m<cell line: 0>[0;34m()[0m
-[0;32m----> 1[0;31m [0mQ1[0m [0;34m=[0m [0mdf_combined[0m[0;34m[[0m[0;34m'euclidean_distance'[0m[0;34m][0m[0;34m.[0m[0mquantile[0m[0;34m([0m[0;36m0.25[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0mQ3[0m [0;34m=[0m [0mdf_combined[0m[0;34m[[0m[0;34m'euclidean_distance'[0m[0;34m][0m[0;34m.[0m[0mquantile[0m[0;34m([0m[0;36m0.75[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;34m[0m[0m
-[1;32m      4[0m [0mIQR[0m [0;34m=[0m [0mQ3[0m [0;34m-[0m [0mQ1[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      5[0m [0;34m[0m[0m
+[0;32m/usr/local/lib/python3.11/dist-packages/pymysql/connections.py[0m in [0;36mconnect[0;34m(self, sock)[0m
+[1;32m    714[0m                 [0;32mif[0m [0mDEBUG[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    715[0m                     [0mprint[0m[0;34m([0m[0mexc[0m[0;34m.[0m[0mtraceback[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 716[0;31m                 [0;32mraise[0m [0mexc[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    717[0m [0;34m[0m[0m
+[1;32m    718[0m             [0;31m# If e is neither DatabaseError or IOError, It's a bug.[0m[0;34m[0m[0;34m[0m[0m
 
-[0;32m/usr/local/lib/python3.11/dist-packages/pandas/core/frame.py[0m in [0;36m__getitem__[0;34m(self, key)[0m
-[1;32m   4100[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mcolumns[0m[0;34m.[0m[0mnlevels[0m [0;34m>[0m [0;36m1[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   4101[0m                 [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_getitem_multilevel[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 4102[0;31m             [0mindexer[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mcolumns[0m[0;34m.[0m[0mget_loc[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   4103[0m             [0;32mif[0m [0mis_integer[0m[0;34m([0m[0mindexer[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   4104[0m                 [0mindexer[0m [0;34m=[0m [0;34m[[0m[0mindexer[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/usr/local/lib/python3.11/dist-packages/pandas/core/indexes/base.py[0m in [0;36mget_loc[0;34m(self, key)[0m
-[1;32m   3810[0m             ):
-[1;32m   3811[0m                 [0;32mraise[0m [0mInvalidIndexError[0m[0;34m([0m[0mkey[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 3812[0;31m             [0;32mraise[0m [0mKeyError[0m[0;34m([0m[0mkey[0m[0;34m)[0m [0;32mfrom[0m [0merr[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   3813[0m         [0;32mexcept[0m [0mTypeError[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   3814[0m             [0;31m# If we have a listlike key, _check_indexing_error will raise[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mKeyError[0m: 'euclidean_distance'
+[0;31mOperationalError[0m: (2003, "Can't connect to MySQL server on 'mysqlpendata-ilhamalmafazt-dm.h.aivencloud.com' ([Errno -2] Name or service not known)")
 
