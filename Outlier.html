@@ -393,17 +393,27 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>2. Menentukan Outlier</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-mysql"><strong>Cek koneksi Database MySQL</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-postgresql"><strong>Cek koneksi Database PostgreSQL</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data"><strong>MERGING DATA</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance"><strong>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-outlier"><strong>Visualisasi Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-mysql"><strong>Cek koneksi Database MySQL</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-postgresql"><strong>Cek koneksi Database PostgreSQL</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data"><strong>MERGING DATA</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance"><strong>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-outlier"><strong>Visualisasi Outlier</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-local-outlier-factor"><strong>Algoritma Local Outlier Factor</strong></a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-local-outlier-factor-lof"><strong>Algoritma Local Outlier Factor (LOF)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat">🔎 <strong>Penjelasan Singkat</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-lof">📚 <strong>Konsep Dasar LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan-lof">✍ <strong>Langkah-langkah Perhitungan LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-lof">📈 <strong>Interpretasi LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-lof">✅ <strong>Kelebihan LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan-lof">⚠ <strong>Kelemahan LOF</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mendeteksi-outlier-dengan-algoritma-lof"><strong>Mendeteksi Outlier dengan Algoritma LOF</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat-code">Penjelasan Singkat Code</a></li>
 </ul>
@@ -426,7 +436,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier"><strong>Naive Bayes Classifier</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat">🔎 <strong>Penjelasan Singkat</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">🔎 <strong>Penjelasan Singkat</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keunggulan-naive-bayes">✅ <strong>Keunggulan Naive Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan">⚠ <strong>Kelemahan</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-bayes">📚 <strong>Teorema Bayes</strong></a></li>
@@ -631,9 +641,10 @@ Threshold = \mu + 2\sigma
 <li><p>Maka Metode <strong>K-NN Outlier</strong> mendeteksi bahwa <strong>40°C</strong> adalah outlier dalam data ini.</p></li>
 </ul>
 </section>
+</section>
 <hr class="docutils" />
 <section id="langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code">
-<h4><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong><a class="headerlink" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code" title="Link to this heading">#</a></h4>
+<h3><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong><a class="headerlink" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql<span class="w"> </span>#Install<span class="w"> </span>library<span class="w"> </span>Python<span class="w"> </span>yang<span class="w"> </span>menjadi<span class="w"> </span>koneksi<span class="w"> </span>dan<span class="w"> </span>interaksi<span class="w"> </span>dengan<span class="w"> </span>database<span class="w"> </span>MySQL
@@ -697,10 +708,8 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </div>
-</section>
-</section>
 <section id="cek-koneksi-database-mysql">
-<h3><strong>Cek koneksi Database MySQL</strong><a class="headerlink" href="#cek-koneksi-database-mysql" title="Link to this heading">#</a></h3>
+<h4><strong>Cek koneksi Database MySQL</strong><a class="headerlink" href="#cek-koneksi-database-mysql" title="Link to this heading">#</a></h4>
 <p>Periksa apakah code berhasil import data dari Database MySQL</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -745,7 +754,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </section>
 <section id="cek-koneksi-database-postgresql">
-<h3><strong>Cek koneksi Database PostgreSQL</strong><a class="headerlink" href="#cek-koneksi-database-postgresql" title="Link to this heading">#</a></h3>
+<h4><strong>Cek koneksi Database PostgreSQL</strong><a class="headerlink" href="#cek-koneksi-database-postgresql" title="Link to this heading">#</a></h4>
 <p>Memeriksa apakah code berhasil import data dari Database PostgreSQL</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -789,7 +798,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </section>
 <section id="merging-data">
-<h3><strong>MERGING DATA</strong><a class="headerlink" href="#merging-data" title="Link to this heading">#</a></h3>
+<h4><strong>MERGING DATA</strong><a class="headerlink" href="#merging-data" title="Link to this heading">#</a></h4>
 <p>Code ini bertujuan untuk menghubungkan dua database yang berbeda menjadi satu</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1153,7 +1162,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </section>
 <section id="code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance">
-<h3><strong>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</strong><a class="headerlink" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance" title="Link to this heading">#</a></h3>
+<h4><strong>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</strong><a class="headerlink" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1535,7 +1544,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </section>
 <section id="visualisasi-outlier">
-<h3><strong>Visualisasi Outlier</strong><a class="headerlink" href="#visualisasi-outlier" title="Link to this heading">#</a></h3>
+<h4><strong>Visualisasi Outlier</strong><a class="headerlink" href="#visualisasi-outlier" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1572,8 +1581,73 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </ul>
 </section>
 </section>
-<section id="algoritma-local-outlier-factor">
-<h2><strong>Algoritma Local Outlier Factor</strong><a class="headerlink" href="#algoritma-local-outlier-factor" title="Link to this heading">#</a></h2>
+</section>
+<section id="algoritma-local-outlier-factor-lof">
+<h2><strong>Algoritma Local Outlier Factor (LOF)</strong><a class="headerlink" href="#algoritma-local-outlier-factor-lof" title="Link to this heading">#</a></h2>
+<section id="penjelasan-singkat">
+<h3>🔎 <strong>Penjelasan Singkat</strong><a class="headerlink" href="#penjelasan-singkat" title="Link to this heading">#</a></h3>
+<p>Local Outlier Factor (LOF) adalah algoritma deteksi outlier berbasis density (kepadatan lokal) yang membandingkan kepadatan suatu titik data dengan tetangganya.</p>
+<p>Jika kepadatan suatu titik jauh lebih rendah dibandingkan tetangganya, maka titik tersebut dianggap sebagai <strong>outlier</strong>.</p>
+<hr class="docutils" />
+<section id="konsep-dasar-lof">
+<h4>📚 <strong>Konsep Dasar LOF</strong><a class="headerlink" href="#konsep-dasar-lof" title="Link to this heading">#</a></h4>
+<p>LOF mengukur <strong>Local Reachability Density (LRD)</strong> dan menghitung <strong>LOF Score</strong> berdasarkan perbandingan LRD setiap titik dengan LRD tetangganya.</p>
+</section>
+<hr class="docutils" />
+<section id="langkah-langkah-perhitungan-lof">
+<h4>✍ <strong>Langkah-langkah Perhitungan LOF</strong><a class="headerlink" href="#langkah-langkah-perhitungan-lof" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Hitung k-distance</strong>: Jarak ke tetangga ke-<strong>k</strong></p></li>
+<li><p><strong>Hitung reachability distance</strong> setiap titik terhadap tetangganya:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{reach\_dist}_k(p, o) = \max\left\{ k\text{-distance}(o), d(p, o) \right\}
+\]</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Hitung Local Reachability Density (LRD)</strong>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{LRD}_k(p) = \left( \frac{\sum_{o \in N_k(p)} \text{reach\_dist}_k(p, o)}{|N_k(p)|} \right)^{-1}
+\]</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Hitung LOF Score</strong>:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{LOF}_k(p) = \frac{\sum_{o \in N_k(p)} \frac{\text{LRD}_k(o)}{\text{LRD}_k(p)}}{|N_k(p)|}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="interpretasi-lof">
+<h4>📈 <strong>Interpretasi LOF</strong><a class="headerlink" href="#interpretasi-lof" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Jika <strong>LOF ≈ 1</strong>, maka data <strong>normal (inlier)</strong></p></li>
+<li><p>Jika <strong>LOF &gt; 1</strong>, maka data <strong>potensi outlier</strong></p></li>
+<li><p>Semakin besar nilai LOF, semakin besar kemungkinan titik tersebut adalah <strong>outlier</strong></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="kelebihan-lof">
+<h4>✅ <strong>Kelebihan LOF</strong><a class="headerlink" href="#kelebihan-lof" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Bisa deteksi outlier <strong>lokal</strong> (berbeda dengan global outlier detection)</p></li>
+<li><p>Tidak mengasumsikan distribusi data tertentu</p></li>
+<li><p>Cocok untuk dataset yang <strong>heterogen</strong></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="kelemahan-lof">
+<h4>⚠ <strong>Kelemahan LOF</strong><a class="headerlink" href="#kelemahan-lof" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Butuh parameter <strong>k</strong> (jumlah tetangga)</p></li>
+<li><p>Sensitif terhadap pemilihan nilai <strong>k</strong></p></li>
+<li><p>Perhitungan mahal untuk dataset sangat besar</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
 <section id="mendeteksi-outlier-dengan-algoritma-lof">
 <h3><strong>Mendeteksi Outlier dengan Algoritma LOF</strong><a class="headerlink" href="#mendeteksi-outlier-dengan-algoritma-lof" title="Link to this heading">#</a></h3>
 <section id="penjelasan-singkat-code">
@@ -2560,8 +2634,8 @@ Akurasi: 0.9259
 </section>
 <section id="naive-bayes-classifier">
 <h2><strong>Naive Bayes Classifier</strong><a class="headerlink" href="#naive-bayes-classifier" title="Link to this heading">#</a></h2>
-<section id="penjelasan-singkat">
-<h3>🔎 <strong>Penjelasan Singkat</strong><a class="headerlink" href="#penjelasan-singkat" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>🔎 <strong>Penjelasan Singkat</strong><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>Naive Bayes adalah algoritma klasifikasi berbasis probabilitas yang menggunakan <strong>Teorema Bayes</strong> dengan asumsi sederhana bahwa fitur saling <strong>independen</strong>.</p>
 <p>Naive Bayes banyak digunakan karena:</p>
 <ul class="simple">
@@ -3058,7 +3132,9 @@ Probabilitas Kelas : [0.3360947158303134, 0.6107096503792329, 0.0531956337904542
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-66
-Fitur              : [4.6 1.4 6.1 3.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [4.6 1.4 6.1 3.0]
 Data               : INLIER
 Probabilitas Kelas : [0.33218754921440186, 0.6143571770921732, 0.053455273693424156]
 Prediksi Kelas     : Iris-versicolor
@@ -3220,7 +3296,9 @@ Probabilitas Kelas : [5.483402434929108e-16, 7.28234697560087e-27, 1.0]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-93
-Fitur              : [6.9 2.3 7.7 2.6]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [6.9 2.3 7.7 2.6]
 Data               : INLIER
 Probabilitas Kelas : [0.3154210888941966, 0.6235704531011093, 0.06100845800469404]
 Prediksi Kelas     : Iris-versicolor
@@ -3460,7 +3538,9 @@ Probabilitas Kelas : [0.4749631290293472, 0.2771941252407612, 0.2478427457298897
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-133
-Fitur              : [4.7 1.4 70.0 32.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [4.7 1.4 70.0 32.0]
 Data               : INLIER
 Probabilitas Kelas : [0.09149375518700448, 0.3333043027762554, 0.5752019420367395]
 Prediksi Kelas     : Iris-virginica
@@ -3928,7 +4008,9 @@ Probabilitas Kelas : [3.51515025e-91 4.66093799e-01 5.33906201e-01]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-64
-Fitur              : [4.0 1.2 5.8 2.6]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [4.0 1.2 5.8 2.6]
 Probabilitas Kelas : [1.82554608e-59 9.93126287e-01 6.87371254e-03]
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
@@ -4059,9 +4141,7 @@ Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-90
 Fitur              : [4.9 2.0 5.6 2.8]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Probabilitas Kelas : [1.03171266e-140 1.54141540e-002 9.84585846e-001]
+Probabilitas Kelas : [1.03171266e-140 1.54141540e-002 9.84585846e-001]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-91
@@ -4106,9 +4186,7 @@ Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-99
 Fitur              : [5.6 1.4 6.1 2.6]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Probabilitas Kelas : [8.77935016e-141 1.47957921e-001 8.52042079e-001]
+Probabilitas Kelas : [8.77935016e-141 1.47957921e-001 8.52042079e-001]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-100
@@ -4376,17 +4454,27 @@ Prediksi Kelas     : Iris-virginica
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><strong>1. Hitung Jarak Antar Titik</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><strong>2. Menentukan Outlier</strong></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><strong>3. Hitung Rata-rata jarak ke K tetangga terdekat</strong></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-mysql"><strong>Cek koneksi Database MySQL</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-postgresql"><strong>Cek koneksi Database PostgreSQL</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data"><strong>MERGING DATA</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance"><strong>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-outlier"><strong>Visualisasi Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-mendeteksi-outlier-dengan-algoritma-k-nn-dengan-code"><strong>Langkah-langkah Mendeteksi Outlier Dengan Algoritma K-NN Dengan Code</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-mysql"><strong>Cek koneksi Database MySQL</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-koneksi-database-postgresql"><strong>Cek koneksi Database PostgreSQL</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-data"><strong>MERGING DATA</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-deteksi-outlier-dengan-algoritma-k-nn-euclidean-distance"><strong>Code Deteksi Outlier dengan Algoritma K-NN - Euclidean Distance</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-outlier"><strong>Visualisasi Outlier</strong></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-local-outlier-factor"><strong>Algoritma Local Outlier Factor</strong></a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-local-outlier-factor-lof"><strong>Algoritma Local Outlier Factor (LOF)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat">🔎 <strong>Penjelasan Singkat</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-lof">📚 <strong>Konsep Dasar LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan-lof">✍ <strong>Langkah-langkah Perhitungan LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-lof">📈 <strong>Interpretasi LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-lof">✅ <strong>Kelebihan LOF</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan-lof">⚠ <strong>Kelemahan LOF</strong></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mendeteksi-outlier-dengan-algoritma-lof"><strong>Mendeteksi Outlier dengan Algoritma LOF</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat-code">Penjelasan Singkat Code</a></li>
 </ul>
@@ -4409,7 +4497,7 @@ Prediksi Kelas     : Iris-virginica
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier"><strong>Naive Bayes Classifier</strong></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-singkat">🔎 <strong>Penjelasan Singkat</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">🔎 <strong>Penjelasan Singkat</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keunggulan-naive-bayes">✅ <strong>Keunggulan Naive Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan">⚠ <strong>Kelemahan</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-bayes">📚 <strong>Teorema Bayes</strong></a></li>
