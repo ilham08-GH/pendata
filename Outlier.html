@@ -442,8 +442,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-bayes">📚 <strong>Teorema Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-gaussian">🧠 <strong>Naive Bayes Gaussian</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan-manual">📈 <strong>Langkah-langkah Perhitungan Manual</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih">Implementasi Naive Biyes pada Data Sudah Bersih</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>-Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih"><strong>-Implementasi Naive Biyes pada Data Sudah Bersih</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -2612,8 +2612,9 @@ Iris-versicolor       1.00      0.92      0.96        12
    weighted avg       0.93      0.90      0.90        30
 
 Akurasi: 0.9000
-
-HASIL MODEL SETELAH OUTLIER DIHAPUS :
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HASIL MODEL SETELAH OUTLIER DIHAPUS :
                  precision    recall  f1-score   support
 
     Iris-setosa       1.00      1.00      1.00        10
@@ -2702,7 +2703,7 @@ P(x_i | C) = \frac{1}{\sqrt{2\pi\sigma_C^2}} \exp\left(-\frac{(x_i - \mu_C)^2}{2
 </section>
 <hr class="docutils" />
 <section id="implementasi-naive-biyes-pada-data-yang-ada-outlier">
-<h3><strong>Implementasi Naive Biyes pada Data yang ada Outlier</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier" title="Link to this heading">#</a></h3>
+<h3><strong>-Implementasi Naive Biyes pada Data yang ada Outlier</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
@@ -3066,7 +3067,9 @@ Probabilitas Kelas : [0.3269420606220694, 0.6186032387711198, 0.0544547006068102
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-55
-Fitur              : [3.5 1.0 5.7 2.6]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [3.5 1.0 5.7 2.6]
 Data               : INLIER
 Probabilitas Kelas : [0.34583872425474554, 0.6010913894089243, 0.05306988633633005]
 Prediksi Kelas     : Iris-versicolor
@@ -3132,9 +3135,7 @@ Probabilitas Kelas : [0.3360947158303134, 0.6107096503792329, 0.0531956337904542
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-66
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [4.6 1.4 6.1 3.0]
+Fitur              : [4.6 1.4 6.1 3.0]
 Data               : INLIER
 Probabilitas Kelas : [0.33218754921440186, 0.6143571770921732, 0.053455273693424156]
 Prediksi Kelas     : Iris-versicolor
@@ -3296,9 +3297,7 @@ Probabilitas Kelas : [5.483402434929108e-16, 7.28234697560087e-27, 1.0]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-93
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [6.9 2.3 7.7 2.6]
+Fitur              : [6.9 2.3 7.7 2.6]
 Data               : INLIER
 Probabilitas Kelas : [0.3154210888941966, 0.6235704531011093, 0.06100845800469404]
 Prediksi Kelas     : Iris-versicolor
@@ -3538,9 +3537,7 @@ Probabilitas Kelas : [0.4749631290293472, 0.2771941252407612, 0.2478427457298897
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-133
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [4.7 1.4 70.0 32.0]
+Fitur              : [4.7 1.4 70.0 32.0]
 Data               : INLIER
 Probabilitas Kelas : [0.09149375518700448, 0.3333043027762554, 0.5752019420367395]
 Prediksi Kelas     : Iris-virginica
@@ -3576,7 +3573,9 @@ Probabilitas Kelas : [0.11254736150189161, 0.45298557637838505, 0.43446706211972
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-139
-Fitur              : [5.6 2.4 63.0 34.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [5.6 2.4 63.0 34.0]
 Data               : INLIER
 Probabilitas Kelas : [0.20601629834003257, 0.2981088137257017, 0.49587488793426454]
 Prediksi Kelas     : Iris-virginica
@@ -3653,7 +3652,7 @@ Prediksi Kelas     : Iris-virginica
 </div>
 </section>
 <section id="implementasi-naive-biyes-pada-data-sudah-bersih">
-<h3>Implementasi Naive Biyes pada Data Sudah Bersih<a class="headerlink" href="#implementasi-naive-biyes-pada-data-sudah-bersih" title="Link to this heading">#</a></h3>
+<h3><strong>-Implementasi Naive Biyes pada Data Sudah Bersih</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-sudah-bersih" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
@@ -3744,7 +3743,9 @@ Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-11
 Fitur              : [1.2 0.2 5.8 4.0]
-Probabilitas Kelas : [9.96948521e-01 3.05147921e-03 4.09258206e-28]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Probabilitas Kelas : [9.96948521e-01 3.05147921e-03 4.09258206e-28]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-12
@@ -3953,7 +3954,9 @@ Probabilitas Kelas : [3.31122870e-37 9.99987602e-01 1.23976326e-05]
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-53
-Fitur              : [3.8 1.1 5.5 2.4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [3.8 1.1 5.5 2.4]
 Probabilitas Kelas : [2.81263826e-49 9.99500861e-01 4.99139391e-04]
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
@@ -4008,9 +4011,7 @@ Probabilitas Kelas : [3.51515025e-91 4.66093799e-01 5.33906201e-01]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-64
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [4.0 1.2 5.8 2.6]
+Fitur              : [4.0 1.2 5.8 2.6]
 Probabilitas Kelas : [1.82554608e-59 9.93126287e-01 6.87371254e-03]
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
@@ -4240,7 +4241,9 @@ Probabilitas Kelas : [9.97109488e-01 2.89051199e-03 2.44377000e-27]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-110
-Fitur              : [1.4 0.2 5.5 4.2]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.4 0.2 5.5 4.2]
 Probabilitas Kelas : [9.98818182e-01 1.18181825e-03 4.03261605e-27]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
@@ -4503,8 +4506,8 @@ Prediksi Kelas     : Iris-virginica
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-bayes">📚 <strong>Teorema Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-gaussian">🧠 <strong>Naive Bayes Gaussian</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan-manual">📈 <strong>Langkah-langkah Perhitungan Manual</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih">Implementasi Naive Biyes pada Data Sudah Bersih</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>-Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih"><strong>-Implementasi Naive Biyes pada Data Sudah Bersih</strong></a></li>
 </ul>
 </li>
 </ul>
