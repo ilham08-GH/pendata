@@ -442,8 +442,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-bayes">📚 <strong>Teorema Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-gaussian">🧠 <strong>Naive Bayes Gaussian</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan-manual">📈 <strong>Langkah-langkah Perhitungan Manual</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>-Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih"><strong>-Implementasi Naive Biyes pada Data Sudah Bersih</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>- Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih"><strong>- Implementasi Naive Biyes pada Data Sudah Bersih</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -463,9 +463,9 @@ document.write(`
 Outlier adalah data yang memiliki nilai yang sangat berbeda dibandingkan dengan data lainnya dalam suatu dataset.</p>
 <p>⚠ <strong>Mengapa Outlier Muncul?</strong><br />
 Outlier bisa terjadi karena:<br />
-✅ <strong>Kesalahan pengukuran</strong> –<br />
-✅ <strong>Kesalahan input data</strong> –</p>
-<p>✅ <strong>Fenomena yang jarang terjadi</strong> –</p>
+✅ <strong>Kesalahan pengukuran</strong><br />
+✅ <strong>Kesalahan input data</strong>
+✅ <strong>Fenomena yang jarang terjadi</strong></p>
 <p>🧐 <strong>Mengapa Outlier Penting?</strong></p>
 <ul class="simple">
 <li><p>Karena Bisa menyebabkan hasil analisis yang bias.</p></li>
@@ -652,7 +652,16 @@ Threshold = \mu + 2\sigma
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymysql
+  Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
+Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">2.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pymysql
+Successfully installed pymysql-1.1.1
 </pre></div>
 </div>
 </div>
@@ -664,7 +673,21 @@ Threshold = \mu + 2\sigma
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2-binary in /usr/local/lib/python3.11/dist-packages (2.9.10)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
+  Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/3.0 MB</span> <span class=" -Color -Color-Red">2.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
+   ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.7/3.0 MB</span> <span class=" -Color -Color-Red">9.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">30.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">25.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
+?25h
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
+Successfully installed psycopg2-binary-2.9.10
 </pre></div>
 </div>
 </div>
@@ -847,9 +870,7 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-7-b119866ce4c3&gt;:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
   df_mysql = pd.read_sql(mysql_query, mysql_conn)
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ipython-input-7-b119866ce4c3&gt;:29: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+&lt;ipython-input-7-b119866ce4c3&gt;:29: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
   df_postgres = pd.read_sql(postgres_query, postgres_conn)
 </pre></div>
 </div>
@@ -1784,9 +1805,7 @@ Jumlah total data setelah filtering (inlier saja): 135
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data Lengkap dengan Kolom Outlier (1 = inlier, -1 = outlier):&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df_combined</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">&quot;keys&quot;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">))</span>
 
-<span class="c1"># ================================</span>
 <span class="c1"># Tampilkan Statistik Data</span>
-<span class="c1"># ================================</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">==============================&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Data Awal     : </span><span class="si">{</span><span class="n">total_data_awal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Outlier       : </span><span class="si">{</span><span class="n">total_outliers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -2612,9 +2631,8 @@ Iris-versicolor       1.00      0.92      0.96        12
    weighted avg       0.93      0.90      0.90        30
 
 Akurasi: 0.9000
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HASIL MODEL SETELAH OUTLIER DIHAPUS :
+
+HASIL MODEL SETELAH OUTLIER DIHAPUS :
                  precision    recall  f1-score   support
 
     Iris-setosa       1.00      1.00      1.00        10
@@ -2669,12 +2687,22 @@ Akurasi: 0.9259
 P(C|X) = \frac{P(X|C) \cdot P(C)}{P(X)}
 \]</div>
 <p><strong>Keterangan:</strong></p>
-<ul class="simple">
-<li><p>( P(C|X) ) : Probabilitas kelas ( C ) diberikan fitur ( X )</p></li>
-<li><p>( P(X|C) ) : Probabilitas fitur ( X ) terjadi jika kelas ( C ) benar</p></li>
-<li><p>( P(C) ) : Probabilitas awal (prior) kelas ( C )</p></li>
-<li><p>( P(X) ) : Probabilitas fitur ( X ) terjadi (konstanta untuk semua kelas)</p></li>
-</ul>
+<div class="math notranslate nohighlight">
+\[
+P(C|X) \text{ : Probabilitas kelas } C \text{ diberikan fitur } X
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(X|C) \text{ : Probabilitas fitur } X \text{ terjadi jika kelas } C \text{ benar}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(C) \text{ : Probabilitas awal (prior) kelas } C
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(X) \text{ : Probabilitas fitur } X \text{ terjadi (konstanta untuk semua kelas)}
+\]</div>
 <hr class="docutils" />
 </section>
 <section id="naive-bayes-gaussian">
@@ -2685,25 +2713,42 @@ P(C|X) = \frac{P(X|C) \cdot P(C)}{P(X)}
 P(x_i | C) = \frac{1}{\sqrt{2\pi\sigma_C^2}} \exp\left(-\frac{(x_i - \mu_C)^2}{2\sigma_C^2}\right)
 \]</div>
 <p><strong>Keterangan:</strong></p>
-<ul class="simple">
-<li><p>( \mu_C ) : Rata-rata fitur ( x_i ) pada kelas ( C )</p></li>
-<li><p>( \sigma_C^2 ) : Variansi fitur ( x_i ) pada kelas ( C )</p></li>
-</ul>
+<div class="math notranslate nohighlight">
+\[
+\mu_C \text{ adalah rata-rata fitur } x_i \text{ pada kelas } C
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\sigma_C^2 \text{ adalah variansi fitur } x_i \text{ pada kelas } C
+\]</div>
 <hr class="docutils" />
 </section>
 <section id="langkah-langkah-perhitungan-manual">
 <h3>📈 <strong>Langkah-langkah Perhitungan Manual</strong><a class="headerlink" href="#langkah-langkah-perhitungan-manual" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p>Hitung <strong>mean (μ)</strong> dan <strong>variansi (σ²)</strong> setiap fitur untuk masing-masing kelas</p></li>
-<li><p>Hitung probabilitas tiap fitur ( P(x_i | C) ) menggunakan rumus Gaussian</p></li>
-<li><p>Hitung likelihood total ( P(X|C) ) dengan mengalikan semua ( P(x_i | C) )</p></li>
-<li><p>Hitung posterior probability ( P(C|X) ) untuk semua kelas</p></li>
-<li><p>Pilih kelas dengan nilai <strong>posterior probability terbesar</strong> sebagai hasil prediksi</p></li>
-</ol>
+<div class="math notranslate nohighlight">
+\[
+\text{1. Hitung mean (} \mu \text{) dan variansi (} \sigma^2 \text{) setiap fitur untuk masing-masing kelas}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{2. Hitung probabilitas tiap fitur } P(x_i | C) \text{ menggunakan rumus Gaussian}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{3. Hitung likelihood total } P(X|C) \text{ dengan mengalikan semua } P(x_i | C)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{4. Hitung posterior probability } P(C|X) \text{ untuk semua kelas}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{5. Pilih kelas dengan nilai posterior probability terbesar sebagai hasil prediksi}
+\]</div>
 </section>
 <hr class="docutils" />
 <section id="implementasi-naive-biyes-pada-data-yang-ada-outlier">
-<h3><strong>-Implementasi Naive Biyes pada Data yang ada Outlier</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier" title="Link to this heading">#</a></h3>
+<h3><strong>- Implementasi Naive Biyes pada Data yang ada Outlier</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
@@ -2887,7 +2932,9 @@ Probabilitas Kelas : [0.3743012268755717, 0.5702168218825475, 0.0554819512418799
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-25
-Fitur              : [1.4 0.3 4.8 3.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.4 0.3 4.8 3.0]
 Data               : INLIER
 Probabilitas Kelas : [0.38135535091726364, 0.5618733003784038, 0.05677134870433195]
 Prediksi Kelas     : Iris-versicolor
@@ -3067,9 +3114,7 @@ Probabilitas Kelas : [0.3269420606220694, 0.6186032387711198, 0.0544547006068102
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-55
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [3.5 1.0 5.7 2.6]
+Fitur              : [3.5 1.0 5.7 2.6]
 Data               : INLIER
 Probabilitas Kelas : [0.34583872425474554, 0.6010913894089243, 0.05306988633633005]
 Prediksi Kelas     : Iris-versicolor
@@ -3471,7 +3516,9 @@ Probabilitas Kelas : [0.35837100179658116, 0.22475535292755636, 0.41687364527586
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-122
-Fitur              : [1.3 0.2 5.5 3.5]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.3 0.2 5.5 3.5]
 Data               : INLIER
 Probabilitas Kelas : [0.3858248020327184, 0.5568565737740536, 0.05731862419322807]
 Prediksi Kelas     : Iris-versicolor
@@ -3573,9 +3620,7 @@ Probabilitas Kelas : [0.11254736150189161, 0.45298557637838505, 0.43446706211972
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-139
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [5.6 2.4 63.0 34.0]
+Fitur              : [5.6 2.4 63.0 34.0]
 Data               : INLIER
 Probabilitas Kelas : [0.20601629834003257, 0.2981088137257017, 0.49587488793426454]
 Prediksi Kelas     : Iris-virginica
@@ -3652,7 +3697,7 @@ Prediksi Kelas     : Iris-virginica
 </div>
 </section>
 <section id="implementasi-naive-biyes-pada-data-sudah-bersih">
-<h3><strong>-Implementasi Naive Biyes pada Data Sudah Bersih</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-sudah-bersih" title="Link to this heading">#</a></h3>
+<h3><strong>- Implementasi Naive Biyes pada Data Sudah Bersih</strong><a class="headerlink" href="#implementasi-naive-biyes-pada-data-sudah-bersih" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
@@ -3743,9 +3788,7 @@ Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-11
 Fitur              : [1.2 0.2 5.8 4.0]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Probabilitas Kelas : [9.96948521e-01 3.05147921e-03 4.09258206e-28]
+Probabilitas Kelas : [9.96948521e-01 3.05147921e-03 4.09258206e-28]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-12
@@ -3779,7 +3822,9 @@ Probabilitas Kelas : [9.98407539e-01 1.59246097e-03 1.19254515e-25]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-18
-Fitur              : [1.6 0.4 5.0 3.4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.6 0.4 5.0 3.4]
 Probabilitas Kelas : [9.95919866e-01 4.08013446e-03 7.03842875e-23]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
@@ -3954,9 +3999,7 @@ Probabilitas Kelas : [3.31122870e-37 9.99987602e-01 1.23976326e-05]
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-53
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [3.8 1.1 5.5 2.4]
+Fitur              : [3.8 1.1 5.5 2.4]
 Probabilitas Kelas : [2.81263826e-49 9.99500861e-01 4.99139391e-04]
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
@@ -4165,7 +4208,9 @@ Fitur              : [6.0 1.8 7.2 3.2]
 Probabilitas Kelas : [1.09502092e-186 1.73241372e-002 9.82675863e-001]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
-Data ke-95
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data ke-95
 Fitur              : [4.8 1.8 6.2 2.8]
 Probabilitas Kelas : [1.11372897e-122 2.97783153e-002 9.70221685e-001]
 Prediksi Kelas     : Iris-virginica
@@ -4231,7 +4276,9 @@ Probabilitas Kelas : [9.98408064e-01 1.59193638e-03 1.19052104e-25]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-108
-Fitur              : [1.5 0.4 5.5 4.4]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.5 0.4 5.5 4.4]
 Probabilitas Kelas : [9.97000519e-01 2.99948091e-03 1.12411636e-23]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
@@ -4241,9 +4288,7 @@ Probabilitas Kelas : [9.97109488e-01 2.89051199e-03 2.44377000e-27]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-110
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.4 0.2 5.5 4.2]
+Fitur              : [1.4 0.2 5.5 4.2]
 Probabilitas Kelas : [9.98818182e-01 1.18181825e-03 4.03261605e-27]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
@@ -4506,8 +4551,8 @@ Prediksi Kelas     : Iris-virginica
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teorema-bayes">📚 <strong>Teorema Bayes</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-gaussian">🧠 <strong>Naive Bayes Gaussian</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-perhitungan-manual">📈 <strong>Langkah-langkah Perhitungan Manual</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>-Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih"><strong>-Implementasi Naive Biyes pada Data Sudah Bersih</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-yang-ada-outlier"><strong>- Implementasi Naive Biyes pada Data yang ada Outlier</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-naive-biyes-pada-data-sudah-bersih"><strong>- Implementasi Naive Biyes pada Data Sudah Bersih</strong></a></li>
 </ul>
 </li>
 </ul>
