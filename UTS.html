@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; My sample book</title>
+    <title>UTS Penambangan Data &#8212; My sample book</title>
   
   
   
@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'UTS';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Local Outlier Factor (LOF)" href="LOF.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +123,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -179,10 +178,11 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html"><strong>Data Understanding</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS Penambangan Data</a></li>
 </ul>
 
     </div>
@@ -368,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>UTS Penambangan Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,9 +377,25 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">DATA UNDERSTANDING</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data">MENAMPILKAN DATA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-numerik">MENAMPILKAN DATA NUMERIK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-dalam-bentuk-chart">MENAMPILKAN DATA DALAM BENTUK CHART</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">PREPROCESSING DATA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-missing-value">CEK MISSING VALUE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier">DETEKSI OUTLIER</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penghapusan-outlier">PENGHAPUSAN OUTLIER</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan">PEMODELAN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dengan-outlier">MODEL DENGAN OUTLIER</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-tanpa-outlier">MODEL TANPA OUTLIER</a></li>
+</ul>
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -390,7 +406,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="uts-penambangan-data">
+<h1>UTS Penambangan Data<a class="headerlink" href="#uts-penambangan-data" title="Link to this heading">#</a></h1>
+<section id="data-understanding">
+<h2>DATA UNDERSTANDING<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<section id="menampilkan-data">
+<h3>MENAMPILKAN DATA<a class="headerlink" href="#menampilkan-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
@@ -409,9 +431,9 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-     <input type="file" id="files-6b94b36c-e166-480f-85f7-afeda83fd172" name="files[]" multiple disabled
+     <input type="file" id="files-9eeb980a-c58c-40bc-9eb3-9a70c63685c8" name="files[]" multiple disabled
         style="border:none" />
-     <output id="result-6b94b36c-e166-480f-85f7-afeda83fd172">
+     <output id="result-9eeb980a-c58c-40bc-9eb3-9a70c63685c8">
       Upload widget is only available when the cell has been executed in the
       current browser session. Please rerun this cell to enable.
       </output>
@@ -10299,6 +10321,641 @@ scope.google.colab._files = {
 </div>
 </div></div>
 </div>
+</section>
+<section id="menampilkan-data-numerik">
+<h3>MENAMPILKAN DATA NUMERIK<a class="headerlink" href="#menampilkan-data-numerik" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ID&quot;</span><span class="p">])</span>
+
+
+<span class="n">numerical_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+
+<span class="n">stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+    <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
+    <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+    <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span>
+    <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="p">})</span>
+
+<span class="n">html_table</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">classes</span><span class="o">=</span><span class="s1">&#39;table table-bordered&#39;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;div style=&quot;max-height: 400px; overflow-y: auto; border:1px solid #ccc; padding:10px&quot;&gt;</span>
+<span class="si">{</span><span class="n">html_table</span><span class="si">}</span>
+<span class="s2">&lt;/div&gt;</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<div style="max-height: 400px; overflow-y: auto; border:1px solid #ccc; padding:10px">
+<table class="dataframe table table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean</th>
+      <th>median</th>
+      <th>count</th>
+      <th>std</th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>N_Days</th>
+      <td>1917.782297</td>
+      <td>1730.00</td>
+      <td>418</td>
+      <td>1104.672992</td>
+      <td>41.00</td>
+      <td>4795.00</td>
+    </tr>
+    <tr>
+      <th>Age</th>
+      <td>18533.351675</td>
+      <td>18628.00</td>
+      <td>418</td>
+      <td>3815.845055</td>
+      <td>9598.00</td>
+      <td>28650.00</td>
+    </tr>
+    <tr>
+      <th>Bilirubin</th>
+      <td>3.220813</td>
+      <td>1.40</td>
+      <td>418</td>
+      <td>4.407506</td>
+      <td>0.30</td>
+      <td>28.00</td>
+    </tr>
+    <tr>
+      <th>Cholesterol</th>
+      <td>369.510563</td>
+      <td>309.50</td>
+      <td>284</td>
+      <td>231.944545</td>
+      <td>120.00</td>
+      <td>1775.00</td>
+    </tr>
+    <tr>
+      <th>Albumin</th>
+      <td>3.497440</td>
+      <td>3.53</td>
+      <td>418</td>
+      <td>0.424972</td>
+      <td>1.96</td>
+      <td>4.64</td>
+    </tr>
+    <tr>
+      <th>Copper</th>
+      <td>97.648387</td>
+      <td>73.00</td>
+      <td>310</td>
+      <td>85.613920</td>
+      <td>4.00</td>
+      <td>588.00</td>
+    </tr>
+    <tr>
+      <th>Alk_Phos</th>
+      <td>1982.655769</td>
+      <td>1259.00</td>
+      <td>312</td>
+      <td>2140.388824</td>
+      <td>289.00</td>
+      <td>13862.40</td>
+    </tr>
+    <tr>
+      <th>SGOT</th>
+      <td>122.556346</td>
+      <td>114.70</td>
+      <td>312</td>
+      <td>56.699525</td>
+      <td>26.35</td>
+      <td>457.25</td>
+    </tr>
+    <tr>
+      <th>Tryglicerides</th>
+      <td>124.702128</td>
+      <td>108.00</td>
+      <td>282</td>
+      <td>65.148639</td>
+      <td>33.00</td>
+      <td>598.00</td>
+    </tr>
+    <tr>
+      <th>Platelets</th>
+      <td>257.024570</td>
+      <td>251.00</td>
+      <td>407</td>
+      <td>98.325585</td>
+      <td>62.00</td>
+      <td>721.00</td>
+    </tr>
+    <tr>
+      <th>Prothrombin</th>
+      <td>10.731731</td>
+      <td>10.60</td>
+      <td>416</td>
+      <td>1.022000</td>
+      <td>9.00</td>
+      <td>18.00</td>
+    </tr>
+    <tr>
+      <th>Stage</th>
+      <td>3.024272</td>
+      <td>3.00</td>
+      <td>412</td>
+      <td>0.882042</td>
+      <td>1.00</td>
+      <td>4.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div></div>
+</div>
+</section>
+<section id="menampilkan-data-dalam-bentuk-chart">
+<h3>MENAMPILKAN DATA DALAM BENTUK CHART<a class="headerlink" href="#menampilkan-data-dalam-bentuk-chart" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># Ambil kolom numerik</span>
+<span class="n">numerical_cols</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># Set gaya untuk plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Menampilkan statistik dan visualisasi untuk tiap kolom numerik</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numerical_cols</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Statistik untuk variabel numerik: </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+    <span class="c1"># Plot Histogram</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="c1"># The color argument in kde_kws was removed.</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">})</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribusi </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Plot Boxplot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightgreen&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Boxplot </span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: N_Days
+count     418.000000
+mean     1917.782297
+std      1104.672992
+min        41.000000
+25%      1092.750000
+50%      1730.000000
+75%      2613.500000
+max      4795.000000
+Name: N_Days, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/297b5a7c5fe9ed72d812d6ade3d0d1c255353ec2a7d27e58e833f29c9a6dcbc8.png" src="_images/297b5a7c5fe9ed72d812d6ade3d0d1c255353ec2a7d27e58e833f29c9a6dcbc8.png" />
+<img alt="_images/1d08906fcec6c042a3f6d79cf8450a18caf4d3e301f41a11a04d41808c3b4478.png" src="_images/1d08906fcec6c042a3f6d79cf8450a18caf4d3e301f41a11a04d41808c3b4478.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Age
+count      418.000000
+mean     18533.351675
+std       3815.845055
+min       9598.000000
+25%      15644.500000
+50%      18628.000000
+75%      21272.500000
+max      28650.000000
+Name: Age, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/ec3886f5edf28ec83593a2ad4687060e8f4183f153bd9cd8147f6450fd929509.png" src="_images/ec3886f5edf28ec83593a2ad4687060e8f4183f153bd9cd8147f6450fd929509.png" />
+<img alt="_images/e667194f32322a4a8af717d37dc60e012f003692620a04e62e0baaf80a5daf69.png" src="_images/e667194f32322a4a8af717d37dc60e012f003692620a04e62e0baaf80a5daf69.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Bilirubin
+count    418.000000
+mean       3.220813
+std        4.407506
+min        0.300000
+25%        0.800000
+50%        1.400000
+75%        3.400000
+max       28.000000
+Name: Bilirubin, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/e6f7fc671c03db2b0e43642fcfbc00972bc13ed39e3bffda835b18880509fdbb.png" src="_images/e6f7fc671c03db2b0e43642fcfbc00972bc13ed39e3bffda835b18880509fdbb.png" />
+<img alt="_images/84efdeebd75a9f3ab0e5ed81a15aef00b2c7fa5faa1521286e817bd0d2ff1208.png" src="_images/84efdeebd75a9f3ab0e5ed81a15aef00b2c7fa5faa1521286e817bd0d2ff1208.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Cholesterol
+count     284.000000
+mean      369.510563
+std       231.944545
+min       120.000000
+25%       249.500000
+50%       309.500000
+75%       400.000000
+max      1775.000000
+Name: Cholesterol, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/b294bec16ac91ba736e1d0bd5acfa1472b96520b68434a4b32ab2599349e3d34.png" src="_images/b294bec16ac91ba736e1d0bd5acfa1472b96520b68434a4b32ab2599349e3d34.png" />
+<img alt="_images/f06000d10633b1a21f0a5b9e36cfe860ad890cc45aacc29f259b1175d99c2619.png" src="_images/f06000d10633b1a21f0a5b9e36cfe860ad890cc45aacc29f259b1175d99c2619.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Albumin
+count    418.000000
+mean       3.497440
+std        0.424972
+min        1.960000
+25%        3.242500
+50%        3.530000
+75%        3.770000
+max        4.640000
+Name: Albumin, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/d7c3feb4b87c8983961007049afd952cff0f3cf995c55d12dafa90f1e7b5805d.png" src="_images/d7c3feb4b87c8983961007049afd952cff0f3cf995c55d12dafa90f1e7b5805d.png" />
+<img alt="_images/ac7f459ca71d1af2367a4a2b777998a6f7705cd540f1385730a24afc356d7aae.png" src="_images/ac7f459ca71d1af2367a4a2b777998a6f7705cd540f1385730a24afc356d7aae.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Copper
+count    310.000000
+mean      97.648387
+std       85.613920
+min        4.000000
+25%       41.250000
+50%       73.000000
+75%      123.000000
+max      588.000000
+Name: Copper, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/1be86565df756de923179238343c8a31fc6caabcd4ebeadea3e4eb6c0f4b7bc3.png" src="_images/1be86565df756de923179238343c8a31fc6caabcd4ebeadea3e4eb6c0f4b7bc3.png" />
+<img alt="_images/4f56c4267bbac47f4be422efc7f5d90dda560cc731cc79e4b06708984bd67de1.png" src="_images/4f56c4267bbac47f4be422efc7f5d90dda560cc731cc79e4b06708984bd67de1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Alk_Phos
+count      312.000000
+mean      1982.655769
+std       2140.388824
+min        289.000000
+25%        871.500000
+50%       1259.000000
+75%       1980.000000
+max      13862.400000
+Name: Alk_Phos, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/30b27ea367b06608d99d87ecd9f8e3d6a9f0328894956816cb2224376b70539c.png" src="_images/30b27ea367b06608d99d87ecd9f8e3d6a9f0328894956816cb2224376b70539c.png" />
+<img alt="_images/479f7847ba7fc766d06346071f94618beeb1a8679b318a7d061abf8f5a84fe56.png" src="_images/479f7847ba7fc766d06346071f94618beeb1a8679b318a7d061abf8f5a84fe56.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: SGOT
+count    312.000000
+mean     122.556346
+std       56.699525
+min       26.350000
+25%       80.600000
+50%      114.700000
+75%      151.900000
+max      457.250000
+Name: SGOT, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/e40112231fc80743ec2f53bc76e0fb6ca7f8c109b980047243dade8e50ba3301.png" src="_images/e40112231fc80743ec2f53bc76e0fb6ca7f8c109b980047243dade8e50ba3301.png" />
+<img alt="_images/a88850a749231ce6960b32d7a7ffc4ea9f350aed0f0fb61f53a5536ca35206cb.png" src="_images/a88850a749231ce6960b32d7a7ffc4ea9f350aed0f0fb61f53a5536ca35206cb.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Tryglicerides
+count    282.000000
+mean     124.702128
+std       65.148639
+min       33.000000
+25%       84.250000
+50%      108.000000
+75%      151.000000
+max      598.000000
+Name: Tryglicerides, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/3e12e313a7c09e5577420fd20d676d2866b102a1d5f233be2024eed44245a26f.png" src="_images/3e12e313a7c09e5577420fd20d676d2866b102a1d5f233be2024eed44245a26f.png" />
+<img alt="_images/ad502237c1da6aa604435085196c20216223365033e01a64774f3fdf8f442a21.png" src="_images/ad502237c1da6aa604435085196c20216223365033e01a64774f3fdf8f442a21.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Platelets
+count    407.000000
+mean     257.024570
+std       98.325585
+min       62.000000
+25%      188.500000
+50%      251.000000
+75%      318.000000
+max      721.000000
+Name: Platelets, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/aa9da5dfffcb42b364abd0a411d482c367b043675a95a9c853b115ab006af109.png" src="_images/aa9da5dfffcb42b364abd0a411d482c367b043675a95a9c853b115ab006af109.png" />
+<img alt="_images/4a12571cd469a165257f5cd555a0141f75737fbf28b0403c9cfe264590cdad3a.png" src="_images/4a12571cd469a165257f5cd555a0141f75737fbf28b0403c9cfe264590cdad3a.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Prothrombin
+count    416.000000
+mean      10.731731
+std        1.022000
+min        9.000000
+25%       10.000000
+50%       10.600000
+75%       11.100000
+max       18.000000
+Name: Prothrombin, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/71d16b4227bf6b1e8af3f522a3f1ea82512ad6b15ca244b17c4aa15d0f0f8ca2.png" src="_images/71d16b4227bf6b1e8af3f522a3f1ea82512ad6b15ca244b17c4aa15d0f0f8ca2.png" />
+<img alt="_images/a54ae57bd0781c3d97380849b7142b074230420d80e3bc28d4f813e0b9bce74b.png" src="_images/a54ae57bd0781c3d97380849b7142b074230420d80e3bc28d4f813e0b9bce74b.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statistik untuk variabel numerik: Stage
+count    412.000000
+mean       3.024272
+std        0.882042
+min        1.000000
+25%        2.000000
+50%        3.000000
+75%        4.000000
+max        4.000000
+Name: Stage, dtype: float64
+</pre></div>
+</div>
+<img alt="_images/8275cf442b1889307952a2f378943f5c743a0b6caeac58991a1f86fddaed072b.png" src="_images/8275cf442b1889307952a2f378943f5c743a0b6caeac58991a1f86fddaed072b.png" />
+<img alt="_images/4e9efdba41e345580b31560d380dc2a8d06bb709768cdb6b436d2b980d916706.png" src="_images/4e9efdba41e345580b31560d380dc2a8d06bb709768cdb6b436d2b980d916706.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="preprocessing-data">
+<h2>PREPROCESSING DATA<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
+<section id="cek-missing-value">
+<h3>CEK MISSING VALUE<a class="headerlink" href="#cek-missing-value" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Tahap 1: Cek dan Tangani Missing Values (dengan kondisi) ---</span>
+
+<span class="n">missing_before</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">total_missing</span> <span class="o">=</span> <span class="n">missing_before</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">total_missing</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Tidak ditemukan missing value di dalam dataset.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+    <span class="n">missing_table</span> <span class="o">=</span> <span class="n">tabulate</span><span class="p">(</span><span class="n">missing_before</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Kolom&quot;</span><span class="p">,</span> <span class="s2">&quot;Missing Values&quot;</span><span class="p">],</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Ditemukan missing values sebelum ditangani:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">missing_table</span><span class="p">)</span>
+
+    <span class="c1"># Tangani missing values</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;object&#39;</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+
+    <span class="c1"># Verifikasi ulang setelah ditangani</span>
+    <span class="n">missing_after</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Missing value setelah ditangani:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">missing_after</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">headers</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Kolom&quot;</span><span class="p">,</span> <span class="s2">&quot;Missing Values&quot;</span><span class="p">],</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">&quot;grid&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Tidak ditemukan missing value di dalam dataset.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="deteksi-outlier">
+<h3>DETEKSI OUTLIER<a class="headerlink" href="#deteksi-outlier" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># Ambil data numerik &amp; normalisasi agar jarak lebih adil</span>
+<span class="n">numerical_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaled_data</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">numerical_data</span><span class="p">)</span>
+
+<span class="c1"># Hitung centroid (rata-rata) dan Euclidean distance tiap titik ke pusat</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">scaled_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">scaled_data</span> <span class="o">-</span> <span class="n">center</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Threshold outlier: data dengan jarak &gt; mean + 3*std dianggap outlier</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">distances</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">distances</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">outlier_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah outlier terdeteksi: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">outlier_indices</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan beberapa contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Contoh indeks outlier:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outlier_indices</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah outlier terdeteksi: 7
+
+Contoh indeks outlier:
+[ 17  22  74 129 165 190 280]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="penghapusan-outlier">
+<h3>PENGHAPUSAN OUTLIER<a class="headerlink" href="#penghapusan-outlier" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># tanpa outlier</span>
+<span class="n">data_no_outliers</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">outlier_indices</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah data sebelum hapus outlier: </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah data setelah hapus outlier: </span><span class="si">{</span><span class="n">data_no_outliers</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah data sebelum hapus outlier: 418
+Jumlah data setelah hapus outlier: 411
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pemodelan">
+<h2>PEMODELAN<a class="headerlink" href="#pemodelan" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Libraries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># Tentukan fitur dan target</span>
+<span class="n">feature_columns</span> <span class="o">=</span> <span class="n">numerical_data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;N_Days&quot;</span><span class="p">)</span>  <span class="c1"># sesuaikan dengan fitur numerik lainnya</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">numerical_data</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;Stage&quot;</span><span class="p">]</span>  <span class="c1"># Target adalah &quot;Stage&quot;</span>
+
+<span class="c1"># Encode target</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Menampilkan beberapa data awal</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(),</span> <span class="n">y_encoded</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(   Status  Drug    Age  Sex  Ascites  Hepatomegaly  Spiders  Edema  Bilirubin  \
+ 0       2     0  21464    0        1             1        1      2       14.5   
+ 1       0     0  20617    0        0             1        1      0        1.1   
+ 2       2     0  25594    1        0             0        0      1        1.4   
+ 3       2     0  19994    0        0             1        1      1        1.8   
+ 4       1     1  13918    0        0             1        1      0        3.4   
+ 
+    Cholesterol  Albumin  Copper  Alk_Phos    SGOT  Tryglicerides  Platelets  \
+ 0        261.0     2.60   156.0    1718.0  137.95          172.0      190.0   
+ 1        302.0     4.14    54.0    7394.8  113.52           88.0      221.0   
+ 2        176.0     3.48   210.0     516.0   96.10           55.0      151.0   
+ 3        244.0     2.54    64.0    6121.8   60.63           92.0      183.0   
+ 4        279.0     3.53   143.0     671.0  113.15           72.0      136.0   
+ 
+    Prothrombin  Stage  
+ 0         12.2    4.0  
+ 1         10.6    3.0  
+ 2         12.0    4.0  
+ 3         10.3    4.0  
+ 4         10.9    3.0  ,
+ array([3, 2, 3, 3, 2]))
+</pre></div>
+</div>
+</div>
+</div>
+<section id="model-dengan-outlier">
+<h3>MODEL DENGAN OUTLIER<a class="headerlink" href="#model-dengan-outlier" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Libraries untuk Model</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Pembagian data menjadi train dan test</span>
+<span class="n">X_train_ori</span><span class="p">,</span> <span class="n">X_test_ori</span><span class="p">,</span> <span class="n">y_train_ori</span><span class="p">,</span> <span class="n">y_test_ori</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Buat pipeline dengan scaler dan KNN</span>
+<span class="n">pipeline_ori</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>  <span class="c1"># Normalisasi fitur</span>
+    <span class="p">(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">11</span><span class="p">))</span>  <span class="c1"># KNN dengan 11 tetangga</span>
+<span class="p">])</span>
+
+<span class="c1"># Latih model</span>
+<span class="n">pipeline_ori</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_ori</span><span class="p">,</span> <span class="n">y_train_ori</span><span class="p">)</span>
+
+<span class="c1"># Prediksi dengan data uji</span>
+<span class="n">y_pred_ori</span> <span class="o">=</span> <span class="n">pipeline_ori</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_ori</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil evaluasi model dengan outlier</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">HASIL MODEL DENGAN OUTLIER:&quot;</span><span class="p">)</span>
+<span class="c1"># Convert label_encoder.classes_ to a list of strings</span>
+<span class="n">target_names</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_ori</span><span class="p">,</span> <span class="n">y_pred_ori</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_ori</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_ori</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HASIL MODEL DENGAN OUTLIER:
+              precision    recall  f1-score   support
+
+         1.0       1.00      0.33      0.50         3
+         2.0       0.67      0.50      0.57        16
+         3.0       0.57      0.76      0.65        34
+         4.0       0.76      0.61      0.68        31
+
+    accuracy                           0.64        84
+   macro avg       0.75      0.55      0.60        84
+weighted avg       0.67      0.64      0.64        84
+
+Akurasi: 0.6429
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-tanpa-outlier">
+<h3>MODEL TANPA OUTLIER<a class="headerlink" href="#model-tanpa-outlier" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pembagian data bersih menjadi train dan test</span>
+<span class="n">X_clean</span> <span class="o">=</span> <span class="n">df_cleaned</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span>
+<span class="n">y_clean</span> <span class="o">=</span> <span class="n">df_cleaned</span><span class="p">[</span><span class="s2">&quot;Stage&quot;</span><span class="p">]</span>  <span class="c1"># Ambil kolom &#39;Stage&#39; sebagai target</span>
+
+<span class="n">X_train_clean</span><span class="p">,</span> <span class="n">X_test_clean</span><span class="p">,</span> <span class="n">y_train_clean</span><span class="p">,</span> <span class="n">y_test_clean</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_clean</span><span class="p">,</span> <span class="n">y_clean</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="c1"># Buat pipeline untuk model tanpa outlier</span>
+<span class="n">pipeline_clean</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;scaler&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">()),</span>  <span class="c1"># Normalisasi fitur</span>
+    <span class="p">(</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">11</span><span class="p">))</span>  <span class="c1"># KNN dengan 11 tetangga</span>
+<span class="p">])</span>
+
+<span class="c1"># Latih model dengan data bersih</span>
+<span class="n">pipeline_clean</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_clean</span><span class="p">,</span> <span class="n">y_train_clean</span><span class="p">)</span>
+
+<span class="c1"># Prediksi dengan data uji</span>
+<span class="n">y_pred_clean</span> <span class="o">=</span> <span class="n">pipeline_clean</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_clean</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil evaluasi model setelah outlier dihapus</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">HASIL MODEL SETELAH OUTLIER DIHAPUS:&quot;</span><span class="p">)</span>
+<span class="c1"># Get target names as strings from the label encoder</span>
+<span class="n">target_names</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_clean</span><span class="p">,</span> <span class="n">y_pred_clean</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_clean</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_clean</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HASIL MODEL SETELAH OUTLIER DIHAPUS:
+              precision    recall  f1-score   support
+
+         1.0       0.00      0.00      0.00         7
+         2.0       0.44      0.73      0.55        11
+         3.0       0.59      0.74      0.66        27
+         4.0       0.83      0.65      0.73        31
+
+    accuracy                           0.63        76
+   macro avg       0.47      0.53      0.48        76
+weighted avg       0.61      0.63      0.61        76
+
+Akurasi: 0.6316
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+/usr/local/lib/python3.11/dist-packages/sklearn/metrics/_classification.py:1565: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -10330,6 +10987,15 @@ scope.google.colab._files = {
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="LOF.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Local Outlier Factor (LOF)</strong></p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -10345,9 +11011,25 @@ scope.google.colab._files = {
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">DATA UNDERSTANDING</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data">MENAMPILKAN DATA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-numerik">MENAMPILKAN DATA NUMERIK</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-dalam-bentuk-chart">MENAMPILKAN DATA DALAM BENTUK CHART</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">PREPROCESSING DATA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-missing-value">CEK MISSING VALUE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deteksi-outlier">DETEKSI OUTLIER</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penghapusan-outlier">PENGHAPUSAN OUTLIER</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan">PEMODELAN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dengan-outlier">MODEL DENGAN OUTLIER</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-tanpa-outlier">MODEL TANPA OUTLIER</a></li>
+</ul>
+</li>
+</ul>
   </nav></div>
 
 </div></div>
