@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>📌 Clustering dengan K-Means &#8212; My sample book</title>
+    <title>Clustering dengan K-Means &#8212; My sample book</title>
   
   
   
@@ -185,8 +185,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>UTS Penambangan Data</strong></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">📌 Clustering dengan K-Means</a></li>
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Clustering dengan K-Means</a></li>
 </ul>
 
     </div>
@@ -372,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>📌 Clustering dengan K-Means</h1>
+    <h1>Clustering dengan K-Means</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -382,9 +381,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📌 Clustering dengan K-Means</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data">Akses Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sebelum-di-normalisasi">Data Sebelum di Normalisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data">Akses Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-file-csv">Upload File CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilkan-file-csv">Tampilkan File CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sebelum-di-normalisasi">Data Sebelum di Normalisasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambli-fitur-yang-diperlukan">Mengambli fitur yang diperlukan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">VISUALISASI DATA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-tanpa-menggunakan-pca">Visualisasi Tanpa menggunakan PCA</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-menggunakan-pca">Visualisasi Menggunakan PCA</a></li>
@@ -394,14 +399,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi">STANDARISASI</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi-dengan-standardscaler">Standarisasi dengan StandardScaler</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi-dengan-min-max">Standarisasi dengan Min-Max</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-min-max-scaler">Penjelasan Min-Max Scaler</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-min-max-scaler">Rumus Min-Max Scaler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-perlu-normalisasi-min-max">Kenapa perlu normalisasi Min-Max?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh sederhana:</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kesimpulan</a></li>
 </ul>
 </li>
@@ -416,9 +413,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -430,7 +424,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="clustering-dengan-k-means">
-<h1>📌 Clustering dengan K-Means<a class="headerlink" href="#clustering-dengan-k-means" title="Link to this heading">#</a></h1>
+<h1>Clustering dengan K-Means<a class="headerlink" href="#clustering-dengan-k-means" title="Link to this heading">#</a></h1>
 <p><strong>K-Means</strong> adalah algoritma <em>unsupervised learning</em> yang umum digunakan untuk <strong>clustering</strong>. Meskipun bukan algoritma klasifikasi dalam arti sebenarnya, hasil klasterisasi dari K-Means sering digunakan untuk <em>pseudo-klasifikasi</em>, terutama saat label kelas tersedia setelah proses clustering.</p>
 <hr class="docutils" />
 <p>⚙️ Langkah-langkah Algoritma K-Means</p>
@@ -521,60 +515,19 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/bin/bash: line 1: psycopgpsycopg2all2all: command not found
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting mysql-connector-python
-  Downloading mysql_connector_python-9.3.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (7.2 kB)
-Downloading mysql_connector_python-9.3.0-cp311-cp311-manylinux_2_28_x86_64.whl (33.9 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/33.9 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/33.9 MB</span> <span class=" -Color -Color-Red">2.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:14</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.6/33.9 MB</span> <span class=" -Color -Color-Red">8.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:04</span>
-   ━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.9/33.9 MB</span> <span class=" -Color -Color-Red">37.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">10.2/33.9 MB</span> <span class=" -Color -Color-Red">72.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━╺━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">16.3/33.9 MB</span> <span class=" -Color -Color-Red">178.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━━━━━━━━ <span class=" -Color -Color-Green">22.7/33.9 MB</span> <span class=" -Color -Color-Red">177.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸━━━━━━ <span class=" -Color -Color-Green">28.7/33.9 MB</span> <span class=" -Color -Color-Red">175.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">33.8/33.9 MB</span> <span class=" -Color -Color-Red">182.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">33.8/33.9 MB</span> <span class=" -Color -Color-Red">182.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">33.8/33.9 MB</span> <span class=" -Color -Color-Red">182.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">33.8/33.9 MB</span> <span class=" -Color -Color-Red">182.8 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">33.9/33.9 MB</span> <span class=" -Color -Color-Red">48.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: mysql-connector-python
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Successfully installed mysql-connector-python-9.3.0
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mysql-connector-python in /usr/local/lib/python3.11/dist-packages (9.3.0)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
-  Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
-Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/3.0 MB</span> <span class=" -Color -Color-Red">4.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">1.1/3.0 MB</span> <span class=" -Color -Color-Red">15.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">32.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">26.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
-Successfully installed psycopg2-binary-2.9.10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mysql-connector-python in /usr/local/lib/python3.11/dist-packages (9.3.0)
+Requirement already satisfied: psycopg2-binary in /usr/local/lib/python3.11/dist-packages (2.9.10)
 </pre></div>
 </div>
 </div>
 </div>
 <section id="akses-data">
 <h2>Akses Data<a class="headerlink" href="#akses-data" title="Link to this heading">#</a></h2>
-<p>Upload File CSV</p>
+<section id="upload-file-csv">
+<h3>Upload File CSV<a class="headerlink" href="#upload-file-csv" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
@@ -584,9 +537,9 @@ Successfully installed psycopg2-binary-2.9.10
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-     <input type="file" id="files-fa636ef9-2ae9-4117-a440-747fa722a7f1" name="files[]" multiple disabled
+     <input type="file" id="files-7f1ea38a-d998-4a02-98ad-67df30217260" name="files[]" multiple disabled
         style="border:none" />
-     <output id="result-fa636ef9-2ae9-4117-a440-747fa722a7f1">
+     <output id="result-7f1ea38a-d998-4a02-98ad-67df30217260">
       Upload widget is only available when the cell has been executed in the
       current browser session. Please rerun this cell to enable.
       </output>
@@ -806,6 +759,9 @@ scope.google.colab._files = {
 </div>
 <p>Dongeng Sang Penjelajah Data</p>
 <p>Di suatu pagi yang cerah di negeri DaMai, Pangeran si penjelajah data menemukan sebuah gulungan suci bernama <code class="docutils literal notranslate"><span class="pre">Iris.csv</span></code>. Di dalamnya tersembunyi informasi tentang bunga-bunga dengan keindahan yang menawan. Dia pun membuka gulungan tersbut. Pangeran membuka dan membaca isi gulungan. Pangeran kini tahu nama-nama bunga, panjang kelopaknya, dan semua detail penting lainnya. Dengan pengetahuan ini, ia siap menjelajahi dunia klasifikasi.</p>
+</section>
+<section id="tampilkan-file-csv">
+<h3>Tampilkan File CSV<a class="headerlink" href="#tampilkan-file-csv" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -981,9 +937,12 @@ scope.google.colab._files = {
 </div>
 </div>
 </section>
+</section>
 <section id="data-sebelum-di-normalisasi">
 <h2>Data Sebelum di Normalisasi<a class="headerlink" href="#data-sebelum-di-normalisasi" title="Link to this heading">#</a></h2>
 <p>Pangeran menyadari bahwa dari sekian banyak informasi tentang bunga, ada empat unsur yang paling penting: <strong>panjang dan lebar sepal</strong>, serta <strong>panjang dan lebar petal</strong>.</p>
+<section id="mengambli-fitur-yang-diperlukan">
+<h3>Mengambli fitur yang diperlukan<a class="headerlink" href="#mengambli-fitur-yang-diperlukan" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_columns</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;SepalLengthCm&#39;</span><span class="p">,</span> <span class="s1">&#39;SepalWidthCm&#39;</span><span class="p">,</span> <span class="s1">&#39;PetalLengthCm&#39;</span><span class="p">,</span> <span class="s1">&#39;PetalWidthCm&#39;</span><span class="p">]]</span>
@@ -1149,6 +1108,7 @@ scope.google.colab._files = {
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="visualisasi-data">
 <h2>VISUALISASI DATA<a class="headerlink" href="#visualisasi-data" title="Link to this heading">#</a></h2>
@@ -1546,15 +1506,9 @@ Agar adil dan setara, ia menggunakan <strong>mantra <code class="docutils litera
 <p>Selain standar z-score, Pangeran juga belajar teknik lain yang lebih lembut
 , dikenal sebagai <strong>Min-Max Scaling</strong>.<br />
 Teknik ini menyulap semua nilai agar masuk ke rentang <strong>0 hingga 1</strong>, seperti menyusun bunga dari ukuran terkecil ke terbesar.</p>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-min-max-scaler">
-<h1>Penjelasan Min-Max Scaler<a class="headerlink" href="#penjelasan-min-max-scaler" title="Link to this heading">#</a></h1>
 <p><strong>Min-Max Scaler</strong> adalah metode preprocessing data yang digunakan untuk <strong>normalisasi</strong> fitur. Tujuannya adalah mengubah data sehingga setiap fitur memiliki rentang nilai pada interval tertentu, biasanya antara 0 dan 1.</p>
 <hr class="docutils" />
-<section id="rumus-min-max-scaler">
-<h2>Rumus Min-Max Scaler<a class="headerlink" href="#rumus-min-max-scaler" title="Link to this heading">#</a></h2>
+<p>Rumus Min-Max Scaler</p>
 <p>Untuk setiap nilai data <span class="math notranslate nohighlight">\(( x_i )\)</span> pada fitur, nilai yang sudah dinormalisasi <span class="math notranslate nohighlight">\(( x_i')\)</span> dihitung dengan rumus:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1566,10 +1520,8 @@ x_i' = \frac{x_i - x_{min}}{x_{max} - x_{min}}
 <li><p><span class="math notranslate nohighlight">\(x_{min}\)</span> = nilai minimum dari fitur tersebut</p></li>
 <li><p><span class="math notranslate nohighlight">\(x_{max}\)</span> = nilai maksimum dari fitur tersebut</p></li>
 </ul>
-</section>
 <hr class="docutils" />
-<section id="kenapa-perlu-normalisasi-min-max">
-<h2>Kenapa perlu normalisasi Min-Max?<a class="headerlink" href="#kenapa-perlu-normalisasi-min-max" title="Link to this heading">#</a></h2>
+<p>Kenapa perlu normalisasi Min-Max?</p>
 <ul class="simple">
 <li><p><strong>Mengubah skala fitur ke rentang 0-1:</strong><br />
 Membuat fitur menjadi sebanding, terutama berguna untuk algoritma yang sensitif terhadap skala data seperti KNN, Neural Networks, dan Gradient Descent.</p></li>
@@ -1578,10 +1530,8 @@ Berbeda dengan StandardScaler, Min-Max tidak mengubah distribusi data menjadi ra
 <li><p><strong>Sangat berguna jika data punya batas nilai yang pasti:</strong><br />
 Misalnya nilai pixel gambar yang memang berada di antara 0 dan 255.</p></li>
 </ul>
-</section>
 <hr class="docutils" />
-<section id="contoh-sederhana">
-<h2>Contoh sederhana:<a class="headerlink" href="#contoh-sederhana" title="Link to this heading">#</a></h2>
+<p>Contoh sederhana:</p>
 <p>Misal data fitur:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1769,6 +1719,7 @@ x' = \frac{16 - 10}{18 - 10} = \frac{6}{8} = 0.75
 </div>
 </div>
 </div>
+</section>
 <section id="id1">
 <h3>Kesimpulan<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -2447,9 +2398,15 @@ Nilai K optimal: 3 (Silhouette Score: 0.8438)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📌 Clustering dengan K-Means</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data">Akses Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sebelum-di-normalisasi">Data Sebelum di Normalisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#akses-data">Akses Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-file-csv">Upload File CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilkan-file-csv">Tampilkan File CSV</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-sebelum-di-normalisasi">Data Sebelum di Normalisasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengambli-fitur-yang-diperlukan">Mengambli fitur yang diperlukan</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">VISUALISASI DATA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-tanpa-menggunakan-pca">Visualisasi Tanpa menggunakan PCA</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-menggunakan-pca">Visualisasi Menggunakan PCA</a></li>
@@ -2459,14 +2416,6 @@ Nilai K optimal: 3 (Silhouette Score: 0.8438)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi">STANDARISASI</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi-dengan-standardscaler">Standarisasi dengan StandardScaler</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standarisasi-dengan-min-max">Standarisasi dengan Min-Max</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-min-max-scaler">Penjelasan Min-Max Scaler</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-min-max-scaler">Rumus Min-Max Scaler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kenapa-perlu-normalisasi-min-max">Kenapa perlu normalisasi Min-Max?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-sederhana">Contoh sederhana:</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kesimpulan</a></li>
 </ul>
 </li>
@@ -2481,9 +2430,6 @@ Nilai K optimal: 3 (Silhouette Score: 0.8438)
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
