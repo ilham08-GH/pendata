@@ -1,0 +1,2218 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fuzzy C-Mean Cluster &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Fuzzy C-mean Cluster';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Clustering dengan K-Means" href="Modeling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MY DATA MINING INFORMATION PAGE
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html"><strong>Data Understanding</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>UTS Penambangan Data</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modeling.html">Clustering dengan K-Means</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Fuzzy C-Mean Cluster</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FFuzzy C-mean Cluster.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Fuzzy C-mean Cluster.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fuzzy C-Mean Cluster</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-mean-cluster">Konsep dasar fuzzy c-mean cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-cluster">Algoritma fuzzy C-mean Cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-fcm-2-clust">Contoh perhitungan manual FCM 2 clust</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means-clustering-manual-iterasi-1">📘 Fuzzy C-Means Clustering (Manual) - Iterasi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-selanjutnya-update-keanggotaan-dan-jarak">Langkah Selanjutnya: Update Keanggotaan dan Jarak</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dan-keanggotaan-fuzzy">Data dan Keanggotaan Fuzzy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-python-fcm">Implementasi Python FCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilkan-nilai-pusat-cluster-setiap-iterasi-dan-keanggotaan-setiap-literasi-dan-hitung-fungsi-objektif-setiap-titrasi">Tampilkan nilai pusat cluster Setiap iterasi dan keanggotaan setiap literasi dan hitung fungsi objektif setiap titrasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fcm-untuk-data-iris-3-cluster">Implementasi FCM untuk data iris (3 Cluster)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-data-iris-dan-parameter"><strong>inisialisasi Data Iris dan Parameter</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-derajat-keanggotaan">Inisialisasi derajat keanggotaan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-centroid-berdasarkan-matriks-keanggotaan-u">Hitung Centroid berdasarkan matriks keanggotaan U</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-matrix-keanggotaan-u">Update matrix keanggotaan U</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-fungsi-objektif-dan-cek-konvergen">Hitung fungsi objektif dan cek konvergen</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fuzzy-c-mean-cluster">
+<h1>Fuzzy C-Mean Cluster<a class="headerlink" href="#fuzzy-c-mean-cluster" title="Link to this heading">#</a></h1>
+<section id="konsep-dasar-fuzzy-c-mean-cluster">
+<h2>Konsep dasar fuzzy c-mean cluster<a class="headerlink" href="#konsep-dasar-fuzzy-c-mean-cluster" title="Link to this heading">#</a></h2>
+<p>Konsep Dasar Fuzzy C-Means (FCM)</p>
+<p>Apa itu Fuzzy C-Means?</p>
+<p>Fuzzy C-Means (FCM) adalah metode <strong>clustering</strong> yang mirip dengan K-Means, tapi lebih fleksibel. Setiap data <strong>boleh menjadi anggota lebih dari satu cluster</strong> dengan derajat keanggotaan (nilai antara 0 dan 1).</p>
+<hr class="docutils" />
+<p>Bedanya dengan K-Means?</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>K-Means</p></th>
+<th class="head"><p>Fuzzy C-Means</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data hanya masuk 1 cluster</p></td>
+<td><p>Data bisa masuk beberapa cluster sekaligus</p></td>
+</tr>
+<tr class="row-odd"><td><p>Keanggotaan bersifat mutlak (0 atau 1)</p></td>
+<td><p>Keanggotaan bersifat fuzzy (0.0 – 1.0)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p>📖 Konsep Inti FCM</p>
+<ol class="arabic simple">
+<li><p>Tentukan jumlah cluster <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
+<li><p>Inisialisasi matriks keanggotaan <code class="docutils literal notranslate"><span class="pre">U</span></code> secara acak (ukuran: data × cluster)</p></li>
+<li><p>Hitung centroid (pusat cluster) berdasarkan keanggotaan fuzzy</p></li>
+<li><p>Update matriks keanggotaan berdasarkan jarak ke centroid</p></li>
+<li><p>Ulangi sampai perubahan keanggotaan kecil (konvergen)</p></li>
+</ol>
+<hr class="docutils" />
+<p>Bayangkan kita sedang makan <strong>es campur</strong>. Ada beberapa bahan: alpukat, cincau, kolang-kaling, dan kelapa muda.</p>
+<p>kita mencoba mengelompokkan isi es campur ke dalam kategori:</p>
+<ul class="simple">
+<li><p>Buah</p></li>
+<li><p>Jelly</p></li>
+<li><p>Biji-bijian</p></li>
+</ul>
+<p>Tapi… <strong>alpukat</strong> bisa masuk kategori <em>buah</em> (jelas), tapi <strong>cincau</strong> bisa masuk ke <em>buah</em> sedikit, dan <em>jelly</em> juga. Nah, di sini kita tidak bisa bilang “cincau hanya jelly” — dia bisa punya <strong>derajat keanggotaan ke dua kategori</strong>.</p>
+<p>📌 <strong>Fuzzy C-Means bekerja dengan cara seperti ini:</strong></p>
+<ul class="simple">
+<li><p>Tidak memaksa objek hanya milik 1 kategori</p></li>
+<li><p>Menghitung seberapa besar kemungkinan tiap objek masuk ke beberapa kelompok</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="algoritma-fuzzy-c-mean-cluster">
+<h2>Algoritma fuzzy C-mean Cluster<a class="headerlink" href="#algoritma-fuzzy-c-mean-cluster" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<p>📥 Input:</p>
+<ul class="simple">
+<li><p>Dataset: ( X = {x_1, x_2, …, x_n} )</p></li>
+<li><p>Jumlah cluster: ( c )</p></li>
+<li><p>Parameter fuzziness: ( m &gt; 1 ) (biasanya ( m = 2 ))</p></li>
+<li><p>Toleransi error (konvergensi): ( \varepsilon )</p></li>
+<li><p>Maksimal iterasi: <code class="docutils literal notranslate"><span class="pre">max_iter</span></code></p></li>
+</ul>
+<hr class="docutils" />
+<p>🔄 Langkah-langkah Algoritma:</p>
+<ol class="arabic simple">
+<li><p>Inisialisasi Matriks Keanggotaan Fuzzy ( U )</p></li>
+</ol>
+<p>Matriks keanggotaan awal diinisialisasi secara acak:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{ij} \in [0, 1], \quad \text{dengan} \quad \sum_{j=1}^c u_{ij} = 1
+\]</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="2">
+<li><p>Ulangi hingga konvergen:</p></li>
+</ol>
+<p>a. Hitung pusat cluster (centroid) ke-( j ):</p>
+<div class="math notranslate nohighlight">
+\[
+c_j = \frac{\sum_{i=1}^n u_{ij}^m \cdot x_i}{\sum_{i=1}^n u_{ij}^m}
+\]</div>
+<hr class="docutils" />
+<p>b. Update nilai keanggotaan fuzzy:</p>
+<div class="math notranslate nohighlight">
+\[
+u_{ij} = \frac{1}{\sum_{k=1}^c \left( \frac{||x_i - c_j||}{||x_i - c_k||} \right)^{\frac{2}{m-1}}}
+\]</div>
+<hr class="docutils" />
+<p>c. Cek perubahan matriks ( U ):</p>
+<p>Jika perubahan antar iterasi kecil (misalnya):</p>
+<div class="math notranslate nohighlight">
+\[
+max \left( | U^{(t+1)} - U^{(t)} | \right) &lt;  varepsilon
+\]</div>
+<p>maka hentikan iterasi (konvergen).</p>
+<hr class="docutils" />
+<p>📤 Output:</p>
+<ul class="simple">
+<li><p>Matriks keanggotaan fuzzy: ( U = [u_{ij}] )</p></li>
+<li><p>Pusat cluster: ( c_j )</p></li>
+<li><p>Label akhir tiap data: berdasarkan ( \arg\max_j(u_{ij}) )</p></li>
+</ul>
+<hr class="docutils" />
+<p>📌 Catatan Tambahan:</p>
+<ul class="simple">
+<li><p>Jarak yang digunakan umumnya adalah <strong>jarak Euclidean</strong>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+||x_i - c_j|| = \sqrt{ \sum_{d=1}^{D} (x_{id} - c_{jd})^2 }
+\]</div>
+<ul class="simple">
+<li><p>Parameter ( m ): mengontrol seberapa “fuzzy” hasilnya. Semakin besar ( m ), semakin buram (ambiguous) keanggotaannya.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="contoh-perhitungan-manual-fcm-2-clust">
+<h2>Contoh perhitungan manual FCM 2 clust<a class="headerlink" href="#contoh-perhitungan-manual-fcm-2-clust" title="Link to this heading">#</a></h2>
+<section id="fuzzy-c-means-clustering-manual-iterasi-1">
+<h3>📘 Fuzzy C-Means Clustering (Manual) - Iterasi 1<a class="headerlink" href="#fuzzy-c-means-clustering-manual-iterasi-1" title="Link to this heading">#</a></h3>
+<p>📊 Data</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>x1</p></th>
+<th class="head"><p>x2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>🧮 Matriks Keanggotaan Awal (U)</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>xi</p></th>
+<th class="head"><p>(\mu_{i1}) (dc1)</p></th>
+<th class="head"><p>(\mu_{i2}) (dc2)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.3</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.2</p></td>
+<td><p>0.8</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0.4</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0.7</p></td>
+<td><p>0.3</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0.1</p></td>
+<td><p>0.9</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dengan:</p>
+<ul class="simple">
+<li><p>Jumlah data: ( n = 5 )</p></li>
+<li><p>Jumlah cluster: ( c = 2 )</p></li>
+<li><p>Fuzzifier: ( m = 2 )</p></li>
+</ul>
+<hr class="docutils" />
+<p>📐 Rumus Centroid</p>
+<p>Centroid untuk cluster ke-( j ) adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+v_j = \frac{\sum_{i=1}^{n} \left( \mu_{ij} \right)^m x_i}{\sum_{i=1}^{n} \left( \mu_{ij} \right)^m}
+\]</div>
+<hr class="docutils" />
+<p>🔢 Perhitungan Centroid Cluster 1 ((v_1))</p>
+<p>Langkah 1: Hitung $<span class="math notranslate nohighlight">\(( (\mu_{i1})^2 )\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{i1}^2 = \{0.3^2, 0.2^2, 0.4^2, 0.7^2, 0.1^2\} = \{0.09, 0.04, 0.16, 0.49, 0.01\}
+\]</div>
+<p>Langkah 2: Hitung $<span class="math notranslate nohighlight">\(( v_{1x1} )\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+v_{1x1} = \frac{0.09 \cdot 1 + 0.04 \cdot 2 + 0.16 \cdot 3 + 0.49 \cdot 6 + 0.01 \cdot 7}{0.09 + 0.04 + 0.16 + 0.49 + 0.01}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \frac{0.09 + 0.08 + 0.48 + 2.94 + 0.07}{0.79} = \frac{3.66}{0.79} \approx 4.63
+\]</div>
+<p>Langkah 3: Hitung $<span class="math notranslate nohighlight">\(( v_{1x2} )\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+v_{1x2} = \frac{0.09 \cdot 2 + 0.04 \cdot 3 + 0.16 \cdot 4 + 0.49 \cdot 7 + 0.01 \cdot 8}{0.79}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \frac{0.18 + 0.12 + 0.64 + 3.43 + 0.08}{0.79} = \frac{4.45}{0.79} \approx 5.63
+\]</div>
+<p>✅ Hasil Centroid 1</p>
+<div class="math notranslate nohighlight">
+\[
+v_1 \approx (4.63,\ 5.63)
+\]</div>
+<hr class="docutils" />
+<p>🧮 Perhitungan Centroid Cluster 2 ($<span class="math notranslate nohighlight">\((v_2))\)</span>$</p>
+<p>Langkah 1: Hitung $<span class="math notranslate nohighlight">\(( (\mu_{i2})^2 )\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{i2}^2 = \{0.7^2, 0.8^2, 0.6^2, 0.3^2, 0.9^2\} = \{0.49, 0.64, 0.36, 0.09, 0.81\}
+\]</div>
+<p>Langkah 2: Hitung $<span class="math notranslate nohighlight">\(( v_{2x1} )\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+v_{2x1} = \frac{0.49 \cdot 1 + 0.64 \cdot 2 + 0.36 \cdot 3 + 0.09 \cdot 6 + 0.81 \cdot 7}{0.49 + 0.64 + 0.36 + 0.09 + 0.81}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \frac{0.49 + 1.28 + 1.08 + 0.54 + 5.67}{2.39} = \frac{9.06}{2.39} \approx 3.79
+\]</div>
+<p>Langkah 3: Hitung $<span class="math notranslate nohighlight">\(( v_{2x2} )\)</span>$</p>
+<div class="math notranslate nohighlight">
+\[
+v_{2x2} = \frac{0.49 \cdot 2 + 0.64 \cdot 3 + 0.36 \cdot 4 + 0.09 \cdot 7 + 0.81 \cdot 8}{2.39}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+= \frac{0.98 + 1.92 + 1.44 + 0.63 + 6.48}{2.39} = \frac{11.45}{2.39} \approx 4.79
+\]</div>
+<p>✅ Hasil Centroid 2</p>
+<div class="math notranslate nohighlight">
+\[
+v_2 \approx (3.79,\ 4.79)
+\]</div>
+<hr class="docutils" />
+<p>🧾 Ringkasan Centroid Iterasi 1</p>
+<ul>
+<li><div class="math notranslate nohighlight">
+\[( v_1 = (4.63,\ 5.63) )\]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[( v_2 = (3.79,\ 4.79) )\]</div>
+</li>
+</ul>
+</section>
+<section id="langkah-selanjutnya-update-keanggotaan-dan-jarak">
+<h3>Langkah Selanjutnya: Update Keanggotaan dan Jarak<a class="headerlink" href="#langkah-selanjutnya-update-keanggotaan-dan-jarak" title="Link to this heading">#</a></h3>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Hitung Jarak Euclidean dari setiap data ke centroid</p></li>
+</ol>
+<p>Rumus jarak data $<span class="math notranslate nohighlight">\((x_i = (x_{i1}, x_{i2}) )\)</span><span class="math notranslate nohighlight">\( ke centroid cluster \)</span><span class="math notranslate nohighlight">\((v_j = (v_{j1}, v_{j2}) )\)</span>$ :</p>
+<div class="math notranslate nohighlight">
+\[
+d_{ij} = \sqrt{(x_{i1} - v_{j1})^2 + (x_{i2} - v_{j2})^2}
+\]</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="2">
+<li><p>Contoh Hitung Jarak untuk Data ke-1 ( (1,2) )</p></li>
+</ol>
+<p>Dengan centroid cluster:</p>
+<div class="math notranslate nohighlight">
+\[
+v_1 = (4.63, 5.63), \quad v_2 = (3.79, 4.79)
+\]</div>
+<p>Jarak ke cluster 1:</p>
+<div class="math notranslate nohighlight">
+\[
+d_{11} = \sqrt{(1 - 4.63)^2 + (2 - 5.63)^2} = \sqrt{(-3.63)^2 + (-3.63)^2} = \sqrt{13.18 + 13.18} = \sqrt{26.36} \approx 5.13
+\]</div>
+<p>Jarak ke cluster 2:</p>
+<div class="math notranslate nohighlight">
+\[
+d_{12} = \sqrt{(1 - 3.79)^2 + (2 - 4.79)^2} = \sqrt{(-2.79)^2 + (-2.79)^2} = \sqrt{7.78 + 7.78} = \sqrt{15.56} \approx 3.94
+\]</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="3">
+<li><p>Update Keanggotaan Baru</p></li>
+</ol>
+<p>Rumus update keanggotaan:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{ij} = \frac{1}{\sum_{k=1}^{c} \left( \frac{d_{ij}}{d_{ik}} \right)^{\frac{2}{m-1}}}
+\]</div>
+<p>Misalkan ( m=2 ) dan ( c=2 ), maka untuk data ke-1 cluster 1:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{11} = \frac{1}{\left( \frac{d_{11}}{d_{11}} \right)^2 + \left( \frac{d_{11}}{d_{12}} \right)^2} = \frac{1}{1 + \left( \frac{5.13}{3.94} \right)^2} = \frac{1}{1 + 1.69} = \frac{1}{2.69} \approx 0.37
+\]</div>
+<p>Untuk cluster 2:</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{12} = \frac{1}{\left( \frac{d_{12}}{d_{11}} \right)^2 + \left( \frac{d_{12}}{d_{12}} \right)^2} = \frac{1}{\left( \frac{3.94}{5.13} \right)^2 + 1} = \frac{1}{0.59 + 1} = \frac{1}{1.59} \approx 0.63
+\]</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="4">
+<li><p>Ulangi untuk semua data dan cluster</p></li>
+</ol>
+<p>Lakukan perhitungan jarak dan update keanggotaan ini untuk seluruh data dan cluster.</p>
+<hr class="docutils" />
+<ol class="arabic simple" start="5">
+<li><p>Cek konvergensi</p></li>
+</ol>
+<p>Jika perubahan keanggotaan sudah kecil, proses berhenti. Jika belum, ulangi hitung centroid baru dan update keanggotaan sampai konvergen.</p>
+</section>
+<section id="data-dan-keanggotaan-fuzzy">
+<h3>Data dan Keanggotaan Fuzzy<a class="headerlink" href="#data-dan-keanggotaan-fuzzy" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data <span class="math notranslate nohighlight">\((x_i)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((x_1)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((x_2) \)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((\mu_{i1}) \)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((\mu_{i2}) \)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>0.3</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>0.2</p></td>
+<td><p>0.8</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>0.4</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>0.7</p></td>
+<td><p>0.3</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+<td><p>0.1</p></td>
+<td><p>0.9</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p>Menentukan Cluster Akhir</p>
+<p>Cluster akhir untuk data $<span class="math notranslate nohighlight">\((x_i)\)</span>$ adalah cluster dengan nilai keanggotaan fuzzy terbesar:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{Cluster akhir untuk data } x_i = \arg\max_{j} \mu_{ij}
+\]</div>
+<hr class="docutils" />
+<p>Hasil Perhitungan Cluster Akhir</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data <span class="math notranslate nohighlight">\((x_i)\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((\mu_{i1})\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\((\mu_{i2})\)</span></p></th>
+<th class="head"><p>Cluster Akhir</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0.3</p></td>
+<td><p>0.7</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0.2</p></td>
+<td><p>0.8</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0.4</p></td>
+<td><p>0.6</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0.7</p></td>
+<td><p>0.3</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0.1</p></td>
+<td><p>0.9</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="implementasi-python-fcm">
+<h2>Implementasi Python FCM<a class="headerlink" href="#implementasi-python-fcm" title="Link to this heading">#</a></h2>
+<section id="tampilkan-nilai-pusat-cluster-setiap-iterasi-dan-keanggotaan-setiap-literasi-dan-hitung-fungsi-objektif-setiap-titrasi">
+<h3>Tampilkan nilai pusat cluster Setiap iterasi dan keanggotaan setiap literasi dan hitung fungsi objektif setiap titrasi<a class="headerlink" href="#tampilkan-nilai-pusat-cluster-setiap-iterasi-dan-keanggotaan-setiap-literasi-dan-hitung-fungsi-objektif-setiap-titrasi" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Data (x1, x2)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Keanggotaan fuzzy mu_ij untuk 2 cluster</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># derajat fuzziness</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Update centroid untuk data 2D</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_centroids</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">um</span> <span class="o">=</span> <span class="n">U</span> <span class="o">**</span> <span class="n">m</span>  <span class="c1"># (n, c)</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="n">um</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>  <span class="c1"># (c, 2)</span>
+    <span class="k">return</span> <span class="n">centroids</span>
+
+<span class="c1"># Update keanggotaan fuzzy untuk data 2D</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">update_membership</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">new_U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">d_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-10</span>
+            <span class="n">denom</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span>
+                <span class="p">(</span><span class="n">d_ij</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="p">])</span>
+            <span class="n">new_U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="k">return</span> <span class="n">new_U</span>
+
+<span class="c1"># Fungsi objektif untuk data 2D</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">centroids</span><span class="p">)):</span>
+            <span class="n">dist_sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="n">J</span> <span class="o">+=</span> <span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">dist_sq</span>
+    <span class="k">return</span> <span class="n">J</span>
+
+<span class="c1"># Iterasi algoritma Fuzzy C-Means</span>
+<span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="n">update_centroids</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="n">new_U</span> <span class="o">=</span> <span class="n">update_membership</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">new_U</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="n">delta_U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">new_U</span> <span class="o">-</span> <span class="n">U</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iterasi </span><span class="si">{</span><span class="n">iteration</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Centroid:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriks Keanggotaan (U):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">new_U</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fungsi Objektif (J):&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">J</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Perubahan Maksimum Delta U:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">delta_U</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">delta_U</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Konvergen pada iterasi ke-</span><span class="si">{</span><span class="n">iteration</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+
+    <span class="n">U</span> <span class="o">=</span> <span class="n">new_U</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Tidak konvergen hingga iterasi maksimum.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iterasi 1
+Centroid:
+ [[4.6329 5.6329]
+ [3.7908 4.7908]]
+Matriks Keanggotaan (U):
+ [[0.3711 0.6289]
+ [0.3163 0.6837]
+ [0.19   0.81  ]
+ [0.7231 0.2769]
+ [0.6476 0.3524]]
+Fungsi Objektif (J): 25.155
+Perubahan Maksimum Delta U: 0.54765
+----------------------------------------
+Iterasi 2
+Centroid:
+ [[5.3606 6.3606]
+ [2.6908 3.6908]]
+Matriks Keanggotaan (U):
+ [[0.1307 0.8693]
+ [0.0405 0.9595]
+ [0.0169 0.9831]
+ [0.964  0.036 ]
+ [0.8736 0.1264]]
+Fungsi Objektif (J): 11.5579
+Perubahan Maksimum Delta U: 0.275753
+----------------------------------------
+Iterasi 3
+Centroid:
+ [[6.3916 7.3916]
+ [2.1113 3.1113]]
+Matriks Keanggotaan (U):
+ [[4.070e-02 9.593e-01]
+ [6.000e-04 9.994e-01]
+ [6.430e-02 9.357e-01]
+ [9.900e-01 1.000e-02]
+ [9.848e-01 1.520e-02]]
+Fungsi Objektif (J): 4.9047
+Perubahan Maksimum Delta U: 0.111187
+----------------------------------------
+Iterasi 4
+Centroid:
+ [[6.4853 7.4853]
+ [1.9846 2.9846]]
+Matriks Keanggotaan (U):
+ [[0.0312 0.9688]
+ [0.     1.    ]
+ [0.0782 0.9218]
+ [0.9856 0.0144]
+ [0.9896 0.0104]]
+Fungsi Objektif (J): 4.7681
+Perubahan Maksimum Delta U: 0.013981
+----------------------------------------
+Iterasi 5
+Centroid:
+ [[6.4883 7.4883]
+ [1.9686 2.9686]]
+Matriks Keanggotaan (U):
+ [[0.0302 0.9698]
+ [0.     1.    ]
+ [0.0804 0.9196]
+ [0.9855 0.0145]
+ [0.9898 0.0102]]
+Fungsi Objektif (J): 4.7665
+Perubahan Maksimum Delta U: 0.002158
+----------------------------------------
+✅ Konvergen pada iterasi ke-5
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="implementasi-fcm-untuk-data-iris-3-cluster">
+<h2>Implementasi FCM untuk data iris (3 Cluster)<a class="headerlink" href="#implementasi-fcm-untuk-data-iris-3-cluster" title="Link to this heading">#</a></h2>
+<section id="inisialisasi-data-iris-dan-parameter">
+<h3><strong>inisialisasi Data Iris dan Parameter</strong><a class="headerlink" href="#inisialisasi-data-iris-dan-parameter" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Fungsi ambil data Iris dan atur ulang kolom</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_iris_data</span><span class="p">():</span>
+    <span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="o">.</span><span class="n">from_codes</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># ID dimulai dari 1</span>
+
+    <span class="c1"># Susun ulang kolom: id, class, lalu fitur</span>
+    <span class="n">columns_order</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns_order</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Ambil data</span>
+<span class="n">df_iris</span> <span class="o">=</span> <span class="n">get_iris_data</span><span class="p">()</span>
+
+<span class="c1"># Muat data Iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># Semua fitur: shape (150, 4)</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span>
+
+<span class="c1"># Cetak tanpa indeks</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_iris</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># Parameter FCM</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>                  <span class="c1"># Jumlah cluster</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mf">2.0</span>                <span class="c1"># Derajat fuzziness</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span>         <span class="c1"># Maksimum iterasi</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span>         <span class="c1"># Ambang batas konvergensi</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>         <span class="c1"># Jumlah data (150)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>         <span class="c1"># Jumlah fitur (4)</span>
+
+<span class="c1"># Inisialisasi keanggotaan acak (jumlah baris = data, kolom = cluster)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">dirichlet</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="c1"># Cetak semua parameter</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Parameter FCM:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah data (n)        : </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah fitur (d)       : </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">feature_names</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah cluster (k)     : </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fuzziness (m)          : </span><span class="si">{</span><span class="n">m</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maksimum iterasi       : </span><span class="si">{</span><span class="n">max_iter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ambang konvergensi     : </span><span class="si">{</span><span class="n">epsilon</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape matriks keanggotaan U: </span><span class="si">{</span><span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> id      class  sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
+  1     setosa                5.1               3.5                1.4               0.2
+  2     setosa                4.9               3.0                1.4               0.2
+  3     setosa                4.7               3.2                1.3               0.2
+  4     setosa                4.6               3.1                1.5               0.2
+  5     setosa                5.0               3.6                1.4               0.2
+  6     setosa                5.4               3.9                1.7               0.4
+  7     setosa                4.6               3.4                1.4               0.3
+  8     setosa                5.0               3.4                1.5               0.2
+  9     setosa                4.4               2.9                1.4               0.2
+ 10     setosa                4.9               3.1                1.5               0.1
+ 11     setosa                5.4               3.7                1.5               0.2
+ 12     setosa                4.8               3.4                1.6               0.2
+ 13     setosa                4.8               3.0                1.4               0.1
+ 14     setosa                4.3               3.0                1.1               0.1
+ 15     setosa                5.8               4.0                1.2               0.2
+ 16     setosa                5.7               4.4                1.5               0.4
+ 17     setosa                5.4               3.9                1.3               0.4
+ 18     setosa                5.1               3.5                1.4               0.3
+ 19     setosa                5.7               3.8                1.7               0.3
+ 20     setosa                5.1               3.8                1.5               0.3
+ 21     setosa                5.4               3.4                1.7               0.2
+ 22     setosa                5.1               3.7                1.5               0.4
+ 23     setosa                4.6               3.6                1.0               0.2
+ 24     setosa                5.1               3.3                1.7               0.5
+ 25     setosa                4.8               3.4                1.9               0.2
+ 26     setosa                5.0               3.0                1.6               0.2
+ 27     setosa                5.0               3.4                1.6               0.4
+ 28     setosa                5.2               3.5                1.5               0.2
+ 29     setosa                5.2               3.4                1.4               0.2
+ 30     setosa                4.7               3.2                1.6               0.2
+ 31     setosa                4.8               3.1                1.6               0.2
+ 32     setosa                5.4               3.4                1.5               0.4
+ 33     setosa                5.2               4.1                1.5               0.1
+ 34     setosa                5.5               4.2                1.4               0.2
+ 35     setosa                4.9               3.1                1.5               0.2
+ 36     setosa                5.0               3.2                1.2               0.2
+ 37     setosa                5.5               3.5                1.3               0.2
+ 38     setosa                4.9               3.6                1.4               0.1
+ 39     setosa                4.4               3.0                1.3               0.2
+ 40     setosa                5.1               3.4                1.5               0.2
+ 41     setosa                5.0               3.5                1.3               0.3
+ 42     setosa                4.5               2.3                1.3               0.3
+ 43     setosa                4.4               3.2                1.3               0.2
+ 44     setosa                5.0               3.5                1.6               0.6
+ 45     setosa                5.1               3.8                1.9               0.4
+ 46     setosa                4.8               3.0                1.4               0.3
+ 47     setosa                5.1               3.8                1.6               0.2
+ 48     setosa                4.6               3.2                1.4               0.2
+ 49     setosa                5.3               3.7                1.5               0.2
+ 50     setosa                5.0               3.3                1.4               0.2
+ 51 versicolor                7.0               3.2                4.7               1.4
+ 52 versicolor                6.4               3.2                4.5               1.5
+ 53 versicolor                6.9               3.1                4.9               1.5
+ 54 versicolor                5.5               2.3                4.0               1.3
+ 55 versicolor                6.5               2.8                4.6               1.5
+ 56 versicolor                5.7               2.8                4.5               1.3
+ 57 versicolor                6.3               3.3                4.7               1.6
+ 58 versicolor                4.9               2.4                3.3               1.0
+ 59 versicolor                6.6               2.9                4.6               1.3
+ 60 versicolor                5.2               2.7                3.9               1.4
+ 61 versicolor                5.0               2.0                3.5               1.0
+ 62 versicolor                5.9               3.0                4.2               1.5
+ 63 versicolor                6.0               2.2                4.0               1.0
+ 64 versicolor                6.1               2.9                4.7               1.4
+ 65 versicolor                5.6               2.9                3.6               1.3
+ 66 versicolor                6.7               3.1                4.4               1.4
+ 67 versicolor                5.6               3.0                4.5               1.5
+ 68 versicolor                5.8               2.7                4.1               1.0
+ 69 versicolor                6.2               2.2                4.5               1.5
+ 70 versicolor                5.6               2.5                3.9               1.1
+ 71 versicolor                5.9               3.2                4.8               1.8
+ 72 versicolor                6.1               2.8                4.0               1.3
+ 73 versicolor                6.3               2.5                4.9               1.5
+ 74 versicolor                6.1               2.8                4.7               1.2
+ 75 versicolor                6.4               2.9                4.3               1.3
+ 76 versicolor                6.6               3.0                4.4               1.4
+ 77 versicolor                6.8               2.8                4.8               1.4
+ 78 versicolor                6.7               3.0                5.0               1.7
+ 79 versicolor                6.0               2.9                4.5               1.5
+ 80 versicolor                5.7               2.6                3.5               1.0
+ 81 versicolor                5.5               2.4                3.8               1.1
+ 82 versicolor                5.5               2.4                3.7               1.0
+ 83 versicolor                5.8               2.7                3.9               1.2
+ 84 versicolor                6.0               2.7                5.1               1.6
+ 85 versicolor                5.4               3.0                4.5               1.5
+ 86 versicolor                6.0               3.4                4.5               1.6
+ 87 versicolor                6.7               3.1                4.7               1.5
+ 88 versicolor                6.3               2.3                4.4               1.3
+ 89 versicolor                5.6               3.0                4.1               1.3
+ 90 versicolor                5.5               2.5                4.0               1.3
+ 91 versicolor                5.5               2.6                4.4               1.2
+ 92 versicolor                6.1               3.0                4.6               1.4
+ 93 versicolor                5.8               2.6                4.0               1.2
+ 94 versicolor                5.0               2.3                3.3               1.0
+ 95 versicolor                5.6               2.7                4.2               1.3
+ 96 versicolor                5.7               3.0                4.2               1.2
+ 97 versicolor                5.7               2.9                4.2               1.3
+ 98 versicolor                6.2               2.9                4.3               1.3
+ 99 versicolor                5.1               2.5                3.0               1.1
+100 versicolor                5.7               2.8                4.1               1.3
+101  virginica                6.3               3.3                6.0               2.5
+102  virginica                5.8               2.7                5.1               1.9
+103  virginica                7.1               3.0                5.9               2.1
+104  virginica                6.3               2.9                5.6               1.8
+105  virginica                6.5               3.0                5.8               2.2
+106  virginica                7.6               3.0                6.6               2.1
+107  virginica                4.9               2.5                4.5               1.7
+108  virginica                7.3               2.9                6.3               1.8
+109  virginica                6.7               2.5                5.8               1.8
+110  virginica                7.2               3.6                6.1               2.5
+111  virginica                6.5               3.2                5.1               2.0
+112  virginica                6.4               2.7                5.3               1.9
+113  virginica                6.8               3.0                5.5               2.1
+114  virginica                5.7               2.5                5.0               2.0
+115  virginica                5.8               2.8                5.1               2.4
+116  virginica                6.4               3.2                5.3               2.3
+117  virginica                6.5               3.0                5.5               1.8
+118  virginica                7.7               3.8                6.7               2.2
+119  virginica                7.7               2.6                6.9               2.3
+120  virginica                6.0               2.2                5.0               1.5
+121  virginica                6.9               3.2                5.7               2.3
+122  virginica                5.6               2.8                4.9               2.0
+123  virginica                7.7               2.8                6.7               2.0
+124  virginica                6.3               2.7                4.9               1.8
+125  virginica                6.7               3.3                5.7               2.1
+126  virginica                7.2               3.2                6.0               1.8
+127  virginica                6.2               2.8                4.8               1.8
+128  virginica                6.1               3.0                4.9               1.8
+129  virginica                6.4               2.8                5.6               2.1
+130  virginica                7.2               3.0                5.8               1.6
+131  virginica                7.4               2.8                6.1               1.9
+132  virginica                7.9               3.8                6.4               2.0
+133  virginica                6.4               2.8                5.6               2.2
+134  virginica                6.3               2.8                5.1               1.5
+135  virginica                6.1               2.6                5.6               1.4
+136  virginica                7.7               3.0                6.1               2.3
+137  virginica                6.3               3.4                5.6               2.4
+138  virginica                6.4               3.1                5.5               1.8
+139  virginica                6.0               3.0                4.8               1.8
+140  virginica                6.9               3.1                5.4               2.1
+141  virginica                6.7               3.1                5.6               2.4
+142  virginica                6.9               3.1                5.1               2.3
+143  virginica                5.8               2.7                5.1               1.9
+144  virginica                6.8               3.2                5.9               2.3
+145  virginica                6.7               3.3                5.7               2.5
+146  virginica                6.7               3.0                5.2               2.3
+147  virginica                6.3               2.5                5.0               1.9
+148  virginica                6.5               3.0                5.2               2.0
+149  virginica                6.2               3.4                5.4               2.3
+150  virginica                5.9               3.0                5.1               1.8
+
+📌 Parameter FCM:
+Jumlah data (n)        : 150
+Jumlah fitur (d)       : 4 (sepal length (cm), sepal width (cm), petal length (cm), petal width (cm))
+Jumlah cluster (k)     : 3
+Fuzziness (m)          : 2.0
+Maksimum iterasi       : 100
+Ambang konvergensi     : 0.01
+Shape matriks keanggotaan U: (150, 3)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inisialisasi-derajat-keanggotaan">
+<h3>Inisialisasi derajat keanggotaan<a class="headerlink" href="#inisialisasi-derajat-keanggotaan" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tambahkan ID ke matriks keanggotaan dan pindahkan ke kolom paling kiri</span>
+<span class="n">df_U</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Cluster_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+<span class="n">df_U</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">df_U</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># ID dimulai dari 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Matriks Keanggotaan Awal (U) ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_U</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Matriks Keanggotaan Awal (U) ===
+ id  Cluster_1  Cluster_2  Cluster_3
+  1   0.297462   0.588595   0.113943
+  2   0.199538   0.646696   0.153766
+  3   0.289406   0.483808   0.226785
+  4   0.177681   0.526198   0.296121
+  5   0.451080   0.289488   0.259432
+  6   0.710749   0.240291   0.048960
+  7   0.105489   0.509112   0.385399
+  8   0.444127   0.106691   0.449182
+  9   0.142216   0.709595   0.148188
+ 10   0.369768   0.083337   0.546895
+ 11   0.277791   0.513742   0.208467
+ 12   0.213888   0.042373   0.743738
+ 13   0.727473   0.267873   0.004654
+ 14   0.888622   0.073327   0.038051
+ 15   0.094827   0.568652   0.336521
+ 16   0.271930   0.003493   0.724577
+ 17   0.727149   0.076017   0.196834
+ 18   0.479553   0.081232   0.439215
+ 19   0.060129   0.780941   0.158929
+ 20   0.808839   0.117026   0.074135
+ 21   0.265585   0.592813   0.141603
+ 22   0.198899   0.679101   0.122000
+ 23   0.049749   0.596633   0.353619
+ 24   0.563831   0.178200   0.257969
+ 25   0.295249   0.455041   0.249710
+ 26   0.094475   0.562384   0.343141
+ 27   0.841419   0.030684   0.127896
+ 28   0.098707   0.245740   0.655553
+ 29   0.003636   0.896981   0.099383
+ 30   0.106544   0.380991   0.512466
+ 31   0.556235   0.183747   0.260017
+ 32   0.001407   0.021166   0.977426
+ 33   0.013798   0.319346   0.666856
+ 34   0.278678   0.715785   0.005536
+ 35   0.007407   0.520030   0.472563
+ 36   0.176979   0.400570   0.422451
+ 37   0.727297   0.236260   0.036443
+ 38   0.263197   0.135027   0.601776
+ 39   0.221428   0.239621   0.538951
+ 40   0.271345   0.292847   0.435808
+ 41   0.367457   0.130143   0.502401
+ 42   0.296384   0.036879   0.666737
+ 43   0.623620   0.220805   0.155576
+ 44   0.174927   0.204643   0.620429
+ 45   0.604808   0.000387   0.394805
+ 46   0.097177   0.160946   0.741877
+ 47   0.049736   0.384659   0.565605
+ 48   0.039451   0.771824   0.188726
+ 49   0.200758   0.480485   0.318757
+ 50   0.303864   0.183863   0.512273
+ 51   0.265161   0.324189   0.410650
+ 52   0.146745   0.825535   0.027719
+ 53   0.342509   0.509224   0.148266
+ 54   0.139466   0.492501   0.368034
+ 55   0.620990   0.200448   0.178562
+ 56   0.485732   0.257982   0.256286
+ 57   0.119078   0.340908   0.540014
+ 58   0.131342   0.402909   0.465749
+ 59   0.342683   0.178122   0.479195
+ 60   0.307622   0.132575   0.559803
+ 61   0.131715   0.097159   0.771126
+ 62   0.846911   0.147536   0.005553
+ 63   0.389488   0.292628   0.317884
+ 64   0.027059   0.134728   0.838213
+ 65   0.270025   0.205258   0.524716
+ 66   0.403540   0.536418   0.060043
+ 67   0.393109   0.477534   0.129357
+ 68   0.196446   0.308002   0.495552
+ 69   0.307139   0.349732   0.343129
+ 70   0.643532   0.198701   0.157767
+ 71   0.025974   0.947072   0.026953
+ 72   0.475343   0.117527   0.407130
+ 73   0.308155   0.179961   0.511885
+ 74   0.509323   0.078243   0.412434
+ 75   0.510093   0.224982   0.264924
+ 76   0.075526   0.338147   0.586327
+ 77   0.831500   0.035034   0.133466
+ 78   0.714820   0.241771   0.043408
+ 79   0.085150   0.216715   0.698135
+ 80   0.522019   0.413895   0.064086
+ 81   0.140926   0.578223   0.280851
+ 82   0.026596   0.826878   0.146526
+ 83   0.000333   0.939181   0.060486
+ 84   0.177393   0.253485   0.569123
+ 85   0.455825   0.291868   0.252307
+ 86   0.314706   0.459434   0.225860
+ 87   0.292283   0.236778   0.470939
+ 88   0.056961   0.750466   0.192573
+ 89   0.278019   0.570244   0.151737
+ 90   0.207942   0.166643   0.625415
+ 91   0.283379   0.424764   0.291857
+ 92   0.538081   0.103231   0.358687
+ 93   0.495302   0.443114   0.061584
+ 94   0.632059   0.348884   0.019056
+ 95   0.751629   0.231665   0.016706
+ 96   0.421747   0.157889   0.420365
+ 97   0.303728   0.283475   0.412797
+ 98   0.150684   0.725924   0.123392
+ 99   0.725788   0.118859   0.155353
+100   0.092558   0.332390   0.575052
+101   0.364784   0.161379   0.473838
+102   0.473337   0.320543   0.206120
+103   0.553700   0.196135   0.250164
+104   0.348441   0.516558   0.135002
+105   0.247890   0.536861   0.215249
+106   0.290520   0.661545   0.047936
+107   0.134362   0.327546   0.538092
+108   0.321693   0.575163   0.103144
+109   0.281317   0.688125   0.030558
+110   0.163479   0.318146   0.518375
+111   0.312304   0.491575   0.196121
+112   0.067947   0.765366   0.166687
+113   0.078678   0.003596   0.917726
+114   0.310368   0.118593   0.571039
+115   0.427796   0.407165   0.165038
+116   0.022732   0.818700   0.158568
+117   0.117834   0.281218   0.600948
+118   0.051514   0.042537   0.905949
+119   0.001063   0.147478   0.851459
+120   0.275112   0.467430   0.257458
+121   0.448642   0.112084   0.439274
+122   0.292117   0.066860   0.641023
+123   0.224425   0.252803   0.522772
+124   0.282431   0.510840   0.206729
+125   0.160274   0.032655   0.807072
+126   0.440543   0.004063   0.555394
+127   0.678970   0.239376   0.081654
+128   0.571659   0.064234   0.364107
+129   0.310046   0.385696   0.304258
+130   0.085544   0.703659   0.210796
+131   0.194418   0.098394   0.707187
+132   0.819702   0.077996   0.102302
+133   0.208864   0.590527   0.200610
+134   0.586489   0.155619   0.257892
+135   0.197043   0.422385   0.380572
+136   0.163688   0.124024   0.712288
+137   0.527177   0.064755   0.408068
+138   0.550548   0.161993   0.287459
+139   0.177173   0.184563   0.638264
+140   0.453532   0.323248   0.223219
+141   0.222106   0.449683   0.328211
+142   0.035314   0.437914   0.526771
+143   0.139917   0.259315   0.600769
+144   0.648733   0.265172   0.086095
+145   0.523348   0.385862   0.090790
+146   0.386473   0.418756   0.194771
+147   0.077612   0.685940   0.236448
+148   0.159433   0.597465   0.243102
+149   0.386032   0.476354   0.137614
+150   0.287667   0.667772   0.044561
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hitung-centroid-berdasarkan-matriks-keanggotaan-u">
+<h3>Hitung Centroid berdasarkan matriks keanggotaan U<a class="headerlink" href="#hitung-centroid-berdasarkan-matriks-keanggotaan-u" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_centroids</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">um</span> <span class="o">=</span> <span class="n">U</span> <span class="o">**</span> <span class="n">m</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">centroids</span>
+
+<span class="n">centroids</span> <span class="o">=</span> <span class="n">calculate_centroids</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Centroid Awal (Iterasi ke-1) ===&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">centroid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">centroids</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Centroid Cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">centroid</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Centroid Awal (Iterasi ke-1) ===
+Centroid Cluster 1: [5.81182622 3.0948293  3.6374208  1.15416208]
+Centroid Cluster 2: [5.83227322 3.04990209 3.70365934 1.1739416 ]
+Centroid Cluster 3: [5.90829566 3.07640069 3.83830617 1.22992317]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="update-matrix-keanggotaan-u">
+<h3>Update matrix keanggotaan U<a class="headerlink" href="#update-matrix-keanggotaan-u" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">update_membership</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">U_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">denom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">distances</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="n">distances</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+            <span class="n">U_new</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="k">return</span> <span class="n">U_new</span>
+
+<span class="c1"># Perbarui keanggotaan</span>
+<span class="n">U_new</span> <span class="o">=</span> <span class="n">update_membership</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Buat DataFrame dan atur urutan kolom (id di paling kiri)</span>
+<span class="n">df_U_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">U_new</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Cluster_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+<span class="n">df_U_new</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">df_U_new</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Tambahkan ID di kolom pertama</span>
+
+<span class="c1"># Cetak hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Matriks Keanggotaan Baru (Setelah Iterasi ke-1) ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_U_new</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Matriks Keanggotaan Baru (Setelah Iterasi ke-1) ===
+ id  Cluster_1  Cluster_2  Cluster_3
+  1   0.359432   0.338522   0.302046
+  2   0.358465   0.339849   0.301686
+  3   0.357426   0.339199   0.303375
+  4   0.358235   0.339743   0.302022
+  5   0.359088   0.338289   0.302623
+  6   0.362313   0.337195   0.300491
+  7   0.358142   0.338897   0.302960
+  8   0.360131   0.338983   0.300885
+  9   0.356168   0.339851   0.303981
+ 10   0.359046   0.339748   0.301206
+ 11   0.360235   0.337807   0.301958
+ 12   0.360227   0.339165   0.300608
+ 13   0.357742   0.339771   0.302486
+ 14   0.354186   0.339086   0.306728
+ 15   0.356142   0.336421   0.307437
+ 16   0.356981   0.335350   0.307668
+ 17   0.358528   0.337079   0.304394
+ 18   0.359834   0.338542   0.301624
+ 19   0.361878   0.337187   0.300935
+ 20   0.360072   0.337743   0.302185
+ 21   0.362838   0.339036   0.298126
+ 22   0.360754   0.338048   0.301198
+ 23   0.355210   0.337966   0.306823
+ 24   0.363925   0.339702   0.296374
+ 25   0.362770   0.339622   0.297608
+ 26   0.360460   0.340293   0.299247
+ 27   0.361980   0.339195   0.298826
+ 28   0.360509   0.338590   0.300901
+ 29   0.359646   0.338749   0.301605
+ 30   0.359626   0.339714   0.300660
+ 31   0.359935   0.340005   0.300060
+ 32   0.361655   0.338789   0.299555
+ 33   0.358138   0.336807   0.305055
+ 34   0.357303   0.336231   0.306467
+ 35   0.359518   0.339816   0.300666
+ 36   0.357523   0.339020   0.303457
+ 37   0.358690   0.338115   0.303194
+ 38   0.358403   0.338303   0.303294
+ 39   0.355863   0.339495   0.304642
+ 40   0.360393   0.338945   0.300662
+ 41   0.358733   0.338460   0.302808
+ 42   0.353825   0.340559   0.305615
+ 43   0.356186   0.339114   0.304700
+ 44   0.362513   0.338860   0.298627
+ 45   0.364442   0.337966   0.297592
+ 46   0.358483   0.339889   0.301628
+ 47   0.360497   0.337810   0.301693
+ 48   0.357711   0.339341   0.302949
+ 49   0.360219   0.337898   0.301884
+ 50   0.359243   0.339105   0.301652
+ 51   0.294516   0.316625   0.388859
+ 52   0.269219   0.302791   0.427990
+ 53   0.293427   0.317268   0.389305
+ 54   0.308934   0.350812   0.340254
+ 55   0.276153   0.312885   0.410962
+ 56   0.268687   0.318282   0.413032
+ 57   0.278547   0.307773   0.413680
+ 58   0.360105   0.352133   0.287763
+ 59   0.278483   0.312693   0.408824
+ 60   0.327476   0.353034   0.319490
+ 61   0.344646   0.350860   0.304494
+ 62   0.226308   0.284889   0.488803
+ 63   0.303010   0.345859   0.351131
+ 64   0.269319   0.310161   0.420520
+ 65   0.386811   0.395970   0.217219
+ 66   0.279304   0.309450   0.411246
+ 67   0.273871   0.315316   0.410813
+ 68   0.270262   0.342399   0.387338
+ 69   0.288473   0.327648   0.383879
+ 70   0.309997   0.364363   0.325639
+ 71   0.284449   0.313666   0.401886
+ 72   0.217645   0.295304   0.487050
+ 73   0.286710   0.321128   0.392162
+ 74   0.272254   0.314183   0.413563
+ 75   0.256542   0.302346   0.441112
+ 76   0.272998   0.307921   0.419081
+ 77   0.289404   0.318116   0.392481
+ 78   0.291676   0.317452   0.390872
+ 79   0.257255   0.304714   0.438031
+ 80   0.368434   0.379009   0.252557
+ 81   0.326654   0.363560   0.309786
+ 82   0.338732   0.365599   0.295669
+ 83   0.260966   0.364224   0.374809
+ 84   0.289477   0.320857   0.389666
+ 85   0.288537   0.323422   0.388041
+ 86   0.272777   0.302406   0.424817
+ 87   0.284824   0.312944   0.402232
+ 88   0.284335   0.326691   0.388974
+ 89   0.255160   0.321552   0.423288
+ 90   0.302278   0.353359   0.344363
+ 91   0.288749   0.334801   0.376449
+ 92   0.261943   0.304346   0.433710
+ 93   0.268724   0.348444   0.382832
+ 94   0.358018   0.353124   0.288858
+ 95   0.272211   0.334207   0.393582
+ 96   0.240776   0.306668   0.452556
+ 97   0.242058   0.310953   0.446988
+ 98   0.239955   0.294235   0.465810
+ 99   0.371366   0.352104   0.276530
+100   0.246566   0.326265   0.427169
+101   0.309429   0.324685   0.365886
+102   0.294462   0.322889   0.382650
+103   0.307908   0.324426   0.367667
+104   0.300064   0.322470   0.377466
+105   0.305258   0.323758   0.370985
+106   0.313942   0.326738   0.359320
+107   0.314576   0.336452   0.348972
+108   0.310885   0.325893   0.363221
+109   0.304627   0.325203   0.370171
+110   0.312540   0.324934   0.362526
+111   0.295304   0.318038   0.386658
+112   0.296454   0.321893   0.381653
+113   0.302723   0.322361   0.374916
+114   0.297369   0.325704   0.376928
+115   0.301784   0.324255   0.373961
+116   0.301327   0.321094   0.377578
+117   0.299095   0.321285   0.379619
+118   0.316240   0.326430   0.357330
+119   0.315578   0.327889   0.356533
+120   0.295215   0.327220   0.377564
+121   0.306799   0.323364   0.369837
+122   0.295390   0.323384   0.381226
+123   0.314506   0.327259   0.358235
+124   0.286696   0.318624   0.394681
+125   0.305137   0.322465   0.372399
+126   0.308836   0.324307   0.366857
+127   0.282373   0.316215   0.401412
+128   0.284447   0.315315   0.400238
+129   0.302130   0.323407   0.374462
+130   0.306776   0.324004   0.369220
+131   0.310226   0.325754   0.364020
+132   0.315828   0.326057   0.358114
+133   0.302915   0.323658   0.373428
+134   0.288236   0.318657   0.393107
+135   0.300322   0.324735   0.374943
+136   0.312645   0.326045   0.361310
+137   0.306140   0.322718   0.371142
+138   0.298979   0.320865   0.380156
+139   0.281660   0.314353   0.403988
+140   0.302696   0.321794   0.375510
+141   0.305626   0.323266   0.371108
+142   0.302183   0.321304   0.376512
+143   0.294462   0.322889   0.382650
+144   0.307894   0.323999   0.368108
+145   0.307732   0.323550   0.368718
+146   0.301070   0.321551   0.377379
+147   0.292672   0.322297   0.385031
+148   0.295989   0.319697   0.384314
+149   0.303507   0.321433   0.375060
+150   0.291236   0.319037   0.389727
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hitung-fungsi-objektif-dan-cek-konvergen">
+<h3>Hitung fungsi objektif dan cek konvergen<a class="headerlink" href="#hitung-fungsi-objektif-dan-cek-konvergen" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi objektif</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">J</span> <span class="o">+=</span> <span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dist</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">J</span>
+
+<span class="n">J</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;=== Fungsi Objektif (J) Iterasi ke-1 ===</span><span class="se">\n</span><span class="s2">J = </span><span class="si">{</span><span class="n">J</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cek konvergensi</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U_new</span> <span class="o">-</span> <span class="n">U</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Perubahan matriks keanggotaan (delta) = </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Matriks keanggotaan sudah konvergen (berhenti iterasi).&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Belum konvergen, lanjut ke iterasi berikutnya.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Lakukan PCA untuk mereduksi fitur dari 4 ke 2 dimensi</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Tentukan cluster dengan keanggotaan tertinggi tiap data (hard clustering)</span>
+<span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">U_new</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot data hasil PCA, warna berdasarkan cluster</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">cluster_points</span> <span class="o">=</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">cluster_labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">cluster_points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cluster_points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Hasil Clustering FCM Iris Dataset (Visualisasi PCA)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PCA 1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PCA 2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Fungsi Objektif (J) Iterasi ke-1 ===
+J = 226.1402
+
+Perubahan matriks keanggotaan (delta) = 4.912159
+❌ Belum konvergen, lanjut ke iterasi berikutnya.
+</pre></div>
+</div>
+<img alt="_images/3c6943563e5cfe85746a51f4b49b2f14013d531e01ae3bea976b9b2e974f5ddf.png" src="_images/3c6943563e5cfe85746a51f4b49b2f14013d531e01ae3bea976b9b2e974f5ddf.png" />
+</div>
+</div>
+<p><strong>Karena dari perhitungan diatas belum mencapai konvergensi maka Akan dilakukan perhitungan ulang pada iterasi hingga mencapai konvergensi</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Fungsi bantu ===</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">euclidean_distance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_centroids</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">um</span> <span class="o">=</span> <span class="n">U</span> <span class="o">**</span> <span class="n">m</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">um</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">centroids</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">update_membership</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">U_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">denom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">distances</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">/</span> <span class="n">distances</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+            <span class="n">U_new</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">denom</span>
+    <span class="k">return</span> <span class="n">U_new</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">centroids</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">J</span> <span class="o">+=</span> <span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">**</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dist</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">J</span>
+
+<span class="c1"># === Load data Iris ===</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">max_iter</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi keanggotaan acak (dengan baris = data, kolom = cluster)</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">dirichlet</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># === Iterasi ===</span>
+<span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">====== ITERASI KE-</span><span class="si">{</span><span class="n">iteration</span><span class="si">}</span><span class="s2"> ======&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Hitung centroid</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="n">calculate_centroids</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Centroid:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">centroids</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Update keanggotaan</span>
+    <span class="n">U_new</span> <span class="o">=</span> <span class="n">update_membership</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Matriks Keanggotaan (5 data pertama):&quot;</span><span class="p">)</span>
+    <span class="n">df_U_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">U_new</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">)])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_U_new</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+    <span class="c1"># Hitung fungsi objektif</span>
+    <span class="n">J</span> <span class="o">=</span> <span class="n">objective_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">U_new</span><span class="p">,</span> <span class="n">centroids</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Fungsi Objektif (J): </span><span class="si">{</span><span class="n">J</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Cek konvergensi</span>
+    <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U_new</span> <span class="o">-</span> <span class="n">U</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📌 Perubahan keanggotaan (delta): </span><span class="si">{</span><span class="n">delta</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">delta</span> <span class="o">&lt;</span> <span class="n">epsilon</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Konvergensi tercapai. Iterasi dihentikan.&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+
+    <span class="n">U</span> <span class="o">=</span> <span class="n">U_new</span>  <span class="c1"># simpan untuk iterasi berikutnya</span>
+
+<span class="c1"># === Hasil akhir ===</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">======== HASIL AKHIR ========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📌 Centroid akhir:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">centroids</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cluster </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Keanggotaan akhir (5 data pertama):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_U_new</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📌 Fungsi Objektif akhir: </span><span class="si">{</span><span class="n">J</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>====== ITERASI KE-1 ======
+
+📌 Centroid:
+Cluster 1: [6.06673919 3.00422155 4.16771426 1.37476747]
+Cluster 2: [5.85048499 3.06034261 3.8023977  1.20959388]
+Cluster 3: [5.63287974 3.1153372  3.26640646 0.99226272]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.217205 0.294142 0.488653
+0.218217 0.294863 0.486920
+0.223350 0.298084 0.478566
+0.219065 0.296063 0.484872
+0.218886 0.295383 0.485731
+
+📌 Fungsi Objektif (J): 207.462652
+📌 Perubahan keanggotaan (delta): 5.720933
+
+====== ITERASI KE-2 ======
+
+📌 Centroid:
+Cluster 1: [6.21068093 2.95698086 4.64895615 1.56593278]
+Cluster 2: [5.82662119 3.00516876 3.82861947 1.22327775]
+Cluster 3: [5.2690505  3.25460263 2.26381149 0.58115577]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.058691 0.106079 0.835230
+0.063467 0.115005 0.821528
+0.072616 0.128017 0.799367
+0.067576 0.121863 0.810561
+0.062521 0.112008 0.825470
+
+📌 Fungsi Objektif (J): 123.393639
+📌 Perubahan keanggotaan (delta): 4.076931
+
+====== ITERASI KE-3 ======
+
+📌 Centroid:
+Cluster 1: [6.4044565  2.94065361 5.0882252  1.76980103]
+Cluster 2: [5.80453386 2.76582206 4.15657737 1.32046313]
+Cluster 3: [5.03232543 3.40524751 1.54991165 0.28092839]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.002339 0.004277 0.993384
+0.011126 0.020972 0.967902
+0.010854 0.019842 0.969304
+0.014861 0.028021 0.957118
+0.003643 0.006600 0.989757
+
+📌 Fungsi Objektif (J): 70.083851
+📌 Perubahan keanggotaan (delta): 3.008571
+
+====== ITERASI KE-4 ======
+
+📌 Centroid:
+Cluster 1: [6.55236452 2.97690628 5.33906123 1.90803185]
+Cluster 2: [5.78729852 2.72566773 4.21548198 1.32272435]
+Cluster 3: [5.00690117 3.41749027 1.48277921 0.25307865]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001204 0.002442 0.996354
+0.008975 0.018900 0.972125
+0.007643 0.015544 0.976812
+0.012073 0.025468 0.962459
+0.002014 0.004045 0.993940
+
+📌 Fungsi Objektif (J): 63.341534
+📌 Perubahan keanggotaan (delta): 1.333176
+
+====== ITERASI KE-5 ======
+
+📌 Centroid:
+Cluster 1: [6.64111276 3.00846771 5.46886063 1.97457743]
+Cluster 2: [5.80342973 2.729585   4.24136474 1.33430962]
+Cluster 3: [5.0044585  3.41713018 1.47900781 0.25169828]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001112 0.002376 0.996512
+0.008297 0.018406 0.973297
+0.007016 0.015005 0.977979
+0.011166 0.024805 0.964029
+0.001852 0.003914 0.994233
+
+📌 Fungsi Objektif (J): 61.552810
+📌 Perubahan keanggotaan (delta): 0.728302
+
+====== ITERASI KE-6 ======
+
+📌 Centroid:
+Cluster 1: [6.69145304 3.02591396 5.53794674 2.00708894]
+Cluster 2: [5.82621666 2.73774917 4.27374176 1.3512859 ]
+Cluster 3: [5.00407403 3.416547   1.47922351 0.25187142]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001082 0.002343 0.996575
+0.007980 0.017916 0.974105
+0.006758 0.014629 0.978613
+0.010743 0.024150 0.965107
+0.001798 0.003851 0.994351
+
+📌 Fungsi Objektif (J): 60.946776
+📌 Perubahan keanggotaan (delta): 0.455904
+
+====== ITERASI KE-7 ======
+
+📌 Centroid:
+Cluster 1: [6.7214824  3.0358165  5.57785699 2.02486587]
+Cluster 2: [5.84578167 2.7450818  4.30176907 1.36563446]
+Cluster 3: [5.00398004 3.41592531 1.48001314 0.25226072]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001072 0.002323 0.996605
+0.007802 0.017512 0.974686
+0.006623 0.014342 0.979035
+0.010508 0.023612 0.965880
+0.001778 0.003812 0.994410
+
+📌 Fungsi Objektif (J): 60.696999
+📌 Perubahan keanggotaan (delta): 0.299058
+
+====== ITERASI KE-8 ======
+
+📌 Centroid:
+Cluster 1: [6.74031052 3.04182176 5.60247394 2.03546672]
+Cluster 2: [5.86016356 2.75048671 4.32240595 1.37611523]
+Cluster 3: [5.00395152 3.41538228 1.4807971  0.25262869]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001070 0.002314 0.996617
+0.007693 0.017221 0.975086
+0.006546 0.014141 0.979313
+0.010364 0.023225 0.966411
+0.001771 0.003791 0.994439
+
+📌 Fungsi Objektif (J): 60.588230
+📌 Perubahan keanggotaan (delta): 0.197184
+
+====== ITERASI KE-9 ======
+
+📌 Centroid:
+Cluster 1: [6.75243931 3.0456001  5.61815325 2.04204576]
+Cluster 2: [5.87005644 2.75417086 4.33662498 1.38333869]
+Cluster 3: [5.00394537 3.41496777 1.48142375 0.25291695]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001070 0.002309 0.996621
+0.007624 0.017023 0.975353
+0.006498 0.014007 0.979495
+0.010273 0.022962 0.966766
+0.001768 0.003779 0.994453
+
+📌 Fungsi Objektif (J): 60.540943
+📌 Perubahan keanggotaan (delta): 0.129411
+
+====== ITERASI KE-10 ======
+
+📌 Centroid:
+Cluster 1: [6.76033358 3.04801445 5.62826291 2.04619632]
+Cluster 2: [5.87664902 2.75660176 4.34612668 1.3881789 ]
+Cluster 3: [5.00394739 3.4146737  1.48188019 0.25312471]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001070 0.002307 0.996623
+0.007579 0.016892 0.975529
+0.006468 0.013919 0.979613
+0.010214 0.022788 0.966998
+0.001768 0.003772 0.994460
+
+📌 Fungsi Objektif (J): 60.520626
+📌 Perubahan keanggotaan (delta): 0.084487
+
+====== ITERASI KE-11 ======
+
+📌 Centroid:
+Cluster 1: [6.76548172 3.04956641 5.63480513 2.04883518]
+Cluster 2: [5.88097306 2.75818394 4.35237834 1.39137306]
+Cluster 3: [5.0039516  3.41447326 1.48219666 0.25326791]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001071 0.002306 0.996624
+0.007550 0.016807 0.975643
+0.006449 0.013863 0.979689
+0.010176 0.022674 0.967150
+0.001768 0.003768 0.994464
+
+📌 Fungsi Objektif (J): 60.511987
+📌 Perubahan keanggotaan (delta): 0.054935
+
+====== ITERASI KE-12 ======
+
+📌 Centroid:
+Cluster 1: [6.76883455 3.05056625 5.63904059 2.05052061]
+Cluster 2: [5.88378628 2.75920782 4.35645734 1.39346244]
+Cluster 3: [5.00395565 3.41433966 1.48240996 0.25336409]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001071 0.002305 0.996624
+0.007532 0.016751 0.975717
+0.006437 0.013826 0.979737
+0.010152 0.022600 0.967248
+0.001768 0.003766 0.994467
+
+📌 Fungsi Objektif (J): 60.508341
+📌 Perubahan keanggotaan (delta): 0.035620
+
+====== ITERASI KE-13 ======
+
+📌 Centroid:
+Cluster 1: [6.77101343 3.05121092 5.64178106 2.05160042]
+Cluster 2: [5.88560897 2.75986885 4.35910626 1.39482194]
+Cluster 3: [5.00395886 3.41425177 1.48255131 0.25342769]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001071 0.002305 0.996624
+0.007520 0.016715 0.975765
+0.006429 0.013802 0.979769
+0.010136 0.022552 0.967312
+0.001768 0.003764 0.994468
+
+📌 Fungsi Objektif (J): 60.506810
+📌 Perubahan keanggotaan (delta): 0.023054
+
+====== ITERASI KE-14 ======
+
+📌 Centroid:
+Cluster 1: [6.77242648 3.05162671 5.64355286 2.05229373]
+Cluster 2: [5.88678736 2.76029522 4.36082181 1.39570365]
+Cluster 3: [5.00396119 3.4141944  1.48264404 0.25346936]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001072 0.002305 0.996624
+0.007512 0.016692 0.975796
+0.006424 0.013787 0.979789
+0.010126 0.022521 0.967353
+0.001768 0.003763 0.994469
+
+📌 Fungsi Objektif (J): 60.506170
+📌 Perubahan keanggotaan (delta): 0.014903
+
+====== ITERASI KE-15 ======
+
+📌 Centroid:
+Cluster 1: [6.77334139 3.05189491 5.64469762 2.05273954]
+Cluster 2: [5.88754836 2.76057016 4.3619311  1.39627433]
+Cluster 3: [5.0039628  3.41415712 1.48270448 0.2534965 ]
+
+📌 Matriks Keanggotaan (5 data pertama):
+      C1       C2       C3
+0.001072 0.002305 0.996624
+0.007507 0.016677 0.975816
+0.006420 0.013777 0.979802
+0.010119 0.022501 0.967379
+0.001768 0.003763 0.994469
+
+📌 Fungsi Objektif (J): 60.505902
+📌 Perubahan keanggotaan (delta): 0.009626
+
+✅ Konvergensi tercapai. Iterasi dihentikan.
+
+======== HASIL AKHIR ========
+📌 Centroid akhir:
+Cluster 1: [6.77334139 3.05189491 5.64469762 2.05273954]
+Cluster 2: [5.88754836 2.76057016 4.3619311  1.39627433]
+Cluster 3: [5.0039628  3.41415712 1.48270448 0.2534965 ]
+
+📌 Keanggotaan akhir (5 data pertama):
+      C1       C2       C3
+0.001072 0.002305 0.996624
+0.007507 0.016677 0.975816
+0.006420 0.013777 0.979802
+0.010119 0.022501 0.967379
+0.001768 0.003763 0.994469
+
+📌 Fungsi Objektif akhir: 60.505902
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Reduksi dimensi data asli ke 2D menggunakan PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Tentukan label cluster berdasarkan nilai keanggotaan maksimum</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Transformasi centroid ke ruang PCA</span>
+<span class="n">centroids_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">centroids</span><span class="p">)</span>
+
+<span class="c1"># Plot data dengan warna berdasarkan cluster</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">labels</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cluster </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot centroid</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centroids_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centroids_pca</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Centroids&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Hasil Akhir Fuzzy C-Means pada Data Iris (PCA 2D)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aa55f688999d4aa5623fbc496deee9e0fbe259a75e79847effbe047e64059c67.png" src="_images/aa55f688999d4aa5623fbc496deee9e0fbe259a75e79847effbe047e64059c67.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Modeling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clustering dengan K-Means</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-fuzzy-c-mean-cluster">Konsep dasar fuzzy c-mean cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-fuzzy-c-mean-cluster">Algoritma fuzzy C-mean Cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-fcm-2-clust">Contoh perhitungan manual FCM 2 clust</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fuzzy-c-means-clustering-manual-iterasi-1">📘 Fuzzy C-Means Clustering (Manual) - Iterasi 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-selanjutnya-update-keanggotaan-dan-jarak">Langkah Selanjutnya: Update Keanggotaan dan Jarak</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-dan-keanggotaan-fuzzy">Data dan Keanggotaan Fuzzy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-python-fcm">Implementasi Python FCM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tampilkan-nilai-pusat-cluster-setiap-iterasi-dan-keanggotaan-setiap-literasi-dan-hitung-fungsi-objektif-setiap-titrasi">Tampilkan nilai pusat cluster Setiap iterasi dan keanggotaan setiap literasi dan hitung fungsi objektif setiap titrasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-fcm-untuk-data-iris-3-cluster">Implementasi FCM untuk data iris (3 Cluster)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-data-iris-dan-parameter"><strong>inisialisasi Data Iris dan Parameter</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inisialisasi-derajat-keanggotaan">Inisialisasi derajat keanggotaan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-centroid-berdasarkan-matriks-keanggotaan-u">Hitung Centroid berdasarkan matriks keanggotaan U</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update-matrix-keanggotaan-u">Update matrix keanggotaan U</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-fungsi-objektif-dan-cek-konvergen">Hitung fungsi objektif dan cek konvergen</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Ilham Adila Almafaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
