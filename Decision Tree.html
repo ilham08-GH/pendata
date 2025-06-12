@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Perhitungan Information Gain Manual (Dataset BMI Kompleks) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Decision Tree';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MY DATA MINING INFORMATION PAGE
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html"><strong>Data Understanding</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>UTS Penambangan Data</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modeling.html">Clustering dengan K-Means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fuzzy%20C-mean%20Cluster.html">Fuzzy C-Mean Cluster</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDecision Tree.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Decision Tree.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Perhitungan Information Gain Manual (Dataset BMI Kompleks)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-yang-digunakan">Dataset yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">Konsep Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-hitung-entropi-awal-entropy-s">Langkah 1: Hitung Entropi Awal $<span class="math notranslate nohighlight">\(Entropy(S)\)</span>$</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-hitung-information-gain-untuk-setiap-fitur">Langkah 2: Hitung Information Gain untuk Setiap Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-fitur-tinggi-badan-cm">a. Fitur <strong>Tinggi Badan (cm)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-fitur-berat-badan-kg">b. Fitur <strong>Berat Badan (kg)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menambah-2-data-baru">Menambah 2 data baru</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="perhitungan-information-gain-manual-dataset-bmi-kompleks">
+<h1>Perhitungan Information Gain Manual (Dataset BMI Kompleks)<a class="headerlink" href="#perhitungan-information-gain-manual-dataset-bmi-kompleks" title="Link to this heading">#</a></h1>
+<p>Kita akan menggunakan dataset BMI yang terakhir kita buat, yang memiliki 15 data, 2 fitur (<strong>Tinggi Badan</strong>, <strong>Berat Badan</strong>), dan 2 kelas (<strong>Gemuk</strong>, <strong>Ideal</strong>). Dataset ini sengaja dibuat agar ada banyak tumpang tindih, sehingga pohon dipaksa untuk membuat banyak aturan (daun).</p>
+<section id="dataset-yang-digunakan">
+<h2>Dataset yang Digunakan<a class="headerlink" href="#dataset-yang-digunakan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Tinggi Badan (cm)</p></th>
+<th class="head"><p>Berat Badan (kg)</p></th>
+<th class="head"><p>Kategori BMI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>160</p></td>
+<td><p>55</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>162</p></td>
+<td><p>70</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>165</p></td>
+<td><p>60</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>168</p></td>
+<td><p>80</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>170</p></td>
+<td><p>65</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>172</p></td>
+<td><p>70</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>175</p></td>
+<td><p>85</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>178</p></td>
+<td><p>75</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>180</p></td>
+<td><p>90</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>182</p></td>
+<td><p>80</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>161</p></td>
+<td><p>75</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>164</p></td>
+<td><p>60</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>169</p></td>
+<td><p>85</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>173</p></td>
+<td><p>70</p></td>
+<td><p>Ideal</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>176</p></td>
+<td><p>90</p></td>
+<td><p>Gemuk</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Total data: $<span class="math notranslate nohighlight">\(|S| = 15\)</span>$<br />
+Jumlah Kelas Ideal: 8<br />
+Jumlah Kelas Gemuk: 7</p>
+</section>
+<hr class="docutils" />
+<section id="konsep-dasar">
+<h2>Konsep Dasar<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h2>
+<p><strong>Entropi (Entropy(S))</strong>: Mengukur tingkat ketidakmurnian (atau “keragaman”) dalam suatu kelompok data.</p>
+<div class="math notranslate nohighlight">
+\[
+Entropy(S) = - \sum_{i=1}^{c} p_i \log_2(p_i)
+\]</div>
+<p>Di mana $<span class="math notranslate nohighlight">\(p_i\)</span><span class="math notranslate nohighlight">\( adalah proporsi kelas ke-i dalam set data S, dan \)</span><span class="math notranslate nohighlight">\(c\)</span>$ adalah jumlah kelas unik.</p>
+<p><strong>Information Gain (Gain(S,A))</strong>: Mengukur seberapa banyak ketidakmurnian (Entropi) yang berkurang ketika kita membagi set data S menggunakan atribut A.</p>
+<div class="math notranslate nohighlight">
+\[
+Gain(S, A) = Entropy(S) - \sum_{v \in Values(A)} \frac{|S_v|}{|S|} Entropy(S_v)
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="langkah-1-hitung-entropi-awal-entropy-s">
+<h2>Langkah 1: Hitung Entropi Awal $<span class="math notranslate nohighlight">\(Entropy(S)\)</span>$<a class="headerlink" href="#langkah-1-hitung-entropi-awal-entropy-s" title="Link to this heading">#</a></h2>
+<p>Distribusi Kategori BMI:</p>
+<ul class="simple">
+<li><p>Ideal: 8 data</p></li>
+<li><p>Gemuk: 7 data</p></li>
+</ul>
+<p>Proporsi:</p>
+<ul>
+<li><div class="math notranslate nohighlight">
+\[ P(\text{Ideal}) = \frac{8}{15} \approx 0.5333 \]</div>
+</li>
+<li><div class="math notranslate nohighlight">
+\[ P(\text{Gemuk}) = \frac{7}{15} \approx 0.4667 \]</div>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Entropy(S) &amp;= -\left( \frac{8}{15} \log_2 \frac{8}{15} \right) - \left( \frac{7}{15} \log_2 \frac{7}{15} \right) \\
+&amp;= -(0.5333 \times -0.907) - (0.4667 \times -1.096) \\
+&amp;= 0.484 + 0.511 \\
+&amp;\approx 0.995
+\end{aligned}
+\end{split}\]</div>
+</section>
+<hr class="docutils" />
+<section id="langkah-2-hitung-information-gain-untuk-setiap-fitur">
+<h2>Langkah 2: Hitung Information Gain untuk Setiap Fitur<a class="headerlink" href="#langkah-2-hitung-information-gain-untuk-setiap-fitur" title="Link to this heading">#</a></h2>
+<p>Untuk fitur numerik, kita harus menemukan <strong>threshold (nilai ambang batas)</strong> terbaik yang memberikan Information Gain terbesar.</p>
+<section id="a-fitur-tinggi-badan-cm">
+<h3>a. Fitur <strong>Tinggi Badan (cm)</strong><a class="headerlink" href="#a-fitur-tinggi-badan-cm" title="Link to this heading">#</a></h3>
+<p>Ambil threshold: <strong>170.5 cm</strong></p>
+<p><strong>Subset 1</strong>: Tinggi Badan ≤ 170.5 cm<br />
+Data ID: 1, 2, 3, 4, 5, 11, 12, 13 (8 data)<br />
+Distribusi: Ideal = 4, Gemuk = 4</p>
+<div class="math notranslate nohighlight">
+\[
+Entropy(S_{\leq 170.5}) = - (0.5 \log_2 0.5) - (0.5 \log_2 0.5) = 1.0
+\]</div>
+<p><strong>Subset 2</strong>: Tinggi Badan &gt; 170.5 cm<br />
+Data ID: 6, 7, 8, 9, 10, 14, 15 (7 data)<br />
+Distribusi: Ideal = 4, Gemuk = 3</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Entropy(S_{&gt; 170.5}) &amp;= - (0.5714 \log_2 0.5714) - (0.4286 \log_2 0.4286) \\
+&amp;= - (0.5714 \times -0.807) - (0.4286 \times -1.222) \\
+&amp;= 0.461 + 0.524 \\
+&amp;\approx 0.985
+\end{aligned}
+\end{split}\]</div>
+<p><strong>Information Gain (Tinggi Badan ≤ 170.5 cm):</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Gain(S, \text{Tinggi Badan}) &amp;= 0.995 - \left( \frac{8}{15} \times 1.0 + \frac{7}{15} \times 0.985 \right) \\
+&amp;= 0.995 - (0.5333 + 0.4597) \\
+&amp;= 0.995 - 0.993 \\
+&amp;\approx 0.002
+\end{aligned}
+\end{split}\]</div>
+<p><strong>Catatan</strong>: Gain rendah → pemisahan ini kurang baik.</p>
+</section>
+<hr class="docutils" />
+<section id="b-fitur-berat-badan-kg">
+<h3>b. Fitur <strong>Berat Badan (kg)</strong><a class="headerlink" href="#b-fitur-berat-badan-kg" title="Link to this heading">#</a></h3>
+<p>Ambil threshold: <strong>72.5 kg</strong></p>
+<p><strong>Subset 1</strong>: Berat Badan ≤ 72.5 kg<br />
+Data ID Ideal: 1, 3, 5, 6, 8, 10, 12, 14<br />
+Data ID Gemuk: 2<br />
+Total = 9 data, Ideal = 8, Gemuk = 1</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Entropy(S_{\leq 72.5}) &amp;= - (0.8889 \log_2 0.8889) - (0.1111 \log_2 0.1111) \\
+&amp;= 0.149 + 0.352 \\
+&amp;\approx 0.501
+\end{aligned}
+\end{split}\]</div>
+<p><strong>Subset 2</strong>: Berat Badan &gt; 72.5 kg<br />
+Data ID: 4, 7, 9, 11, 13, 15 (semua Gemuk)</p>
+<div class="math notranslate nohighlight">
+\[
+Entropy(S_{&gt;72.5}) = - (1 \log_2 1) = 0.0
+\]</div>
+<p><strong>Information Gain (Berat Badan ≤ 72.5 kg):</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+Gain(S, \text{Berat Badan}) &amp;= 0.995 - \left( \frac{9}{15} \times 0.501 + \frac{6}{15} \times 0 \right) \\
+&amp;= 0.995 - (0.6 \times 0.501) \\
+&amp;= 0.995 - 0.3006 \\
+&amp;\approx 0.6944
+\end{aligned}
+\end{split}\]</div>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h3>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Information Gain terbesar didapat dari atribut <strong>Berat Badan</strong> dengan threshold <strong>72.5 kg</strong>.</p></li>
+<li><p>Ini artinya atribut ini lebih baik digunakan sebagai node pertama dalam membangun pohon keputusan.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">plot_tree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># --- 1. Dataset BMI yang Sangat Dimodifikasi (untuk memaksa banyak daun) ---</span>
+<span class="n">data_bmi_complex</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">160</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">168</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="c1"># Tinggi Menengah-Rendah</span>
+        <span class="mi">172</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span> <span class="c1"># Tinggi Menengah-Tinggi</span>
+        <span class="mi">161</span><span class="p">,</span> <span class="mi">164</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">176</span>  <span class="c1"># Campuran untuk ambiguitas</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">55</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span>  <span class="c1"># Ideal, Gemuk, Ideal, Gemuk, Ideal (di tinggi rendah-menengah)</span>
+        <span class="mi">70</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span>  <span class="c1"># Ideal, Gemuk, Ideal, Gemuk, Ideal (di tinggi menengah-tinggi)</span>
+        <span class="mi">75</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">90</span>   <span class="c1"># Gemuk, Ideal, Gemuk, Ideal, Gemuk (lebih banyak ambiguitas)</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Kategori BMI&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_bmi_complex</span><span class="p">)</span>
+
+<span class="c1"># Periksa jumlah data (harus 15)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">15</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Peringatan: Jumlah data bukan 15. Saat ini </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> data.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Dataset BMI yang Lebih Kompleks ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># --- 2. Memisahkan Fitur (X) dan Target (y) ---</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kategori BMI&#39;</span><span class="p">]</span>
+
+<span class="c1"># --- 3. Preprocessing (passthrough) ---</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="s1">&#39;passthrough&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># --- 4. Encoding Kelas Target ---</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span>
+
+<span class="c1"># --- 5. Membuat Pipeline dan Melatih Model Decision Tree ---</span>
+<span class="c1"># Menggunakan criterion=&#39;entropy&#39; dan **menambahkan max_depth=3**</span>
+<span class="c1"># Ini akan membatasi pertumbuhan pohon dan membuat panah tampak lebih pendek.</span>
+<span class="n">model_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;classifier&#39;</span><span class="p">,</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span> <span class="c1"># Batasi kedalaman</span>
+<span class="p">])</span>
+
+<span class="n">model_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_encoded</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Decision Tree berhasil dilatih dengan dataset BMI yang lebih kompleks (max_depth=3)!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="c1"># --- 6. Mendapatkan Nama Fitur Setelah Preprocessing ---</span>
+<span class="n">all_feature_names</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1"># --- 7. Visualisasi Pohon Keputusan (Dengan max_depth Terbatas) ---</span>
+<span class="c1"># Ukuran figsize dapat disesuaikan lebih lanjut jika perlu.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span> <span class="c1"># Ukuran plot disesuaikan untuk pohon yang lebih dangkal</span>
+<span class="n">plot_tree</span><span class="p">(</span>
+    <span class="n">model_pipeline</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">],</span>
+    <span class="n">feature_names</span><span class="o">=</span><span class="n">all_feature_names</span><span class="p">,</span>
+    <span class="n">class_names</span><span class="o">=</span><span class="n">class_names</span><span class="p">,</span>
+    <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="c1"># Sesuaikan fontsize jika diperlukan</span>
+    <span class="n">precision</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Pohon Keputusan (Decision Tree)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># --- 8. Ekstraksi dan Tampilkan Aturan (Rules) ---</span>
+<span class="n">tree_model</span> <span class="o">=</span> <span class="n">model_pipeline</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;classifier&#39;</span><span class="p">]</span>
+<span class="n">n_nodes</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">node_count</span>
+<span class="n">children_left</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_left</span>
+<span class="n">children_right</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_right</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">feature</span>
+<span class="n">threshold</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">threshold</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">value</span>
+<span class="n">is_leaf</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_left</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Aturan Pohon Keputusan (IF-THEN-ELSE) dari Sklearn ---&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_sklearn_rules</span><span class="p">(</span><span class="n">node_id</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">path_condition</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="n">indent</span> <span class="o">=</span> <span class="s2">&quot;  &quot;</span> <span class="o">*</span> <span class="n">depth</span>
+
+    <span class="k">if</span> <span class="n">is_leaf</span><span class="p">[</span><span class="n">node_id</span><span class="p">]:</span>
+        <span class="n">class_counts</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">node_id</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">predicted_class_idx</span> <span class="o">=</span> <span class="n">class_counts</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+        <span class="n">predicted_class_name</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">predicted_class_idx</span><span class="p">]</span>
+        <span class="n">sample_info</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">class_counts</span><span class="p">):</span>
+            <span class="n">sample_info</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">THEN Kategori BMI = </span><span class="si">{</span><span class="n">predicted_class_name</span><span class="si">}</span><span class="s2"> (Sampel: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sample_info</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">feature_index</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
+    <span class="n">feature_name</span> <span class="o">=</span> <span class="n">all_feature_names</span><span class="p">[</span><span class="n">feature_index</span><span class="p">]</span>
+    <span class="n">split_threshold</span> <span class="o">=</span> <span class="n">threshold</span><span class="p">[</span><span class="n">node_id</span><span class="p">]</span>
+
+    <span class="n">left_condition</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s2"> &lt;= </span><span class="si">{</span><span class="n">split_threshold</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">new_left_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path_condition</span><span class="si">}</span><span class="s2"> AND </span><span class="si">{</span><span class="n">left_condition</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">path_condition</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;IF </span><span class="si">{</span><span class="n">left_condition</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}{</span><span class="n">new_left_path</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="n">print_sklearn_rules</span><span class="p">(</span><span class="n">children_left</span><span class="p">[</span><span class="n">node_id</span><span class="p">],</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">new_left_path</span><span class="p">)</span>
+
+    <span class="n">right_condition</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature_name</span><span class="si">}</span><span class="s2"> &gt; </span><span class="si">{</span><span class="n">split_threshold</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">new_right_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path_condition</span><span class="si">}</span><span class="s2"> AND </span><span class="si">{</span><span class="n">right_condition</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="n">path_condition</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;IF </span><span class="si">{</span><span class="n">right_condition</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}{</span><span class="n">new_right_path</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="n">print_sklearn_rules</span><span class="p">(</span><span class="n">children_right</span><span class="p">[</span><span class="n">node_id</span><span class="p">],</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">new_right_path</span><span class="p">)</span>
+
+<span class="n">print_sklearn_rules</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Dataset BMI yang Lebih Kompleks ---
+    Tinggi Badan (cm)  Berat Badan (kg) Kategori BMI
+0                 160                55        Ideal
+1                 162                70        Gemuk
+2                 165                60        Ideal
+3                 168                80        Gemuk
+4                 170                65        Ideal
+5                 172                70        Ideal
+6                 175                85        Gemuk
+7                 178                75        Ideal
+8                 180                90        Gemuk
+9                 182                80        Ideal
+10                161                75        Gemuk
+11                164                60        Ideal
+12                169                85        Gemuk
+13                173                70        Ideal
+14                176                90        Gemuk
+----------------------------------------
+Model Decision Tree berhasil dilatih dengan dataset BMI yang lebih kompleks (max_depth=3)!
+----------------------------------------
+</pre></div>
+</div>
+<img alt="_images/81b81f2353e36ee39afd8d7b501fc6b811c9b696791d2751e7fe83acbcb139fe.png" src="_images/81b81f2353e36ee39afd8d7b501fc6b811c9b696791d2751e7fe83acbcb139fe.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Aturan Pohon Keputusan (IF-THEN-ELSE) dari Sklearn ---
+IF Berat Badan (kg) &lt;= 82.50:
+  IF Berat Badan (kg) &lt;= 82.50 AND Tinggi Badan (cm) &lt;= 169.00:
+    IF Berat Badan (kg) &lt;= 82.50 AND Tinggi Badan (cm) &lt;= 169.00 AND Berat Badan (kg) &lt;= 65.00:
+      THEN Kategori BMI = Ideal (Sampel: Gemuk: 0, Ideal: 1)
+    IF Berat Badan (kg) &lt;= 82.50 AND Tinggi Badan (cm) &lt;= 169.00 AND Berat Badan (kg) &gt; 65.00:
+      THEN Kategori BMI = Gemuk (Sampel: Gemuk: 1, Ideal: 0)
+  IF Berat Badan (kg) &lt;= 82.50 AND Tinggi Badan (cm) &gt; 169.00:
+    THEN Kategori BMI = Ideal (Sampel: Gemuk: 0, Ideal: 1)
+IF Berat Badan (kg) &gt; 82.50:
+  THEN Kategori BMI = Gemuk (Sampel: Gemuk: 1, Ideal: 0)
+----------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="menambah-2-data-baru">
+<h2>Menambah 2 data baru<a class="headerlink" href="#menambah-2-data-baru" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Dataset BMI yang Lebih Kompleks (15 data asli)</span>
+<span class="n">data_bmi_complex</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">160</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">168</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span>
+        <span class="mi">172</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">182</span><span class="p">,</span>
+        <span class="mi">161</span><span class="p">,</span> <span class="mi">164</span><span class="p">,</span> <span class="mi">169</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">176</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="mi">55</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span>
+        <span class="mi">70</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span>
+        <span class="mi">75</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">90</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;Kategori BMI&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span><span class="p">,</span> <span class="s1">&#39;Ideal&#39;</span><span class="p">,</span> <span class="s1">&#39;Gemuk&#39;</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_bmi_complex</span><span class="p">)</span>
+
+<span class="c1"># Memisahkan Fitur (X) dan Target (y) untuk Pelatihan</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[[</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">,</span> <span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">]]</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;Kategori BMI&#39;</span><span class="p">]</span>
+
+<span class="c1"># Encoding Kelas Target</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y_train_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span>
+
+<span class="c1"># Melatih Model Decision Tree</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_encoded</span><span class="p">)</span>
+
+<span class="c1"># 2 Data Baru untuk Pengujian</span>
+<span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">166</span><span class="p">,</span> <span class="mi">174</span><span class="p">],</span>
+    <span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">68</span><span class="p">,</span> <span class="mi">86</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># --- Plot Batas Keputusan dengan Titik Data Baru ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># Plot data pelatihan</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;Ideal&#39;</span> <span class="k">else</span> <span class="s1">&#39;green&#39;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">],</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="c1"># Plot 2 data baru</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">],</span> <span class="n">new_data</span><span class="p">[</span><span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Data Baru&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Membuat meshgrid untuk plot batas keputusan</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">5</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[</span><span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+
+<span class="c1"># Prediksi di setiap titik meshgrid</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot batas keputusan</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">RdYlBu</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Tinggi Badan (cm)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Berat Badan (kg)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Batas Keputusan Pohon Klasifikasi BMI dengan Data Baru&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.11/dist-packages/sklearn/utils/validation.py:2739: UserWarning: X does not have valid feature names, but DecisionTreeClassifier was fitted with feature names
+  warnings.warn(
+</pre></div>
+</div>
+<img alt="_images/05afdeecdc53cbc3c66f8403accdc8ecbed2aed60f0fdd019eaa8f9be3f18cdf.png" src="_images/05afdeecdc53cbc3c66f8403accdc8ecbed2aed60f0fdd019eaa8f9be3f18cdf.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-yang-digunakan">Dataset yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">Konsep Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-hitung-entropi-awal-entropy-s">Langkah 1: Hitung Entropi Awal $<span class="math notranslate nohighlight">\(Entropy(S)\)</span>$</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-hitung-information-gain-untuk-setiap-fitur">Langkah 2: Hitung Information Gain untuk Setiap Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-fitur-tinggi-badan-cm">a. Fitur <strong>Tinggi Badan (cm)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-fitur-berat-badan-kg">b. Fitur <strong>Berat Badan (kg)</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menambah-2-data-baru">Menambah 2 data baru</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Ilham Adila Almafaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
