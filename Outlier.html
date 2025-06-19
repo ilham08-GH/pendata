@@ -188,6 +188,8 @@
 <li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>UTS Penambangan Data</strong></a></li>
 <li class="toctree-l1"><a class="reference internal" href="Modeling.html">Clustering dengan K-Means</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Fuzzy%20C-mean%20Cluster.html">Fuzzy C-Mean Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decision%20Tree.html">Perhitungan Information Gain Manual (Dataset BMI Kompleks)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Diskritisasi.html">Teknik Binning Menggunakan Data Iris</a></li>
 </ul>
 
     </div>
@@ -655,16 +657,7 @@ Threshold = \mu + 2\sigma
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pymysql
-  Downloading PyMySQL-1.1.1-py3-none-any.whl.metadata (4.4 kB)
-Downloading PyMySQL-1.1.1-py3-none-any.whl (44 kB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/45.0 kB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">45.0/45.0 kB</span> <span class=" -Color -Color-Red">2.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: pymysql
-Successfully installed pymysql-1.1.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
 </pre></div>
 </div>
 </div>
@@ -676,21 +669,7 @@ Successfully installed pymysql-1.1.1
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting psycopg2-binary
-  Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
-Downloading psycopg2_binary-2.9.10-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
-?25l   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.0/3.0 MB</span> <span class=" -Color -Color-Red">?</span> eta <span class=" -Color -Color-Cyan">-:--:--</span>
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   ━╺━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.1/3.0 MB</span> <span class=" -Color -Color-Red">2.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:02</span>
-   ━━━━━━━━╸━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">0.7/3.0 MB</span> <span class=" -Color -Color-Red">9.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">30.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:01</span>
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">3.0/3.0 MB</span> <span class=" -Color -Color-Red">25.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25h
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: psycopg2-binary
-Successfully installed psycopg2-binary-2.9.10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: psycopg2-binary in /usr/local/lib/python3.11/dist-packages (2.9.10)
 </pre></div>
 </div>
 </div>
@@ -705,9 +684,9 @@ Successfully installed psycopg2-binary-2.9.10
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
 Requirement already satisfied: pandas in /usr/local/lib/python3.11/dist-packages (2.2.2)
 Requirement already satisfied: numpy&gt;=1.23.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (2.0.2)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.1)
-Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.1)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.11/dist-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas) (2025.2)
 Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
 </pre></div>
 </div>
@@ -769,11 +748,50 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, &#39;Iris-setosa&#39;, 1.4, 0.2)
-(2, &#39;Iris-setosa&#39;, 50.0, 20.0)
-(3, &#39;Iris-setosa&#39;, 1.3, 0.2)
-(4, &#39;Iris-setosa&#39;, 1.5, 0.2)
-(5, &#39;Iris-setosa&#39;, 1.4, 0.2)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">gaierror</span><span class="g g-Whitespace">                                  </span>Traceback (most recent call last)
+<span class="nn">/usr/local/lib/python3.11/dist-packages/pymysql/connections.py</span> in <span class="ni">connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">648</span>                         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">649</span>                             <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">create_connection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">650</span>                                 <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect_timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+
+<span class="nn">/usr/lib/python3.11/socket.py</span> in <span class="ni">create_connection</span><span class="nt">(address, timeout, source_address, all_errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">838</span>     <span class="n">exceptions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">839</span>     <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">840</span>         <span class="n">af</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sa</span> <span class="o">=</span> <span class="n">res</span>
+
+<span class="nn">/usr/lib/python3.11/socket.py</span> in <span class="ni">getaddrinfo</span><span class="nt">(host, port, family, type, proto, flags)</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span>     <span class="n">addrlist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">--&gt; </span><span class="mi">974</span>     <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">_socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">flags</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">975</span>         <span class="n">af</span><span class="p">,</span> <span class="n">socktype</span><span class="p">,</span> <span class="n">proto</span><span class="p">,</span> <span class="n">canonname</span><span class="p">,</span> <span class="n">sa</span> <span class="o">=</span> <span class="n">res</span>
+
+<span class="ne">gaierror</span>: [Errno -2] Name or service not known
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+<span class="ne">OperationalError</span><span class="g g-Whitespace">                          </span>Traceback (most recent call last)
+<span class="nn">/tmp/ipython-input-5-489456686.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> 
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1"># Buat koneksi</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">mysql_conn</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/pymysql/connections.py</span> in <span class="ni">__init__</span><span class="nt">(self, user, password, host, database, unix_socket, port, charset, collation, sql_mode, read_default_file, conv, use_unicode, client_flag, cursorclass, init_command, connect_timeout, read_default_group, autocommit, local_infile, max_allowed_packet, defer_connect, auth_plugin_map, read_timeout, write_timeout, bind_address, binary_prefix, program_name, server_public_key, ssl, ssl_ca, ssl_cert, ssl_disabled, ssl_key, ssl_key_password, ssl_verify_cert, ssl_verify_identity, compress, named_pipe, passwd, db)</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">361</span>             <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span> 
+<span class="g g-Whitespace">    </span><span class="mi">363</span>     <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="nn">/usr/local/lib/python3.11/dist-packages/pymysql/connections.py</span> in <span class="ni">connect</span><span class="nt">(self, sock)</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>                 <span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>                     <span class="nb">print</span><span class="p">(</span><span class="n">exc</span><span class="o">.</span><span class="n">traceback</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">716</span>                 <span class="k">raise</span> <span class="n">exc</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span> 
+<span class="g g-Whitespace">    </span><span class="mi">718</span>             <span class="c1"># If e is neither DatabaseError or IOError, It&#39;s a bug.</span>
+
+<span class="ne">OperationalError</span>: (2003, &quot;Can&#39;t connect to MySQL server on &#39;mysqlpendata-ilhamalmafazt-dm.h.aivencloud.com&#39; ([Errno -2] Name or service not known)&quot;)
 </pre></div>
 </div>
 </div>
@@ -2935,9 +2953,7 @@ Probabilitas Kelas : [0.3743012268755717, 0.5702168218825475, 0.0554819512418799
 Prediksi Kelas     : Iris-versicolor
 --------------------------------------------------
 Data ke-25
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.4 0.3 4.8 3.0]
+Fitur              : [1.4 0.3 4.8 3.0]
 Data               : INLIER
 Probabilitas Kelas : [0.38135535091726364, 0.5618733003784038, 0.05677134870433195]
 Prediksi Kelas     : Iris-versicolor
@@ -3519,9 +3535,7 @@ Probabilitas Kelas : [0.35837100179658116, 0.22475535292755636, 0.41687364527586
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
 Data ke-122
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.3 0.2 5.5 3.5]
+Fitur              : [1.3 0.2 5.5 3.5]
 Data               : INLIER
 Probabilitas Kelas : [0.3858248020327184, 0.5568565737740536, 0.05731862419322807]
 Prediksi Kelas     : Iris-versicolor
@@ -3825,9 +3839,7 @@ Probabilitas Kelas : [9.98407539e-01 1.59246097e-03 1.19254515e-25]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-18
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.6 0.4 5.0 3.4]
+Fitur              : [1.6 0.4 5.0 3.4]
 Probabilitas Kelas : [9.95919866e-01 4.08013446e-03 7.03842875e-23]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
@@ -4211,9 +4223,7 @@ Fitur              : [6.0 1.8 7.2 3.2]
 Probabilitas Kelas : [1.09502092e-186 1.73241372e-002 9.82675863e-001]
 Prediksi Kelas     : Iris-virginica
 --------------------------------------------------
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data ke-95
+Data ke-95
 Fitur              : [4.8 1.8 6.2 2.8]
 Probabilitas Kelas : [1.11372897e-122 2.97783153e-002 9.70221685e-001]
 Prediksi Kelas     : Iris-virginica
@@ -4279,9 +4289,7 @@ Probabilitas Kelas : [9.98408064e-01 1.59193638e-03 1.19052104e-25]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------
 Data ke-108
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitur              : [1.5 0.4 5.5 4.4]
+Fitur              : [1.5 0.4 5.5 4.4]
 Probabilitas Kelas : [9.97000519e-01 2.99948091e-03 1.12411636e-23]
 Prediksi Kelas     : Iris-setosa
 --------------------------------------------------

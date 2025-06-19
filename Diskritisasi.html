@@ -1,0 +1,2221 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Teknik Binning Menggunakan Data Iris &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Diskritisasi';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Perhitungan Information Gain Manual (Dataset BMI Kompleks)" href="Decision%20Tree.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    MY DATA MINING INFORMATION PAGE
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Data_Understanding.html"><strong>Data Understanding</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Outlier.html"><strong>Outlier</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="LOF.html"><strong>Local Outlier Factor (LOF)</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS.html"><strong>UTS Penambangan Data</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modeling.html">Clustering dengan K-Means</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Fuzzy%20C-mean%20Cluster.html">Fuzzy C-Mean Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decision%20Tree.html">Perhitungan Information Gain Manual (Dataset BMI Kompleks)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Teknik Binning Menggunakan Data Iris</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDiskritisasi.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Diskritisasi.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Teknik Binning Menggunakan Data Iris</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-data-iris">Clustering Data Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-k-means">Diskritisasi Menggunakan K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-naive-bayes">Menggunakan Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-decision-tree">Menggunakan Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equal-width">Diskritisasi Menggunakan Equal Width</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Menggunakan Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Menggunakan Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equalfrecuency">Diskritisasi Menggunakan Equalfrecuency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Menggunakan Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Menggunakan Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-akurasi">Perbandingan Akurasi</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="teknik-binning-menggunakan-data-iris">
+<h1>Teknik Binning Menggunakan Data Iris<a class="headerlink" href="#teknik-binning-menggunakan-data-iris" title="Link to this heading">#</a></h1>
+<p>Install Library Pendukung</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>matplotlib<span class="w"> </span>seaborn
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pymysql
+<span class="o">!</span>pip<span class="w"> </span>insinstalltall<span class="w"> </span>pymysql<span class="w"> </span>pandas
+<span class="o">!</span>psycopgpsycopg2all2all<span class="w"> </span>psypsycopg2copg2
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mysql-connector-python
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>mysql-connector-python<span class="w"> </span>psycopg2-binary
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: matplotlib in /usr/local/lib/python3.11/dist-packages (3.10.0)
+Requirement already satisfied: seaborn in /usr/local/lib/python3.11/dist-packages (0.13.2)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (1.3.2)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (4.58.4)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (1.4.8)
+Requirement already satisfied: numpy&gt;=1.23 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (2.0.2)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (24.2)
+Requirement already satisfied: pillow&gt;=8 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (11.2.1)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (3.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /usr/local/lib/python3.11/dist-packages (from matplotlib) (2.9.0.post0)
+Requirement already satisfied: pandas&gt;=1.2 in /usr/local/lib/python3.11/dist-packages (from seaborn) (2.2.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.2-&gt;seaborn) (2025.2)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.7-&gt;matplotlib) (1.17.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pymysql in /usr/local/lib/python3.11/dist-packages (1.1.1)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: unknown command &quot;insinstalltall&quot; - maybe you meant &quot;uninstall&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/bin/bash: line 1: psycopgpsycopg2all2all: command not found
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mysql-connector-python in /usr/local/lib/python3.11/dist-packages (9.3.0)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: mysql-connector-python in /usr/local/lib/python3.11/dist-packages (9.3.0)
+Requirement already satisfied: psycopg2-binary in /usr/local/lib/python3.11/dist-packages (2.9.10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Import Library Pendukung</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Data Iris Bersih</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+
+<span class="c1"># Load dataset Iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="o">.</span><span class="n">from_codes</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;github&#39;</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   Sepal Length |   Sepal Width |   Petal Length |   Petal Width | Species    |
+|----------------|---------------|----------------|---------------|------------|
+|            5.1 |           3.5 |            1.4 |           0.2 | setosa     |
+|            4.9 |           3   |            1.4 |           0.2 | setosa     |
+|            4.7 |           3.2 |            1.3 |           0.2 | setosa     |
+|            4.6 |           3.1 |            1.5 |           0.2 | setosa     |
+|            5   |           3.6 |            1.4 |           0.2 | setosa     |
+|            5.4 |           3.9 |            1.7 |           0.4 | setosa     |
+|            4.6 |           3.4 |            1.4 |           0.3 | setosa     |
+|            5   |           3.4 |            1.5 |           0.2 | setosa     |
+|            4.4 |           2.9 |            1.4 |           0.2 | setosa     |
+|            4.9 |           3.1 |            1.5 |           0.1 | setosa     |
+|            5.4 |           3.7 |            1.5 |           0.2 | setosa     |
+|            4.8 |           3.4 |            1.6 |           0.2 | setosa     |
+|            4.8 |           3   |            1.4 |           0.1 | setosa     |
+|            4.3 |           3   |            1.1 |           0.1 | setosa     |
+|            5.8 |           4   |            1.2 |           0.2 | setosa     |
+|            5.7 |           4.4 |            1.5 |           0.4 | setosa     |
+|            5.4 |           3.9 |            1.3 |           0.4 | setosa     |
+|            5.1 |           3.5 |            1.4 |           0.3 | setosa     |
+|            5.7 |           3.8 |            1.7 |           0.3 | setosa     |
+|            5.1 |           3.8 |            1.5 |           0.3 | setosa     |
+|            5.4 |           3.4 |            1.7 |           0.2 | setosa     |
+|            5.1 |           3.7 |            1.5 |           0.4 | setosa     |
+|            4.6 |           3.6 |            1   |           0.2 | setosa     |
+|            5.1 |           3.3 |            1.7 |           0.5 | setosa     |
+|            4.8 |           3.4 |            1.9 |           0.2 | setosa     |
+|            5   |           3   |            1.6 |           0.2 | setosa     |
+|            5   |           3.4 |            1.6 |           0.4 | setosa     |
+|            5.2 |           3.5 |            1.5 |           0.2 | setosa     |
+|            5.2 |           3.4 |            1.4 |           0.2 | setosa     |
+|            4.7 |           3.2 |            1.6 |           0.2 | setosa     |
+|            4.8 |           3.1 |            1.6 |           0.2 | setosa     |
+|            5.4 |           3.4 |            1.5 |           0.4 | setosa     |
+|            5.2 |           4.1 |            1.5 |           0.1 | setosa     |
+|            5.5 |           4.2 |            1.4 |           0.2 | setosa     |
+|            4.9 |           3.1 |            1.5 |           0.2 | setosa     |
+|            5   |           3.2 |            1.2 |           0.2 | setosa     |
+|            5.5 |           3.5 |            1.3 |           0.2 | setosa     |
+|            4.9 |           3.6 |            1.4 |           0.1 | setosa     |
+|            4.4 |           3   |            1.3 |           0.2 | setosa     |
+|            5.1 |           3.4 |            1.5 |           0.2 | setosa     |
+|            5   |           3.5 |            1.3 |           0.3 | setosa     |
+|            4.5 |           2.3 |            1.3 |           0.3 | setosa     |
+|            4.4 |           3.2 |            1.3 |           0.2 | setosa     |
+|            5   |           3.5 |            1.6 |           0.6 | setosa     |
+|            5.1 |           3.8 |            1.9 |           0.4 | setosa     |
+|            4.8 |           3   |            1.4 |           0.3 | setosa     |
+|            5.1 |           3.8 |            1.6 |           0.2 | setosa     |
+|            4.6 |           3.2 |            1.4 |           0.2 | setosa     |
+|            5.3 |           3.7 |            1.5 |           0.2 | setosa     |
+|            5   |           3.3 |            1.4 |           0.2 | setosa     |
+|            7   |           3.2 |            4.7 |           1.4 | versicolor |
+|            6.4 |           3.2 |            4.5 |           1.5 | versicolor |
+|            6.9 |           3.1 |            4.9 |           1.5 | versicolor |
+|            5.5 |           2.3 |            4   |           1.3 | versicolor |
+|            6.5 |           2.8 |            4.6 |           1.5 | versicolor |
+|            5.7 |           2.8 |            4.5 |           1.3 | versicolor |
+|            6.3 |           3.3 |            4.7 |           1.6 | versicolor |
+|            4.9 |           2.4 |            3.3 |           1   | versicolor |
+|            6.6 |           2.9 |            4.6 |           1.3 | versicolor |
+|            5.2 |           2.7 |            3.9 |           1.4 | versicolor |
+|            5   |           2   |            3.5 |           1   | versicolor |
+|            5.9 |           3   |            4.2 |           1.5 | versicolor |
+|            6   |           2.2 |            4   |           1   | versicolor |
+|            6.1 |           2.9 |            4.7 |           1.4 | versicolor |
+|            5.6 |           2.9 |            3.6 |           1.3 | versicolor |
+|            6.7 |           3.1 |            4.4 |           1.4 | versicolor |
+|            5.6 |           3   |            4.5 |           1.5 | versicolor |
+|            5.8 |           2.7 |            4.1 |           1   | versicolor |
+|            6.2 |           2.2 |            4.5 |           1.5 | versicolor |
+|            5.6 |           2.5 |            3.9 |           1.1 | versicolor |
+|            5.9 |           3.2 |            4.8 |           1.8 | versicolor |
+|            6.1 |           2.8 |            4   |           1.3 | versicolor |
+|            6.3 |           2.5 |            4.9 |           1.5 | versicolor |
+|            6.1 |           2.8 |            4.7 |           1.2 | versicolor |
+|            6.4 |           2.9 |            4.3 |           1.3 | versicolor |
+|            6.6 |           3   |            4.4 |           1.4 | versicolor |
+|            6.8 |           2.8 |            4.8 |           1.4 | versicolor |
+|            6.7 |           3   |            5   |           1.7 | versicolor |
+|            6   |           2.9 |            4.5 |           1.5 | versicolor |
+|            5.7 |           2.6 |            3.5 |           1   | versicolor |
+|            5.5 |           2.4 |            3.8 |           1.1 | versicolor |
+|            5.5 |           2.4 |            3.7 |           1   | versicolor |
+|            5.8 |           2.7 |            3.9 |           1.2 | versicolor |
+|            6   |           2.7 |            5.1 |           1.6 | versicolor |
+|            5.4 |           3   |            4.5 |           1.5 | versicolor |
+|            6   |           3.4 |            4.5 |           1.6 | versicolor |
+|            6.7 |           3.1 |            4.7 |           1.5 | versicolor |
+|            6.3 |           2.3 |            4.4 |           1.3 | versicolor |
+|            5.6 |           3   |            4.1 |           1.3 | versicolor |
+|            5.5 |           2.5 |            4   |           1.3 | versicolor |
+|            5.5 |           2.6 |            4.4 |           1.2 | versicolor |
+|            6.1 |           3   |            4.6 |           1.4 | versicolor |
+|            5.8 |           2.6 |            4   |           1.2 | versicolor |
+|            5   |           2.3 |            3.3 |           1   | versicolor |
+|            5.6 |           2.7 |            4.2 |           1.3 | versicolor |
+|            5.7 |           3   |            4.2 |           1.2 | versicolor |
+|            5.7 |           2.9 |            4.2 |           1.3 | versicolor |
+|            6.2 |           2.9 |            4.3 |           1.3 | versicolor |
+|            5.1 |           2.5 |            3   |           1.1 | versicolor |
+|            5.7 |           2.8 |            4.1 |           1.3 | versicolor |
+|            6.3 |           3.3 |            6   |           2.5 | virginica  |
+|            5.8 |           2.7 |            5.1 |           1.9 | virginica  |
+|            7.1 |           3   |            5.9 |           2.1 | virginica  |
+|            6.3 |           2.9 |            5.6 |           1.8 | virginica  |
+|            6.5 |           3   |            5.8 |           2.2 | virginica  |
+|            7.6 |           3   |            6.6 |           2.1 | virginica  |
+|            4.9 |           2.5 |            4.5 |           1.7 | virginica  |
+|            7.3 |           2.9 |            6.3 |           1.8 | virginica  |
+|            6.7 |           2.5 |            5.8 |           1.8 | virginica  |
+|            7.2 |           3.6 |            6.1 |           2.5 | virginica  |
+|            6.5 |           3.2 |            5.1 |           2   | virginica  |
+|            6.4 |           2.7 |            5.3 |           1.9 | virginica  |
+|            6.8 |           3   |            5.5 |           2.1 | virginica  |
+|            5.7 |           2.5 |            5   |           2   | virginica  |
+|            5.8 |           2.8 |            5.1 |           2.4 | virginica  |
+|            6.4 |           3.2 |            5.3 |           2.3 | virginica  |
+|            6.5 |           3   |            5.5 |           1.8 | virginica  |
+|            7.7 |           3.8 |            6.7 |           2.2 | virginica  |
+|            7.7 |           2.6 |            6.9 |           2.3 | virginica  |
+|            6   |           2.2 |            5   |           1.5 | virginica  |
+|            6.9 |           3.2 |            5.7 |           2.3 | virginica  |
+|            5.6 |           2.8 |            4.9 |           2   | virginica  |
+|            7.7 |           2.8 |            6.7 |           2   | virginica  |
+|            6.3 |           2.7 |            4.9 |           1.8 | virginica  |
+|            6.7 |           3.3 |            5.7 |           2.1 | virginica  |
+|            7.2 |           3.2 |            6   |           1.8 | virginica  |
+|            6.2 |           2.8 |            4.8 |           1.8 | virginica  |
+|            6.1 |           3   |            4.9 |           1.8 | virginica  |
+|            6.4 |           2.8 |            5.6 |           2.1 | virginica  |
+|            7.2 |           3   |            5.8 |           1.6 | virginica  |
+|            7.4 |           2.8 |            6.1 |           1.9 | virginica  |
+|            7.9 |           3.8 |            6.4 |           2   | virginica  |
+|            6.4 |           2.8 |            5.6 |           2.2 | virginica  |
+|            6.3 |           2.8 |            5.1 |           1.5 | virginica  |
+|            6.1 |           2.6 |            5.6 |           1.4 | virginica  |
+|            7.7 |           3   |            6.1 |           2.3 | virginica  |
+|            6.3 |           3.4 |            5.6 |           2.4 | virginica  |
+|            6.4 |           3.1 |            5.5 |           1.8 | virginica  |
+|            6   |           3   |            4.8 |           1.8 | virginica  |
+|            6.9 |           3.1 |            5.4 |           2.1 | virginica  |
+|            6.7 |           3.1 |            5.6 |           2.4 | virginica  |
+|            6.9 |           3.1 |            5.1 |           2.3 | virginica  |
+|            5.8 |           2.7 |            5.1 |           1.9 | virginica  |
+|            6.8 |           3.2 |            5.9 |           2.3 | virginica  |
+|            6.7 |           3.3 |            5.7 |           2.5 | virginica  |
+|            6.7 |           3   |            5.2 |           2.3 | virginica  |
+|            6.3 |           2.5 |            5   |           1.9 | virginica  |
+|            6.5 |           3   |            5.2 |           2   | virginica  |
+|            6.2 |           3.4 |            5.4 |           2.3 | virginica  |
+|            5.9 |           3   |            5.1 |           1.8 | virginica  |
+</pre></div>
+</div>
+</div>
+</div>
+<section id="clustering-data-iris">
+<h2>Clustering Data Iris<a class="headerlink" href="#clustering-data-iris" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kolom_fitur</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">]</span>
+
+<span class="c1"># Loop untuk melakukan clustering per kolom</span>
+<span class="k">for</span> <span class="n">fitur</span> <span class="ow">in</span> <span class="n">kolom_fitur</span><span class="p">:</span>
+    <span class="c1"># Ambil kolom dan ubah ke 2D array</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">fitur</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+    <span class="c1"># KMeans clustering</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c1"># Tambahkan hasil klaster numerik ke DataFrame</span>
+    <span class="n">cluster_col</span> <span class="o">=</span> <span class="n">fitur</span> <span class="o">+</span> <span class="s1">&#39;Cluster&#39;</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">cluster_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusters</span>
+
+<span class="c1"># Tampilkan hanya kolom hasil cluster</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span>
+    <span class="s1">&#39;Sepal LengthCluster&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sepal WidthCluster&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal LengthCluster&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal WidthCluster&#39;</span>
+<span class="p">]],</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;github&#39;</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|   Sepal LengthCluster |   Sepal WidthCluster |   Petal LengthCluster |   Petal WidthCluster |
+|-----------------------|----------------------|-----------------------|----------------------|
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     1 |                    0 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     1 |                    0 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    1 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    2 |                     1 |                    1 |
+|                     2 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     1 |                    3 |                     1 |                    1 |
+|                     2 |                    0 |                     1 |                    1 |
+|                     3 |                    0 |                     0 |                    2 |
+|                     0 |                    0 |                     0 |                    0 |
+|                     3 |                    0 |                     0 |                    0 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     1 |                    2 |                     0 |                    2 |
+|                     0 |                    0 |                     0 |                    0 |
+|                     2 |                    1 |                     2 |                    2 |
+|                     0 |                    2 |                     0 |                    2 |
+|                     2 |                    1 |                     2 |                    2 |
+|                     2 |                    1 |                     2 |                    2 |
+|                     1 |                    2 |                     2 |                    0 |
+|                     0 |                    1 |                     2 |                    2 |
+|                     0 |                    2 |                     0 |                    2 |
+|                     1 |                    2 |                     2 |                    2 |
+|                     0 |                    0 |                     0 |                    2 |
+|                     1 |                    2 |                     0 |                    0 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     1 |                    0 |                     0 |                    0 |
+|                     0 |                    2 |                     2 |                    2 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     0 |                    2 |                     0 |                    2 |
+|                     0 |                    2 |                     2 |                    2 |
+|                     0 |                    2 |                     0 |                    2 |
+|                     3 |                    2 |                     0 |                    2 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     1 |                    2 |                     0 |                    0 |
+|                     0 |                    0 |                     0 |                    0 |
+|                     0 |                    0 |                     0 |                    0 |
+|                     0 |                    1 |                     0 |                    2 |
+|                     1 |                    2 |                     2 |                    2 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     1 |                    1 |                     0 |                    2 |
+|                     0 |                    2 |                     0 |                    2 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     2 |                    1 |                     2 |                    2 |
+|                     1 |                    1 |                     2 |                    2 |
+|                     1 |                    2 |                     2 |                    2 |
+|                     1 |                    2 |                     2 |                    2 |
+|                     0 |                    2 |                     2 |                    2 |
+|                     2 |                    1 |                     2 |                    2 |
+|                     1 |                    2 |                     2 |                    2 |
+|                     0 |                    0 |                     3 |                    3 |
+|                     1 |                    1 |                     0 |                    0 |
+|                     3 |                    2 |                     3 |                    3 |
+|                     0 |                    2 |                     3 |                    0 |
+|                     0 |                    2 |                     3 |                    3 |
+|                     3 |                    2 |                     3 |                    3 |
+|                     2 |                    1 |                     0 |                    0 |
+|                     3 |                    2 |                     3 |                    0 |
+|                     0 |                    1 |                     3 |                    0 |
+|                     3 |                    3 |                     3 |                    3 |
+|                     0 |                    0 |                     0 |                    0 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     3 |                    2 |                     3 |                    3 |
+|                     1 |                    1 |                     0 |                    0 |
+|                     1 |                    2 |                     0 |                    3 |
+|                     0 |                    0 |                     0 |                    3 |
+|                     0 |                    2 |                     3 |                    0 |
+|                     3 |                    3 |                     3 |                    3 |
+|                     3 |                    1 |                     3 |                    3 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     3 |                    0 |                     3 |                    3 |
+|                     1 |                    2 |                     0 |                    0 |
+|                     3 |                    2 |                     3 |                    0 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     0 |                    0 |                     3 |                    3 |
+|                     3 |                    0 |                     3 |                    0 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     0 |                    2 |                     3 |                    3 |
+|                     3 |                    2 |                     3 |                    0 |
+|                     3 |                    2 |                     3 |                    0 |
+|                     3 |                    3 |                     3 |                    0 |
+|                     0 |                    2 |                     3 |                    3 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     0 |                    1 |                     3 |                    2 |
+|                     3 |                    2 |                     3 |                    3 |
+|                     0 |                    0 |                     3 |                    3 |
+|                     0 |                    0 |                     3 |                    0 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     3 |                    0 |                     3 |                    3 |
+|                     0 |                    0 |                     3 |                    3 |
+|                     3 |                    0 |                     0 |                    3 |
+|                     1 |                    1 |                     0 |                    0 |
+|                     3 |                    0 |                     3 |                    3 |
+|                     0 |                    0 |                     3 |                    3 |
+|                     0 |                    2 |                     0 |                    3 |
+|                     0 |                    1 |                     0 |                    0 |
+|                     0 |                    2 |                     0 |                    0 |
+|                     0 |                    0 |                     3 |                    3 |
+|                     1 |                    2 |                     0 |                    0 |
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="diskritisasi-menggunakan-k-means">
+<h2>Diskritisasi Menggunakan K-Means<a class="headerlink" href="#diskritisasi-menggunakan-k-means" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cluster_and_map</span><span class="p">(</span><span class="n">column_name</span><span class="p">,</span> <span class="n">n_clusters</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="c1"># Ambil kolom dan ubah ke bentuk 2D</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">column_name</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+    <span class="c1"># Jalankan KMeans</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="c1"># Tambahkan kolom hasil klaster dan kategori huruf</span>
+    <span class="n">cluster_col</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">column_name</span><span class="si">}</span><span class="s2"> Cluster&quot;</span>
+    <span class="n">kategori_col</span> <span class="o">=</span> <span class="n">column_name</span>  <span class="c1"># Use the original column name as the base for the new categorical column</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">cluster_col</span><span class="p">]</span> <span class="o">=</span> <span class="n">clusters</span>
+    <span class="n">kategori_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">)}</span>  <span class="c1"># {0: &#39;a&#39;, 1: &#39;b&#39;, ...}</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">kategori_col</span> <span class="o">+</span> <span class="s1">&#39; Category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cluster_col</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">kategori_map</span><span class="p">)</span> <span class="c1"># Create a new column for the categorical data</span>
+
+<span class="c1"># Terapkan untuk keempat kolom</span>
+<span class="n">cluster_and_map</span><span class="p">(</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">)</span>
+<span class="n">cluster_and_map</span><span class="p">(</span><span class="s1">&#39;Sepal Width&#39;</span><span class="p">)</span>
+<span class="n">cluster_and_map</span><span class="p">(</span><span class="s1">&#39;Petal Length&#39;</span><span class="p">)</span>
+<span class="n">cluster_and_map</span><span class="p">(</span><span class="s1">&#39;Petal Width&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil kategori huruf saja</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span>
+    <span class="s1">&#39;Sepal Length Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sepal Width Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Length Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Width Category&#39;</span>
+<span class="p">]],</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;github&#39;</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Sepal Length Category   | Sepal Width Category   | Petal Length Category   | Petal Width Category   |
+|-------------------------|------------------------|-------------------------|------------------------|
+| c                       | d                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| b                       | a                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| b                       | a                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | b                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | c                      | b                       | b                      |
+| c                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| b                       | d                      | b                       | b                      |
+| c                       | a                      | b                       | b                      |
+| d                       | a                      | a                       | c                      |
+| a                       | a                      | a                       | a                      |
+| d                       | a                      | a                       | a                      |
+| b                       | b                      | c                       | c                      |
+| a                       | c                      | a                       | a                      |
+| b                       | c                      | a                       | c                      |
+| a                       | a                      | a                       | a                      |
+| c                       | b                      | c                       | c                      |
+| a                       | c                      | a                       | c                      |
+| c                       | b                      | c                       | c                      |
+| c                       | b                      | c                       | c                      |
+| b                       | c                      | c                       | a                      |
+| a                       | b                      | c                       | c                      |
+| a                       | c                      | a                       | c                      |
+| b                       | c                      | c                       | c                      |
+| a                       | a                      | a                       | c                      |
+| b                       | c                      | a                       | a                      |
+| b                       | b                      | c                       | c                      |
+| a                       | b                      | a                       | a                      |
+| b                       | b                      | c                       | c                      |
+| b                       | a                      | a                       | a                      |
+| a                       | c                      | c                       | c                      |
+| a                       | b                      | a                       | a                      |
+| a                       | c                      | a                       | c                      |
+| a                       | c                      | c                       | c                      |
+| a                       | c                      | a                       | c                      |
+| d                       | c                      | a                       | c                      |
+| a                       | c                      | a                       | a                      |
+| a                       | c                      | a                       | a                      |
+| b                       | b                      | c                       | c                      |
+| b                       | b                      | c                       | c                      |
+| b                       | b                      | c                       | c                      |
+| b                       | b                      | c                       | c                      |
+| a                       | b                      | a                       | a                      |
+| b                       | c                      | a                       | a                      |
+| a                       | a                      | a                       | a                      |
+| a                       | a                      | a                       | a                      |
+| a                       | b                      | a                       | c                      |
+| b                       | c                      | c                       | c                      |
+| b                       | b                      | c                       | c                      |
+| b                       | b                      | a                       | c                      |
+| a                       | c                      | a                       | c                      |
+| b                       | b                      | c                       | c                      |
+| c                       | b                      | c                       | c                      |
+| b                       | b                      | c                       | c                      |
+| b                       | c                      | c                       | c                      |
+| b                       | c                      | c                       | c                      |
+| a                       | c                      | c                       | c                      |
+| c                       | b                      | c                       | c                      |
+| b                       | c                      | c                       | c                      |
+| a                       | a                      | d                       | d                      |
+| b                       | b                      | a                       | a                      |
+| d                       | c                      | d                       | d                      |
+| a                       | c                      | d                       | a                      |
+| a                       | c                      | d                       | d                      |
+| d                       | c                      | d                       | d                      |
+| c                       | b                      | a                       | a                      |
+| d                       | c                      | d                       | a                      |
+| a                       | b                      | d                       | a                      |
+| d                       | d                      | d                       | d                      |
+| a                       | a                      | a                       | a                      |
+| a                       | b                      | a                       | a                      |
+| d                       | c                      | d                       | d                      |
+| b                       | b                      | a                       | a                      |
+| b                       | c                      | a                       | d                      |
+| a                       | a                      | a                       | d                      |
+| a                       | c                      | d                       | a                      |
+| d                       | d                      | d                       | d                      |
+| d                       | b                      | d                       | d                      |
+| a                       | b                      | a                       | a                      |
+| d                       | a                      | d                       | d                      |
+| b                       | c                      | a                       | a                      |
+| d                       | c                      | d                       | a                      |
+| a                       | b                      | a                       | a                      |
+| a                       | a                      | d                       | d                      |
+| d                       | a                      | d                       | a                      |
+| a                       | c                      | a                       | a                      |
+| a                       | c                      | a                       | a                      |
+| a                       | c                      | d                       | d                      |
+| d                       | c                      | d                       | a                      |
+| d                       | c                      | d                       | a                      |
+| d                       | d                      | d                       | a                      |
+| a                       | c                      | d                       | d                      |
+| a                       | c                      | a                       | a                      |
+| a                       | b                      | d                       | c                      |
+| d                       | c                      | d                       | d                      |
+| a                       | a                      | d                       | d                      |
+| a                       | a                      | d                       | a                      |
+| a                       | c                      | a                       | a                      |
+| d                       | a                      | d                       | d                      |
+| a                       | a                      | d                       | d                      |
+| d                       | a                      | a                       | d                      |
+| b                       | b                      | a                       | a                      |
+| d                       | a                      | d                       | d                      |
+| a                       | a                      | d                       | d                      |
+| a                       | c                      | a                       | d                      |
+| a                       | b                      | a                       | a                      |
+| a                       | c                      | a                       | a                      |
+| a                       | a                      | d                       | d                      |
+| b                       | c                      | a                       | a                      |
+</pre></div>
+</div>
+</div>
+</div>
+<section id="menggunakan-naive-bayes">
+<h3>Menggunakan Naive Bayes<a class="headerlink" href="#menggunakan-naive-bayes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CategoricalNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="c1"># Select the categorical features generated from K-Means clustering and the target variable</span>
+<span class="c1"># Use the existing DataFrame &#39;df&#39; which contains these columns</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Sepal Length Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sepal Width Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Length Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Width Category&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Create a new DataFrame with only the selected categorical features and the target variable &#39;Species&#39;</span>
+<span class="n">df_categorical</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">categorical_features</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Encode the categorical features and the target variable</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_categorical</span><span class="p">[</span><span class="n">categorical_features</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>  <span class="c1"># encode all feature columns</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_categorical</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>  <span class="c1"># encode the target label</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Klasifikasi:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.9
+
+Laporan Klasifikasi:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       1.00      0.67      0.80         9
+           2       0.79      1.00      0.88        11
+
+    accuracy                           0.90        30
+   macro avg       0.93      0.89      0.89        30
+weighted avg       0.92      0.90      0.90        30
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menggunakan-decision-tree">
+<h3>Menggunakan Decision Tree<a class="headerlink" href="#menggunakan-decision-tree" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">export_text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Misalnya df_ef berisi hasil diskretisasi Equal Frequency atau hasil kategorisasi lainnya</span>
+<span class="c1"># Contoh:</span>
+<span class="c1"># df_ef = df[[&#39;Sepal Length EF Category&#39;, &#39;Sepal Width EF Category&#39;, &#39;Petal Length EF Category&#39;, &#39;Petal Width EF Category&#39;, &#39;Species&#39;]].copy()</span>
+
+<span class="c1"># Rename agar seragam</span>
+<span class="n">df_dt</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Select the categorical features generated from K-Means clustering or other categorization</span>
+<span class="c1"># Using the K-Means &#39; Category&#39; columns</span>
+<span class="n">kategori_cols</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;Sepal Length Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sepal Width Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Length Category&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Width Category&#39;</span>
+<span class="p">]</span>
+
+<span class="c1"># Encode fitur kategori huruf (a, b, c, d) menjadi angka</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="c1"># Apply fit_transform to each column separately to handle potential NaN values gracefully,</span>
+<span class="c1"># or ensure no NaNs if using .apply() on the entire DataFrame.</span>
+<span class="c1"># A safer way is to iterate or ensure the data is clean before encoding.</span>
+<span class="c1"># Assuming no NaNs in these generated category columns based on the previous steps:</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_dt</span><span class="p">[</span><span class="n">kategori_cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>
+
+
+<span class="c1"># Encode target label</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_dt</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>
+
+<span class="c1"># Split data</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Buat dan latih model Decision Tree</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Prediksi dan evaluasi</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi Decision Tree:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Klasifikasi:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="c1"># Cetak struktur pohon keputusan</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">tree_rules</span> <span class="o">=</span> <span class="n">export_text</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Struktur Pohon Keputusan:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tree_rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Decision Tree: 0.9
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Laporan Klasifikasi:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       0.88      0.78      0.82         9
+           2       0.83      0.91      0.87        11
+
+    accuracy                           0.90        30
+   macro avg       0.90      0.90      0.90        30
+weighted avg       0.90      0.90      0.90        30
+
+
+Struktur Pohon Keputusan:
+
+|--- Petal Length Category &lt;= 2.50
+|   |--- Petal Width Category &lt;= 1.50
+|   |   |--- Petal Width Category &lt;= 0.50
+|   |   |   |--- Sepal Width Category &lt;= 0.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- Sepal Width Category &gt;  0.50
+|   |   |   |   |--- Petal Length Category &lt;= 1.00
+|   |   |   |   |   |--- Sepal Width Category &lt;= 1.50
+|   |   |   |   |   |   |--- Sepal Length Category &lt;= 0.50
+|   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |   |--- Sepal Length Category &gt;  0.50
+|   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |--- Sepal Width Category &gt;  1.50
+|   |   |   |   |   |   |--- Sepal Length Category &lt;= 0.50
+|   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |   |--- Sepal Length Category &gt;  0.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |--- Petal Length Category &gt;  1.00
+|   |   |   |   |   |--- class: 1
+|   |   |--- Petal Width Category &gt;  0.50
+|   |   |   |--- class: 0
+|   |--- Petal Width Category &gt;  1.50
+|   |   |--- Petal Width Category &lt;= 2.50
+|   |   |   |--- class: 1
+|   |   |--- Petal Width Category &gt;  2.50
+|   |   |   |--- class: 2
+|--- Petal Length Category &gt;  2.50
+|   |--- class: 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diskritisasi-menggunakan-equal-width">
+<h2>Diskritisasi Menggunakan Equal Width<a class="headerlink" href="#diskritisasi-menggunakan-equal-width" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">equal_width_all</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+        <span class="n">min_val</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">max_val</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">max_val</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bins</span><span class="p">)]</span>  <span class="c1"># [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span>
+        <span class="n">df</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> EW Category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Jalankan fungsi</span>
+<span class="n">equal_width_all</span><span class="p">(</span><span class="n">fitur</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan hasil kategori huruf saja</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1"> EW Category&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fitur</span><span class="p">]],</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;github&#39;</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>| Sepal Length EW Category   | Sepal Width EW Category   | Petal Length EW Category   | Petal Width EW Category   |
+|----------------------------|---------------------------|----------------------------|---------------------------|
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| b                          | d                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| b                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| b                          | d                         | a                          | a                         |
+| b                          | d                         | a                          | a                         |
+| b                          | d                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| b                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| b                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| b                          | c                         | a                          | a                         |
+| a                          | d                         | a                          | a                         |
+| b                          | d                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| b                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | a                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| a                          | b                         | a                          | a                         |
+| b                          | c                         | a                          | a                         |
+| a                          | c                         | a                          | a                         |
+| c                          | b                         | c                          | c                         |
+| c                          | b                         | c                          | c                         |
+| c                          | b                         | c                          | c                         |
+| b                          | a                         | c                          | b                         |
+| c                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | b                         |
+| c                          | c                         | c                          | c                         |
+| a                          | a                         | b                          | b                         |
+| c                          | b                         | c                          | b                         |
+| a                          | b                         | b                          | c                         |
+| a                          | a                         | b                          | b                         |
+| b                          | b                         | c                          | c                         |
+| b                          | a                         | c                          | b                         |
+| b                          | b                         | c                          | c                         |
+| b                          | b                         | b                          | b                         |
+| c                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | b                         |
+| c                          | a                         | c                          | c                         |
+| b                          | a                         | b                          | b                         |
+| b                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | b                         |
+| c                          | a                         | c                          | c                         |
+| b                          | b                         | c                          | b                         |
+| c                          | b                         | c                          | b                         |
+| c                          | b                         | c                          | c                         |
+| c                          | b                         | c                          | c                         |
+| c                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | c                         |
+| b                          | a                         | b                          | b                         |
+| b                          | a                         | b                          | b                         |
+| b                          | a                         | b                          | b                         |
+| b                          | b                         | b                          | b                         |
+| b                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | c                         |
+| b                          | c                         | c                          | c                         |
+| c                          | b                         | c                          | c                         |
+| c                          | a                         | c                          | b                         |
+| b                          | b                         | c                          | b                         |
+| b                          | a                         | c                          | b                         |
+| b                          | a                         | c                          | b                         |
+| b                          | b                         | c                          | c                         |
+| b                          | a                         | c                          | b                         |
+| a                          | a                         | b                          | b                         |
+| b                          | b                         | c                          | b                         |
+| b                          | b                         | c                          | b                         |
+| b                          | b                         | c                          | b                         |
+| c                          | b                         | c                          | b                         |
+| a                          | a                         | b                          | b                         |
+| b                          | b                         | c                          | b                         |
+| c                          | c                         | d                          | d                         |
+| b                          | b                         | c                          | c                         |
+| d                          | b                         | d                          | d                         |
+| c                          | b                         | d                          | c                         |
+| c                          | b                         | d                          | d                         |
+| d                          | b                         | d                          | d                         |
+| a                          | a                         | c                          | c                         |
+| d                          | b                         | d                          | c                         |
+| c                          | a                         | d                          | c                         |
+| d                          | c                         | d                          | d                         |
+| c                          | b                         | c                          | d                         |
+| c                          | b                         | c                          | c                         |
+| c                          | b                         | d                          | d                         |
+| b                          | a                         | c                          | d                         |
+| b                          | b                         | c                          | d                         |
+| c                          | b                         | c                          | d                         |
+| c                          | b                         | d                          | c                         |
+| d                          | c                         | d                          | d                         |
+| d                          | a                         | d                          | d                         |
+| b                          | a                         | c                          | c                         |
+| c                          | b                         | d                          | d                         |
+| b                          | b                         | c                          | d                         |
+| d                          | b                         | d                          | d                         |
+| c                          | b                         | c                          | c                         |
+| c                          | c                         | d                          | d                         |
+| d                          | b                         | d                          | c                         |
+| c                          | b                         | c                          | c                         |
+| b                          | b                         | c                          | c                         |
+| c                          | b                         | d                          | d                         |
+| d                          | b                         | d                          | c                         |
+| d                          | b                         | d                          | c                         |
+| d                          | c                         | d                          | d                         |
+| c                          | b                         | d                          | d                         |
+| c                          | b                         | c                          | c                         |
+| b                          | a                         | d                          | c                         |
+| d                          | b                         | d                          | d                         |
+| c                          | c                         | d                          | d                         |
+| c                          | b                         | d                          | c                         |
+| b                          | b                         | c                          | c                         |
+| c                          | b                         | c                          | d                         |
+| c                          | b                         | d                          | d                         |
+| c                          | b                         | c                          | d                         |
+| b                          | b                         | c                          | c                         |
+| c                          | b                         | d                          | d                         |
+| c                          | c                         | d                          | d                         |
+| c                          | b                         | c                          | d                         |
+| c                          | a                         | c                          | c                         |
+| c                          | b                         | c                          | d                         |
+| c                          | c                         | c                          | d                         |
+| b                          | b                         | c                          | c                         |
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Menggunakan Naive Bayes<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------</span>
+<span class="c1"># Proses Klasifikasi Naive Bayes (CategoricalNB) dengan Equal Frequency</span>
+<span class="c1"># -----------------------------</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CategoricalNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Load dataset</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Equal Frequency Discretization (4 bin, huruf a–d)</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fitur</span><span class="p">:</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">duplicates</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Encode kategori a–d jadi angka</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">fitur</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Train-test split</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Latih model Naive Bayes</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Evaluasi</span>
+<span class="c1"># -----------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Klasifikasi:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.9333333333333333
+
+Laporan Klasifikasi:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       0.89      0.89      0.89         9
+           2       0.91      0.91      0.91        11
+
+    accuracy                           0.93        30
+   macro avg       0.93      0.93      0.93        30
+weighted avg       0.93      0.93      0.93        30
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h3>Menggunakan Decision Tree<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------</span>
+<span class="c1"># Proses Klasifikasi Decision Tree dengan Equal Frequency</span>
+<span class="c1"># -----------------------------</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">export_text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span> <span class="c1"># Import load_iris again</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span> <span class="c1"># Import tabulate again</span>
+
+<span class="c1"># Load dataset Iris again to get the original numerical data</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="c1"># Create a fresh DataFrame for this section</span>
+<span class="n">df_dt_ef</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">])</span>
+<span class="n">df_dt_ef</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="o">.</span><span class="n">from_codes</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Equal Frequency Discretization (4 bin, a–d) on the fresh DataFrame</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fitur</span><span class="p">:</span>
+    <span class="c1"># Apply qcut to the numerical columns in the fresh DataFrame</span>
+    <span class="n">df_dt_ef</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_EF_Category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">df_dt_ef</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="n">duplicates</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span>
+
+<span class="c1"># Select the newly created categorical columns for the Decision Tree model</span>
+<span class="n">categorical_features_dt</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_EF_Category&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fitur</span><span class="p">]</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Encode kategori huruf ke angka</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="c1"># Apply encoding to the new categorical columns</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_dt_ef</span><span class="p">[</span><span class="n">categorical_features_dt</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>
+<span class="c1"># Encode target label from the fresh DataFrame</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_dt_ef</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Train-test split</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Latih model Decision Tree</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Evaluasi</span>
+<span class="c1"># -----------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Klasifikasi:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Cetak Struktur Pohon Keputusan</span>
+<span class="c1"># -----------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Struktur Pohon Keputusan:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Use the feature names from the encoded categorical columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">export_text</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">categorical_features_dt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.9333333333333333
+
+Laporan Klasifikasi:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       0.89      0.89      0.89         9
+           2       0.91      0.91      0.91        11
+
+    accuracy                           0.93        30
+   macro avg       0.93      0.93      0.93        30
+weighted avg       0.93      0.93      0.93        30
+
+
+Struktur Pohon Keputusan:
+
+|--- Petal Length_EF_Category &lt;= 0.50
+|   |--- class: 0
+|--- Petal Length_EF_Category &gt;  0.50
+|   |--- Petal Length_EF_Category &lt;= 2.50
+|   |   |--- Petal Width_EF_Category &lt;= 2.50
+|   |   |   |--- Sepal Width_EF_Category &lt;= 2.50
+|   |   |   |   |--- Petal Width_EF_Category &lt;= 1.50
+|   |   |   |   |   |--- Sepal Width_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- Sepal Width_EF_Category &gt;  1.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- Petal Width_EF_Category &gt;  1.50
+|   |   |   |   |   |--- Sepal Width_EF_Category &lt;= 0.50
+|   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 2.50
+|   |   |   |   |   |   |   |--- Petal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- Petal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 1.00
+|   |   |   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  1.00
+|   |   |   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  2.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- Sepal Width_EF_Category &gt;  0.50
+|   |   |   |   |   |   |--- Sepal Width_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 2.50
+|   |   |   |   |   |   |   |   |   |--- Petal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- Petal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  2.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- Sepal Width_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |--- Sepal Width_EF_Category &gt;  2.50
+|   |   |   |   |--- Sepal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- Sepal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- Petal Width_EF_Category &gt;  2.50
+|   |   |   |--- class: 2
+|   |--- Petal Length_EF_Category &gt;  2.50
+|   |   |--- class: 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diskritisasi-menggunakan-equalfrecuency">
+<h2>Diskritisasi Menggunakan Equalfrecuency<a class="headerlink" href="#diskritisasi-menggunakan-equalfrecuency" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fungsi manual untuk equal-frequency discretization</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">discretize_cdf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="c1"># Ensure data is numerical before sorting and calculations</span>
+    <span class="c1"># Convert data to float, coercing errors to NaN if necessary (though Iris has no NaNs)</span>
+    <span class="n">data_numeric</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="n">data_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">data_numeric</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_sorted</span><span class="p">)</span>
+    <span class="n">thresholds</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)]</span>
+
+    <span class="c1"># Hitung batas kuantil</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="n">m</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span>
+        <span class="n">floor</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">ceil</span> <span class="o">=</span> <span class="n">floor</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">frac</span> <span class="o">=</span> <span class="n">index</span> <span class="o">-</span> <span class="n">floor</span>
+        <span class="k">if</span> <span class="n">ceil</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">data_sorted</span><span class="p">[</span><span class="n">floor</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Ensure arithmetic operations are on numbers</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">data_sorted</span><span class="p">[</span><span class="n">floor</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">data_sorted</span><span class="p">[</span><span class="n">ceil</span><span class="p">]</span> <span class="o">-</span> <span class="n">data_sorted</span><span class="p">[</span><span class="n">floor</span><span class="p">])</span> <span class="o">*</span> <span class="n">frac</span>
+        <span class="n">thresholds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+    <span class="n">thresholds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">))</span>
+
+    <span class="c1"># Tentukan label bin untuk setiap nilai</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">label_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">97</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)}</span> <span class="c1"># Define label_map</span>
+
+    <span class="c1"># Apply the thresholds to the original data series</span>
+    <span class="c1"># Use pd.cut to bin the original numerical data based on calculated thresholds</span>
+    <span class="n">binned_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">label_map</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">include_lowest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">binned_data</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="c1"># Return as list to match original function output type</span>
+
+<span class="c1"># Terapkan discretization ke setiap kolom</span>
+<span class="c1"># Load dataset Iris again to get the original numerical data</span>
+<span class="c1"># This is important because previous cells modified the &#39;df&#39; DataFrame in place.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">df_fresh</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">])</span>
+<span class="n">df_fresh</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="o">.</span><span class="n">from_codes</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+
+
+<span class="n">df_equal_frequency</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;sepal_length&#39;</span><span class="p">:</span> <span class="n">discretize_cdf</span><span class="p">(</span><span class="n">df_fresh</span><span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="s1">&#39;sepal_width&#39;</span><span class="p">:</span>  <span class="n">discretize_cdf</span><span class="p">(</span><span class="n">df_fresh</span><span class="p">[</span><span class="s1">&#39;Sepal Width&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="s1">&#39;petal_length&#39;</span><span class="p">:</span> <span class="n">discretize_cdf</span><span class="p">(</span><span class="n">df_fresh</span><span class="p">[</span><span class="s1">&#39;Petal Length&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="s1">&#39;petal_width&#39;</span><span class="p">:</span>  <span class="n">discretize_cdf</span><span class="p">(</span><span class="n">df_fresh</span><span class="p">[</span><span class="s1">&#39;Petal Width&#39;</span><span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1"># Tambahkan kolom kelas di depan</span>
+<span class="n">df_equal_frequency</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_fresh</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># Tampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_equal_frequency</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sepal_length sepal_width petal_length petal_width    Species
+           a           d            a           a     setosa
+           a           b            a           a     setosa
+           a           c            a           a     setosa
+           a           c            a           a     setosa
+           a           d            a           a     setosa
+           b           d            b           b     setosa
+           a           d            a           a     setosa
+           a           d            a           a     setosa
+           a           b            a           a     setosa
+           a           c            a           a     setosa
+           b           d            a           a     setosa
+           a           d            a           a     setosa
+           a           b            a           a     setosa
+           a           b            a           a     setosa
+           b           d            a           a     setosa
+           b           d            a           b     setosa
+           b           d            a           b     setosa
+           a           d            a           a     setosa
+           b           d            b           a     setosa
+           a           d            a           a     setosa
+           b           d            b           a     setosa
+           a           d            a           b     setosa
+           a           d            a           a     setosa
+           a           c            b           b     setosa
+           a           d            b           a     setosa
+           a           b            a           a     setosa
+           a           d            a           b     setosa
+           b           d            a           a     setosa
+           b           d            a           a     setosa
+           a           c            a           a     setosa
+           a           c            a           a     setosa
+           b           d            a           b     setosa
+           b           d            a           a     setosa
+           b           d            a           a     setosa
+           a           c            a           a     setosa
+           a           c            a           a     setosa
+           b           d            a           a     setosa
+           a           d            a           a     setosa
+           a           b            a           a     setosa
+           a           d            a           a     setosa
+           a           d            a           a     setosa
+           a           a            a           a     setosa
+           a           c            a           a     setosa
+           a           d            a           b     setosa
+           a           d            b           b     setosa
+           a           b            a           a     setosa
+           a           d            a           a     setosa
+           a           c            a           a     setosa
+           b           d            a           a     setosa
+           a           c            a           a     setosa
+           d           c            c           c versicolor
+           c           c            c           c versicolor
+           d           c            c           c versicolor
+           b           a            b           b versicolor
+           d           a            c           c versicolor
+           b           a            c           b versicolor
+           c           c            c           c versicolor
+           a           a            b           b versicolor
+           d           b            c           b versicolor
+           b           a            b           c versicolor
+           a           a            b           b versicolor
+           c           b            b           c versicolor
+           c           a            b           b versicolor
+           c           b            c           c versicolor
+           b           b            b           b versicolor
+           d           c            c           c versicolor
+           b           b            c           c versicolor
+           b           a            b           b versicolor
+           c           a            c           c versicolor
+           b           a            b           b versicolor
+           c           c            c           c versicolor
+           c           a            b           b versicolor
+           c           a            c           c versicolor
+           c           a            c           b versicolor
+           c           b            b           b versicolor
+           d           b            c           c versicolor
+           d           a            c           c versicolor
+           d           b            c           c versicolor
+           c           b            c           c versicolor
+           b           a            b           b versicolor
+           b           a            b           b versicolor
+           b           a            b           b versicolor
+           b           a            b           b versicolor
+           c           a            c           c versicolor
+           b           b            c           c versicolor
+           c           d            c           c versicolor
+           d           c            c           c versicolor
+           c           a            c           b versicolor
+           b           b            b           b versicolor
+           b           a            b           b versicolor
+           b           a            c           b versicolor
+           c           b            c           c versicolor
+           b           a            b           b versicolor
+           a           a            b           b versicolor
+           b           a            b           b versicolor
+           b           b            b           b versicolor
+           b           b            b           b versicolor
+           c           b            b           b versicolor
+           a           a            b           b versicolor
+           b           a            b           b versicolor
+           c           c            d           d  virginica
+           b           a            c           d  virginica
+           d           b            d           d  virginica
+           c           b            d           c  virginica
+           d           b            d           d  virginica
+           d           b            d           d  virginica
+           a           a            c           c  virginica
+           d           b            d           c  virginica
+           d           a            d           c  virginica
+           d           d            d           d  virginica
+           d           c            c           d  virginica
+           c           a            d           d  virginica
+           d           b            d           d  virginica
+           b           a            c           d  virginica
+           b           a            c           d  virginica
+           c           c            d           d  virginica
+           d           b            d           c  virginica
+           d           d            d           d  virginica
+           d           a            d           d  virginica
+           c           a            c           c  virginica
+           d           c            d           d  virginica
+           b           a            c           d  virginica
+           d           a            d           d  virginica
+           c           a            c           c  virginica
+           d           c            d           d  virginica
+           d           c            d           c  virginica
+           c           a            c           c  virginica
+           c           b            c           c  virginica
+           c           a            d           d  virginica
+           d           b            d           c  virginica
+           d           a            d           d  virginica
+           d           d            d           d  virginica
+           c           a            d           d  virginica
+           c           a            c           c  virginica
+           c           a            d           c  virginica
+           d           b            d           d  virginica
+           c           d            d           d  virginica
+           c           c            d           c  virginica
+           c           b            c           c  virginica
+           d           c            d           d  virginica
+           d           c            d           d  virginica
+           d           c            c           d  virginica
+           b           a            c           d  virginica
+           d           c            d           d  virginica
+           d           c            d           d  virginica
+           d           b            d           d  virginica
+           c           a            c           d  virginica
+           d           b            d           d  virginica
+           c           d            d           d  virginica
+           c           b            c           c  virginica
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>Menggunakan Naive Bayes<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CategoricalNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Encode fitur kategorikal (a–d) ke angka</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_equal_frequency</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Species&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">col</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_equal_frequency</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Train-test split</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Latih model Naive Bayes</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Evaluasi</span>
+<span class="c1"># -----------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Klasifikasi:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0.9333333333333333
+
+Laporan Klasifikasi:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       0.89      0.89      0.89         9
+           2       0.91      0.91      0.91        11
+
+    accuracy                           0.93        30
+   macro avg       0.93      0.93      0.93        30
+weighted avg       0.93      0.93      0.93        30
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>Menggunakan Decision Tree<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># -----------------------------</span>
+<span class="c1"># Proses Klasifikasi Decision Tree dengan Equal Frequency</span>
+<span class="c1"># -----------------------------</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">export_text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span> <span class="c1"># Import load_iris again</span>
+
+<span class="c1"># Load dataset Iris again to get the original numerical data</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="c1"># Create a fresh DataFrame for this section</span>
+<span class="n">df_dt_ef_final</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">])</span>
+<span class="n">df_dt_ef_final</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="o">.</span><span class="n">from_codes</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Diskritisasi Equal Frequency (4 bin: a–d)</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sepal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fitur</span><span class="p">:</span>
+    <span class="c1"># Apply qcut to the numerical columns in the fresh DataFrame</span>
+    <span class="n">df_dt_ef_final</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_EF_Category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">df_dt_ef_final</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="n">duplicates</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span>
+
+<span class="c1"># Select the newly created categorical columns for the Decision Tree model</span>
+<span class="n">categorical_features_dt_final</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s1">_EF_Category&#39;</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">fitur</span><span class="p">]</span>
+
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Encode kategori huruf ke angka</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="c1"># Apply encoding to the new categorical columns</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df_dt_ef_final</span><span class="p">[</span><span class="n">categorical_features_dt_final</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">)</span>
+<span class="c1"># Encode target label from the fresh DataFrame</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_dt_ef_final</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">])</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Train-test split</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Latih model Decision Tree</span>
+<span class="c1"># -----------------------------</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Evaluasi</span>
+<span class="c1"># -----------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Laporan Klasifikasi:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="c1"># -----------------------------</span>
+<span class="c1"># Cetak Struktur Pohon Keputusan</span>
+<span class="c1"># -----------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Struktur Pohon Keputusan:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Use the feature names from the encoded categorical columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">export_text</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">categorical_features_dt_final</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi: 0.9333333333333333
+
+Laporan Klasifikasi:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        10
+           1       0.89      0.89      0.89         9
+           2       0.91      0.91      0.91        11
+
+    accuracy                           0.93        30
+   macro avg       0.93      0.93      0.93        30
+weighted avg       0.93      0.93      0.93        30
+
+
+Struktur Pohon Keputusan:
+
+|--- Petal Length_EF_Category &lt;= 0.50
+|   |--- class: 0
+|--- Petal Length_EF_Category &gt;  0.50
+|   |--- Petal Length_EF_Category &lt;= 2.50
+|   |   |--- Petal Width_EF_Category &lt;= 2.50
+|   |   |   |--- Sepal Width_EF_Category &lt;= 2.50
+|   |   |   |   |--- Petal Width_EF_Category &lt;= 1.50
+|   |   |   |   |   |--- Sepal Width_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- Sepal Width_EF_Category &gt;  1.50
+|   |   |   |   |   |   |--- class: 0
+|   |   |   |   |--- Petal Width_EF_Category &gt;  1.50
+|   |   |   |   |   |--- Sepal Width_EF_Category &lt;= 0.50
+|   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 2.50
+|   |   |   |   |   |   |   |--- Petal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- Petal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 1.00
+|   |   |   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  1.00
+|   |   |   |   |   |   |   |   |   |--- class: 2
+|   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  2.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |--- Sepal Width_EF_Category &gt;  0.50
+|   |   |   |   |   |   |--- Sepal Width_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &lt;= 2.50
+|   |   |   |   |   |   |   |   |   |--- Petal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |   |--- Petal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |   |   |--- Sepal Length_EF_Category &gt;  2.50
+|   |   |   |   |   |   |   |   |   |--- class: 1
+|   |   |   |   |   |   |--- Sepal Width_EF_Category &gt;  1.50
+|   |   |   |   |   |   |   |--- class: 1
+|   |   |   |--- Sepal Width_EF_Category &gt;  2.50
+|   |   |   |   |--- Sepal Length_EF_Category &lt;= 1.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- Sepal Length_EF_Category &gt;  1.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- Petal Width_EF_Category &gt;  2.50
+|   |   |   |--- class: 2
+|   |--- Petal Length_EF_Category &gt;  2.50
+|   |   |--- class: 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="perbandingan-akurasi">
+<h2>Perbandingan Akurasi<a class="headerlink" href="#perbandingan-akurasi" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">CategoricalNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Fungsi evaluasi untuk 2 model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_models</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">label_column</span><span class="o">=</span><span class="s1">&#39;Species&#39;</span><span class="p">):</span>
+    <span class="c1"># Select only categorical columns for encoding, excluding the label column</span>
+    <span class="n">categorical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">label_column</span><span class="p">]</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">categorical_cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">col</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)))</span> <span class="c1"># Encode as string to handle potential mixed types from pandas cut/qcut</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">label_column</span><span class="p">])</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+    <span class="c1"># Naive Bayes</span>
+    <span class="n">nb_model</span> <span class="o">=</span> <span class="n">CategoricalNB</span><span class="p">()</span>
+    <span class="n">nb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">nb_pred</span> <span class="o">=</span> <span class="n">nb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">acc_nb</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">nb_pred</span><span class="p">)</span>
+
+    <span class="c1"># Decision Tree</span>
+    <span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">dt_pred</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">acc_dt</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">dt_pred</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">acc_nb</span><span class="p">,</span> <span class="n">acc_dt</span>
+
+<span class="c1"># ========================</span>
+<span class="c1"># Asumsikan kamu sudah punya:</span>
+<span class="c1"># - df_kmeans (kolom: &#39;Sepal Length_EF&#39;, ..., &#39;Species&#39;)</span>
+<span class="c1"># - df_equal_width (dari pd.cut)</span>
+<span class="c1"># - df_equal_frequency (dari discretize_cdf)</span>
+<span class="c1"># ========================</span>
+
+<span class="c1"># --- 1. KMeans ---</span>
+<span class="n">df_kmeans_nb</span> <span class="o">=</span> <span class="n">df_kmeans</span><span class="p">[[</span>  <span class="c1"># pilih hanya kolom kategori + kelas</span>
+    <span class="s1">&#39;Sepal Length_EF&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sepal Width_EF&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Length_EF&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Width_EF&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Species&#39;</span>
+<span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;Sepal Length_EF&#39;</span><span class="p">:</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sepal Width_EF&#39;</span><span class="p">:</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Length_EF&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Petal Width_EF&#39;</span><span class="p">:</span> <span class="s1">&#39;petal_width&#39;</span>
+<span class="p">})</span>
+<span class="n">acc_kmeans_nb</span><span class="p">,</span> <span class="n">acc_kmeans_dt</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span><span class="n">df_kmeans_nb</span><span class="p">)</span>
+
+<span class="c1"># --- 2. Equal Width ---</span>
+<span class="c1"># Select only the categorical columns from df_equal_width</span>
+<span class="n">df_ew_nb</span> <span class="o">=</span> <span class="n">df_equal_width</span><span class="p">[[</span><span class="s1">&#39;Sepal Length_EW_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Sepal Width_EW_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Length_EW_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Petal Width_EW_Category&#39;</span><span class="p">,</span> <span class="s1">&#39;Species&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">acc_ew_nb</span><span class="p">,</span> <span class="n">acc_ew_dt</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span><span class="n">df_ew_nb</span><span class="p">)</span>
+
+<span class="c1"># --- 3. Equal Frequency ---</span>
+<span class="c1"># Select only the categorical columns from df_equal_frequency</span>
+<span class="n">df_ef_nb</span> <span class="o">=</span> <span class="n">df_equal_frequency</span><span class="p">[[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;Species&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">acc_ef_nb</span><span class="p">,</span> <span class="n">acc_ef_dt</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span><span class="n">df_ef_nb</span><span class="p">)</span>
+
+
+<span class="c1"># ========================</span>
+<span class="c1"># Tampilkan hasil perbandingan lengkap</span>
+<span class="c1"># ========================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Perbandingan Akurasi (Naive Bayes &amp; Decision Tree):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Metode&#39;</span><span class="si">:</span><span class="s2">&lt;25</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Naive Bayes&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Decision Tree&#39;</span><span class="si">:</span><span class="s2">&gt;18</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;KMeans Clustering&#39;</span><span class="si">:</span><span class="s2">&lt;25</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">acc_kmeans_nb</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">acc_kmeans_dt</span><span class="si">:</span><span class="s2">&gt;18.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Equal Width (cut)&#39;</span><span class="si">:</span><span class="s2">&lt;25</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">acc_ew_nb</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">acc_ew_dt</span><span class="si">:</span><span class="s2">&gt;18.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Equal Frequency (CDF)&#39;</span><span class="si">:</span><span class="s2">&lt;25</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">acc_ef_nb</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">acc_ef_dt</span><span class="si">:</span><span class="s2">&gt;18.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">/tmp/ipython-input-14-4069801253.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> 
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="c1"># --- 1. KMeans ---</span>
+<span class="ne">---&gt; </span><span class="mi">38</span> <span class="n">df_kmeans_nb</span> <span class="o">=</span> <span class="n">df_kmeans</span><span class="p">[[</span>  <span class="c1"># pilih hanya kolom kategori + kelas</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span>     <span class="s1">&#39;Sepal Length_EF&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="s1">&#39;Sepal Width_EF&#39;</span><span class="p">,</span>
+
+<span class="ne">NameError</span>: name &#39;df_kmeans&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Decision%20Tree.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Perhitungan Information Gain Manual (Dataset BMI Kompleks)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-data-iris">Clustering Data Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-k-means">Diskritisasi Menggunakan K-Means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-naive-bayes">Menggunakan Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-decision-tree">Menggunakan Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equal-width">Diskritisasi Menggunakan Equal Width</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Menggunakan Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Menggunakan Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskritisasi-menggunakan-equalfrecuency">Diskritisasi Menggunakan Equalfrecuency</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Menggunakan Naive Bayes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Menggunakan Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-akurasi">Perbandingan Akurasi</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Ilham Adila Almafaz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

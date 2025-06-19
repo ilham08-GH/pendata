@@ -1,0 +1,112 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/usr/local/lib/python3.11/dist-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.naive_bayes import CategoricalNB
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
+
+# Fungsi evaluasi untuk 2 model
+def evaluate_models(df, label_column='Species'):
+    # Select only categorical columns for encoding, excluding the label column
+    categorical_cols = [col for col in df.columns if col != label_column]
+    X = df[categorical_cols].apply(lambda col: LabelEncoder().fit_transform(col.astype(str))) # Encode as string to handle potential mixed types from pandas cut/qcut
+    y = LabelEncoder().fit_transform(df[label_column])
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Naive Bayes
+    nb_model = CategoricalNB()
+    nb_model.fit(X_train, y_train)
+    nb_pred = nb_model.predict(X_test)
+    acc_nb = accuracy_score(y_test, nb_pred)
+
+    # Decision Tree
+    dt_model = DecisionTreeClassifier(random_state=42)
+    dt_model.fit(X_train, y_train)
+    dt_pred = dt_model.predict(X_test)
+    acc_dt = accuracy_score(y_test, dt_pred)
+
+
+    return acc_nb, acc_dt
+
+# ========================
+# Asumsikan kamu sudah punya:
+# - df_kmeans (kolom: 'Sepal Length_EF', ..., 'Species')
+# - df_equal_width (dari pd.cut)
+# - df_equal_frequency (dari discretize_cdf)
+# ========================
+
+# --- 1. KMeans ---
+df_kmeans_nb = df_kmeans[[  # pilih hanya kolom kategori + kelas
+    'Sepal Length_EF',
+    'Sepal Width_EF',
+    'Petal Length_EF',
+    'Petal Width_EF',
+    'Species'
+]].rename(columns={
+    'Sepal Length_EF': 'sepal_length',
+    'Sepal Width_EF': 'sepal_width',
+    'Petal Length_EF': 'petal_length',
+    'Petal Width_EF': 'petal_width'
+})
+acc_kmeans_nb, acc_kmeans_dt = evaluate_models(df_kmeans_nb)
+
+# --- 2. Equal Width ---
+# Select only the categorical columns from df_equal_width
+df_ew_nb = df_equal_width[['Sepal Length_EW_Category', 'Sepal Width_EW_Category', 'Petal Length_EW_Category', 'Petal Width_EW_Category', 'Species']].copy()
+acc_ew_nb, acc_ew_dt = evaluate_models(df_ew_nb)
+
+# --- 3. Equal Frequency ---
+# Select only the categorical columns from df_equal_frequency
+df_ef_nb = df_equal_frequency[['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'Species']].copy()
+acc_ef_nb, acc_ef_dt = evaluate_models(df_ef_nb)
+
+
+# ========================
+# Tampilkan hasil perbandingan lengkap
+# ========================
+print("\n📊 Perbandingan Akurasi (Naive Bayes & Decision Tree):\n")
+print(f"{'Metode':<25} {'Naive Bayes':>12} {'Decision Tree':>18}")
+print("-" * 55)
+print(f"{'KMeans Clustering':<25} {acc_kmeans_nb:>12.4f} {acc_kmeans_dt:>18.4f}")
+print(f"{'Equal Width (cut)':<25} {acc_ew_nb:>12.4f} {acc_ew_dt:>18.4f}")
+print(f"{'Equal Frequency (CDF)':<25} {acc_ef_nb:>12.4f} {acc_ef_dt:>18.4f}")
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/tmp/ipython-input-14-4069801253.py[0m in [0;36m<cell line: 0>[0;34m()[0m
+[1;32m     36[0m [0;34m[0m[0m
+[1;32m     37[0m [0;31m# --- 1. KMeans ---[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 38[0;31m df_kmeans_nb = df_kmeans[[  # pilih hanya kolom kategori + kelas
+[0m[1;32m     39[0m     [0;34m'Sepal Length_EF'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     40[0m     [0;34m'Sepal Width_EF'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mNameError[0m: name 'df_kmeans' is not defined
+
