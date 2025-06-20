@@ -25,23 +25,49 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-print("\n--- Ukuran Dataset ---")
-print(f"Jumlah data (baris): {df.shape[0]}")
-print(f"Jumlah fitur (kolom): {df.shape[1]}")
+abalone = fetch_ucirepo(id=1)
+X = abalone.data.features
+y = abalone.data.targets
 
+# Gabungkan fitur dan target ke satu DataFrame
+df = X.copy()
+df['Rings'] = y
+
+# ✅ One-hot encoding untuk kolom 'Sex' (drop_first untuk menghindari dummy trap)
+df_encoded = pd.get_dummies(df, columns=['Sex'], drop_first=True)
+
+# ✅ Binning 'Rings' menjadi kelas umur
+df_encoded['AgeGroup'] = pd.cut(
+    df_encoded['Rings'],
+    bins=[0, 8, 11, df_encoded['Rings'].max()],
+    labels=['Muda', 'Dewasa', 'Tua']
+)
+
+# ✅ Normalisasi fitur numerik (selain 'Rings' dan 'AgeGroup')
+scaler = MinMaxScaler()
+numerical_cols = df_encoded.drop(columns=['Rings', 'AgeGroup']).columns
+df_encoded[numerical_cols] = scaler.fit_transform(df_encoded[numerical_cols])
+
+# ✅ Tampilkan 5 data pertama dengan tabulate
+print("\n--- Contoh Data Setelah Transformasi ---")
+print(tabulate(df_encoded.head().reset_index(drop=True), headers='keys', tablefmt='grid'))
+
+# ✅ Tampilkan distribusi kelas target AgeGroup dengan tabulate
+print("\n--- Distribusi Kelas Umur (AgeGroup) ---")
+age_dist = df_encoded['AgeGroup'].value_counts().reset_index()
+age_dist.columns = ['AgeGroup', 'Jumlah']
+print(tabulate(age_dist, headers='keys', tablefmt='grid'))
 ------------------
 
------ stdout -----
-
---- Ukuran Dataset ---
-------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m/tmp/ipython-input-3-1167992158.py[0m in [0;36m<cell line: 0>[0;34m()[0m
-[1;32m      1[0m [0mprint[0m[0;34m([0m[0;34m"\n--- Ukuran Dataset ---"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 2[0;31m [0mprint[0m[0;34m([0m[0;34mf"Jumlah data (baris): {df.shape[0]}"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      3[0m [0mprint[0m[0;34m([0m[0;34mf"Jumlah fitur (kolom): {df.shape[1]}"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipython-input-7-3421413927.py[0m in [0;36m<cell line: 0>[0;34m()[0m
+[1;32m     18[0m [0;34m[0m[0m
+[1;32m     19[0m [0;31m# ✅ Normalisasi fitur numerik (selain 'Rings' dan 'AgeGroup')[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 20[0;31m [0mscaler[0m [0;34m=[0m [0mMinMaxScaler[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     21[0m [0mnumerical_cols[0m [0;34m=[0m [0mdf_encoded[0m[0;34m.[0m[0mdrop[0m[0;34m([0m[0mcolumns[0m[0;34m=[0m[0;34m[[0m[0;34m'Rings'[0m[0;34m,[0m [0;34m'AgeGroup'[0m[0;34m][0m[0;34m)[0m[0;34m.[0m[0mcolumns[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     22[0m [0mdf_encoded[0m[0;34m[[0m[0mnumerical_cols[0m[0;34m][0m [0;34m=[0m [0mscaler[0m[0;34m.[0m[0mfit_transform[0m[0;34m([0m[0mdf_encoded[0m[0;34m[[0m[0mnumerical_cols[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mNameError[0m: name 'df' is not defined
+[0;31mNameError[0m: name 'MinMaxScaler' is not defined
 

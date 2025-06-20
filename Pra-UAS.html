@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>📊 Informasi Dataset Abalone (UCI ML Repository) &#8212; My sample book</title>
+    <title>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik &#8212; My sample book</title>
   
   
   
@@ -187,7 +187,10 @@
 <li class="toctree-l1"><a class="reference internal" href="Fuzzy%20C-mean%20Cluster.html">Fuzzy C-Mean Cluster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Decision%20Tree.html">Perhitungan Information Gain Manual (Dataset BMI Kompleks)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Diskritisasi.html">Teknik Binning Menggunakan Data Iris</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">📊 Informasi Dataset Abalone (UCI ML Repository)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a></li>
+
+
+
 </ul>
 
     </div>
@@ -373,7 +376,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>📊 Informasi Dataset Abalone (UCI ML Repository)</h1>
+    <h1>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,26 +386,49 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">🎯 Tujuan Penelitian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-dan-target">🔍 Deskripsi Fitur dan Target</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dari-sumber-dataset">📝 Catatan dari Sumber Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🧠 Tujuan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-atribut">Informasi Atribut</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur">Deskripsi Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dari-sumber-dataset">Catatan dari Sumber Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-data">Integrasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data">Jumlah Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data-cek-missing-value">🧩 Tipe Data &amp; Cek Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-fitur-numerik">Statistik Deskriptif Fitur Numerik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-jenis-kelamin-sex">Distribusi Jenis Kelamin (<code class="docutils literal notranslate"><span class="pre">Sex</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-distribusi">Visualisasi Distribusi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dataset">Struktur Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-baris-dan-kolom">Jumlah Baris Dan Kolom</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data">Menampilkan data</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-missing-value">Cek Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">Preprocessing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data">Transformasi Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-outlier-dengan-zscore">Cek Outlier dengan zscore</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">Visualisasi Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-pre-procesing-data">Langkah Langkah Pre-Procesing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-untuk-fitur-kategorikal">Encoding untuk fitur Kategorikal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-dan-evaluasi-klasifikasi">Modeling dan Evaluasi Klasifikasi</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi">Lakukan Klasifikasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi">✅ Akurasi:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">✅ Classification Report:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">✅ Confusion Matrix:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">✅ Akurasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">📄 Classification Report</a></li>
 </ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-menggunakan-decision-tree">Klasifikasi Menggunakan Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dan-perbandingan-model-decision-tree-vs-naive-bayes">Evaluasi dan Perbandingan Model: Decision Tree vs Naive Bayes</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -413,21 +439,42 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="informasi-dataset-abalone-uci-ml-repository">
-<h1>📊 Informasi Dataset Abalone (UCI ML Repository)<a class="headerlink" href="#informasi-dataset-abalone-uci-ml-repository" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="uas-klasifikasi-kelompok-umur-abalone-berdasarkan-karakteristik-fisik">
+<h1><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong><a class="headerlink" href="#uas-klasifikasi-kelompok-umur-abalone-berdasarkan-karakteristik-fisik" title="Link to this heading">#</a></h1>
+<p>Dataset yang digunakan dalam analisis ini adalah <strong>Abalone Dataset</strong> yang diambil dari <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/abalone">UCI Machine Learning Repository</a>.</p>
+<p>Dataset ini berisi informasi tentang ciri-ciri fisik dari abalone (sejenis kerang laut) seperti panjang, diameter, berat, dan jenis kelamin, serta jumlah cincin (<code class="docutils literal notranslate"><span class="pre">Rings</span></code>) yang menunjukkan usia dari abalone tersebut.</p>
+<section id="tujuan-analisis">
+<h2>🎯 Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
+<p>Tujuan dari analisis ini adalah untuk:</p>
+<ul class="simple">
+<li><p>Melakukan eksplorasi terhadap karakteristik data abalone</p></li>
+<li><p>Mengelompokkan abalone berdasarkan kelompok umur (<code class="docutils literal notranslate"><span class="pre">Muda</span></code>, <code class="docutils literal notranslate"><span class="pre">Dewasa</span></code>, <code class="docutils literal notranslate"><span class="pre">Tua</span></code>) menggunakan teknik binning</p></li>
+<li><p>Membangun model klasifikasi untuk memprediksi kelompok umur abalone berdasarkan fitur fisiknya</p></li>
+<li><p>Mengevaluasi performa model menggunakan klasifikasi seperti akurasi</p></li>
+</ul>
+</section>
+<section id="tools-dan-library">
+<h2>🛠️ Tools dan Library<a class="headerlink" href="#tools-dan-library" title="Link to this heading">#</a></h2>
+<p>Analisis ini dilakukan menggunakan:</p>
+<ul class="simple">
+<li><p>Python (pandas, seaborn, matplotlib)</p></li>
+<li><p>Scikit-learn (untuk preprocessing dan modeling)</p></li>
+<li><p>Tabulate (untuk menampilkan tabel secara rapi di console)</p></li>
+</ul>
+</section>
 <section id="dataset">
 <h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
 <p>Dataset diperoleh dari <a class="reference external" href="https://archive.ics.uci.edu/dataset/1/abalone">https://archive.ics.uci.edu/dataset/1/abalone</a></p>
 </section>
-<section id="tujuan-penelitian">
-<h2>🎯 Tujuan Penelitian<a class="headerlink" href="#tujuan-penelitian" title="Link to this heading">#</a></h2>
+<section id="tujuan">
+<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
 <p>Dataset ini digunakan untuk <strong>memprediksi umur abalone</strong> berdasarkan pengukuran fisik yang lebih mudah dilakukan.<br />
 Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu menghitung jumlah <strong>cincin</strong> menggunakan mikroskop — metode ini memakan waktu dan membosankan.</p>
 <p>Sebagai gantinya, kita mencoba memprediksi umur hanya dari data numerik.</p>
 </section>
 <hr class="docutils" />
-<section id="deskripsi-fitur-dan-target">
-<h2>🔍 Deskripsi Fitur dan Target<a class="headerlink" href="#deskripsi-fitur-dan-target" title="Link to this heading">#</a></h2>
+<section id="deskripsi-fitur">
+<h2>Deskripsi Fitur<a class="headerlink" href="#deskripsi-fitur" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
@@ -482,7 +529,7 @@ Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu
 </section>
 <hr class="docutils" />
 <section id="catatan-dari-sumber-dataset">
-<h2>📝 Catatan dari Sumber Dataset<a class="headerlink" href="#catatan-dari-sumber-dataset" title="Link to this heading">#</a></h2>
+<h2>Catatan dari Sumber Dataset<a class="headerlink" href="#catatan-dari-sumber-dataset" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Dataset ini <strong>tidak memiliki missing value</strong> (sudah dibersihkan).</p></li>
 <li><p>Untuk keperluan Artificial Neural Network (ANN), nilai numerik kadang dibagi 200 (normalisasi khusus ANN).</p></li>
@@ -490,12 +537,17 @@ Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu
 </ul>
 </section>
 <hr class="docutils" />
-<section id="tujuan-analisis">
-<h2>🧠 Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2>Tujuan Analisis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Prediksi usia abalone (regresi)</p></li>
 <li><p>Atau klasifikasi umur ke dalam kategori (anak, remaja, dewasa, tua)</p></li>
 </ul>
+</section>
+<section id="integrasi-data">
+<h2>Integrasi Data<a class="headerlink" href="#integrasi-data" title="Link to this heading">#</a></h2>
+<p>Dataset Abalone dari UCI sudah tersedia dalam bentuk <strong>tunggal dan terstruktur</strong>, sehingga tidak membutuhkan integrasi antar banyak sumber data.</p>
+<p>Namun, tetap dilakukan proses <strong>penggabungan antara fitur (<code class="docutils literal notranslate"><span class="pre">features</span></code>) dan target (<code class="docutils literal notranslate"><span class="pre">targets</span></code>)</strong> setelah pengambilan data dari pustaka <code class="docutils literal notranslate"><span class="pre">ucimlrepo</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ucimlrepo
@@ -503,7 +555,8 @@ Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: ucimlrepo in /usr/local/lib/python3.11/dist-packages (0.0.7)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ucimlrepo
+  Downloading ucimlrepo-0.0.7-py3-none-any.whl.metadata (5.5 kB)
 Requirement already satisfied: pandas&gt;=1.0.0 in /usr/local/lib/python3.11/dist-packages (from ucimlrepo) (2.2.2)
 Requirement already satisfied: certifi&gt;=2020.12.5 in /usr/local/lib/python3.11/dist-packages (from ucimlrepo) (2025.6.15)
 Requirement already satisfied: numpy&gt;=1.23.2 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2.0.2)
@@ -511,6 +564,11 @@ Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/pytho
 Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2025.2)
 Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2025.2)
 Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.0.0-&gt;ucimlrepo) (1.17.0)
+Downloading ucimlrepo-0.0.7-py3-none-any.whl (8.0 kB)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: ucimlrepo
+Successfully installed ucimlrepo-0.0.7
 </pre></div>
 </div>
 </div>
@@ -562,8 +620,316 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </section>
-<section id="informasi-atribut">
-<h2>Informasi Atribut<a class="headerlink" href="#informasi-atribut" title="Link to this heading">#</a></h2>
+<section id="eksplorasi-data">
+<h2>Eksplorasi data<a class="headerlink" href="#eksplorasi-data" title="Link to this heading">#</a></h2>
+<p>Tahapan eksplorasi data bertujuan untuk mengenal struktur, karakteristik, serta pola-pola awal dari dataset sebelum dilakukan preprocessing dan modeling. Dataset yang digunakan adalah <strong>Abalone Dataset</strong> dari UCI Machine Learning Repository, yang terdiri dari fitur-fitur fisik abalone serta target jumlah cincin (<code class="docutils literal notranslate"><span class="pre">Rings</span></code>) sebagai indikator umur.</p>
+<hr class="docutils" />
+<section id="jumlah-data">
+<h3>Jumlah Data<a class="headerlink" href="#jumlah-data" title="Link to this heading">#</a></h3>
+<p>Dataset ini terdiri dari:</p>
+<ul class="simple">
+<li><p><strong>4177 baris</strong> data (masing-masing mewakili satu abalone)</p></li>
+<li><p><strong>9 kolom</strong> (8 fitur + 1 target)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="tipe-data-cek-missing-value">
+<h3>🧩 Tipe Data &amp; Cek Missing Value<a class="headerlink" href="#tipe-data-cek-missing-value" title="Link to this heading">#</a></h3>
+<p>Tabel berikut menunjukkan tipe data masing-masing kolom serta apakah terdapat missing value:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Tipe</p></th>
+<th class="head"><p>Missing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sex</p></td>
+<td><p>kategori</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Length</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Diameter</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Height</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Whole weight</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shucked weight</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Viscera weight</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shell weight</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Rings</p></td>
+<td><p>numerik</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>✅ Tidak ditemukan data kosong pada dataset, sehingga <strong>tidak perlu melakukan imputasi</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="statistik-deskriptif-fitur-numerik">
+<h3>Statistik Deskriptif Fitur Numerik<a class="headerlink" href="#statistik-deskriptif-fitur-numerik" title="Link to this heading">#</a></h3>
+<p>Berikut ini ringkasan statistik dari fitur-fitur numerik dalam dataset:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Std</p></th>
+<th class="head"><p>Q1</p></th>
+<th class="head"><p>Q2 (Median)</p></th>
+<th class="head"><p>Q3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Length</p></td>
+<td><p>0.075</p></td>
+<td><p>0.815</p></td>
+<td><p>0.524</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>Whole weight</p></td>
+<td><p>0.002</p></td>
+<td><p>2.825</p></td>
+<td><p>0.828</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>Rings</p></td>
+<td><p>1</p></td>
+<td><p>29</p></td>
+<td><p>9.93</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>📌 Fitur <code class="docutils literal notranslate"><span class="pre">Rings</span></code> menunjukkan umur abalone (dalam bentuk jumlah cincin). Rata-rata abalone memiliki sekitar <strong>9.9 cincin</strong>, yang berarti rata-rata berusia sekitar <strong>11.4 tahun</strong> (<code class="docutils literal notranslate"><span class="pre">Rings</span> <span class="pre">+</span> <span class="pre">1.5</span></code>).</p>
+</section>
+<hr class="docutils" />
+<section id="distribusi-jenis-kelamin-sex">
+<h3>Distribusi Jenis Kelamin (<code class="docutils literal notranslate"><span class="pre">Sex</span></code>)<a class="headerlink" href="#distribusi-jenis-kelamin-sex" title="Link to this heading">#</a></h3>
+<p>Fitur <code class="docutils literal notranslate"><span class="pre">Sex</span></code> adalah satu-satunya variabel kategorikal dengan tiga nilai:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Jenis Kelamin</p></th>
+<th class="head"><p>Jumlah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M (Male)</p></td>
+<td><p>1528</p></td>
+</tr>
+<tr class="row-odd"><td><p>I (Infant)</p></td>
+<td><p>1342</p></td>
+</tr>
+<tr class="row-even"><td><p>F (Female)</p></td>
+<td><p>1307</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Distribusinya cukup merata, yang berarti tidak ada dominasi kelompok tertentu, <strong>sehingga tidak perlu balancing</strong>.</p>
+</section>
+<hr class="docutils" />
+<section id="visualisasi-distribusi">
+<h3>Visualisasi Distribusi<a class="headerlink" href="#visualisasi-distribusi" title="Link to this heading">#</a></h3>
+<p><strong>Histogram <code class="docutils literal notranslate"><span class="pre">Rings</span></code> (Umur)</strong></p>
+<p>Grafik ini menunjukkan distribusi frekuensi nilai <code class="docutils literal notranslate"><span class="pre">Rings</span></code> (jumlah cincin). Mayoritas abalone memiliki antara <strong>6 hingga 12 cincin</strong>, dengan puncak di sekitar nilai 9.</p>
+<ul class="simple">
+<li><p>Menunjukkan distribusi <strong>positively skewed</strong> (miring ke kanan)</p></li>
+<li><p>Ada outlier umur panjang di atas 20 cincin</p></li>
+</ul>
+<p><strong>Barplot <code class="docutils literal notranslate"><span class="pre">Sex</span></code></strong></p>
+<p>Grafik batang memperlihatkan jumlah data pada masing-masing kategori <code class="docutils literal notranslate"><span class="pre">Sex</span></code>. Tiga kategori (<code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code>) terdistribusi <strong>cukup seimbang</strong>, menandakan <strong>tidak ada bias kategori</strong> yang dominan.</p>
+<p><strong>Heatmap Korelasi Fitur Numerik</strong></p>
+<p>Heatmap korelasi mengungkapkan hubungan antar fitur numerik. Beberapa insight penting:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Whole</span> <span class="pre">weight</span></code> berkorelasi tinggi dengan <code class="docutils literal notranslate"><span class="pre">Shucked</span> <span class="pre">weight</span></code> dan <code class="docutils literal notranslate"><span class="pre">Viscera</span> <span class="pre">weight</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">weight</span></code> juga cukup berkorelasi dengan <code class="docutils literal notranslate"><span class="pre">Rings</span></code> (target)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Height</span></code> memiliki korelasi rendah, bisa jadi fitur kurang informatif untuk prediksi umur</p></li>
+</ul>
+<hr class="docutils" />
+<p>Kesimpulan Eksplorasi Data:</p>
+<ul class="simple">
+<li><p><strong>Data lengkap</strong>, tidak ada nilai kosong</p></li>
+<li><p>Distribusi <code class="docutils literal notranslate"><span class="pre">Sex</span></code> seimbang</p></li>
+<li><p>Fitur numerik memiliki nilai yang bervariasi dan layak untuk normalisasi</p></li>
+<li><p>Umur (<code class="docutils literal notranslate"><span class="pre">Rings</span></code>) cenderung miring ke kanan → perlu binning untuk klasifikasi</p></li>
+<li><p>Korelasi antar berat sangat tinggi → waspadai kemungkinan <strong>redundansi fitur</strong></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># Ambil dataset</span>
+<span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
+
+<span class="c1"># Gabungkan ke satu DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># 1. Ukuran dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah baris:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah kolom:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># 2. Info tipe data</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Informasi Tipe Data ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Kolom&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="s2">&quot;Tipe&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
+    <span class="s2">&quot;Missing&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+<span class="p">}),</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+
+<span class="c1"># 3. Statistik deskriptif</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Statistik Deskriptif ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(),</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+
+<span class="c1"># 4. Distribusi kategori &#39;Sex&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Distribusi Jenis Kelamin ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+               <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="s2">&quot;Jenis Kelamin&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">:</span> <span class="s2">&quot;Jumlah&quot;</span><span class="p">}),</span>
+               <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+
+<span class="c1"># 5. Visualisasi Histogram Rings</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Umur (Rings)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Rings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 6. Visualisasi Barplot Sex</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;pastel&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribusi Jenis Kelamin Abalone&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Jenis Kelamin&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 7. Heatmap Korelasi</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="c1"># Drop the &#39;Sex&#39; column before calculating correlation</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Korelasi antar Fitur Numerik&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah baris: 4177
+Jumlah kolom: 9
+
+--- Informasi Tipe Data ---
++----------------+----------------+---------+-----------+
+|                | Kolom          | Tipe    |   Missing |
++================+================+=========+===========+
+| Sex            | Sex            | object  |         0 |
++----------------+----------------+---------+-----------+
+| Length         | Length         | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Diameter       | Diameter       | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Height         | Height         | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Whole_weight   | Whole_weight   | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Shucked_weight | Shucked_weight | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Viscera_weight | Viscera_weight | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Shell_weight   | Shell_weight   | float64 |         0 |
++----------------+----------------+---------+-----------+
+| Rings          | Rings          | int64   |         0 |
++----------------+----------------+---------+-----------+
+
+--- Statistik Deskriptif ---
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|    | index   |      Length |     Diameter |       Height |   Whole_weight |   Shucked_weight |   Viscera_weight |   Shell_weight |      Rings |
++====+=========+=============+==============+==============+================+==================+==================+================+============+
+|  0 | count   | 4177        | 4177         | 4177         |    4177        |      4177        |      4177        |    4177        | 4177       |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  1 | mean    |    0.523992 |    0.407881  |    0.139516  |       0.828742 |         0.359367 |         0.180594 |       0.238831 |    9.93368 |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  2 | std     |    0.120093 |    0.0992399 |    0.0418271 |       0.490389 |         0.221963 |         0.109614 |       0.139203 |    3.22417 |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  3 | min     |    0.075    |    0.055     |    0         |       0.002    |         0.001    |         0.0005   |       0.0015   |    1       |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  4 | 25%     |    0.45     |    0.35      |    0.115     |       0.4415   |         0.186    |         0.0935   |       0.13     |    8       |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  5 | 50%     |    0.545    |    0.425     |    0.14      |       0.7995   |         0.336    |         0.171    |       0.234    |    9       |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  6 | 75%     |    0.615    |    0.48      |    0.165     |       1.153    |         0.502    |         0.253    |       0.329    |   11       |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+|  7 | max     |    0.815    |    0.65      |    1.13      |       2.8255   |         1.488    |         0.76     |       1.005    |   29       |
++----+---------+-------------+--------------+--------------+----------------+------------------+------------------+----------------+------------+
+
+--- Distribusi Jenis Kelamin ---
++----+----------+---------+
+|    | Jumlah   |   count |
++====+==========+=========+
+|  0 | M        |    1528 |
++----+----------+---------+
+|  1 | I        |    1342 |
++----+----------+---------+
+|  2 | F        |    1307 |
++----+----------+---------+
+</pre></div>
+</div>
+<img alt="_images/ca2404dafc9d1937495833a0a0ca28568788a1c7771f277b2cce45beab5bdf3d.png" src="_images/ca2404dafc9d1937495833a0a0ca28568788a1c7771f277b2cce45beab5bdf3d.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipython-input-3-362771847.py:50: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(x=&#39;Sex&#39;, data=df, palette=&#39;pastel&#39;)
+</pre></div>
+</div>
+<img alt="_images/29e055a0f82d446b464ca4fe335c928ec56a00d213b493ce4d8612d8307fdcb5.png" src="_images/29e055a0f82d446b464ca4fe335c928ec56a00d213b493ce4d8612d8307fdcb5.png" />
+<img alt="_images/f6930e5d1972664a6ca6bf1bcbc520bccf6e449d04c669248fcec514a730edee.png" src="_images/f6930e5d1972664a6ca6bf1bcbc520bccf6e449d04c669248fcec514a730edee.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="struktur-dataset">
+<h2>Struktur Dataset<a class="headerlink" href="#struktur-dataset" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Nama Variabel</p></th>
@@ -611,9 +977,6 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </tbody>
 </table>
 </div>
-</section>
-<section id="eksplorasi-data">
-<h2>Eksplorasi Data<a class="headerlink" href="#eksplorasi-data" title="Link to this heading">#</a></h2>
 <section id="jumlah-baris-dan-kolom">
 <h3>Jumlah Baris Dan Kolom<a class="headerlink" href="#jumlah-baris-dan-kolom" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -626,16 +989,8 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Ukuran Dataset ---
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipython-input-3-1167992158.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Ukuran Dataset ---&quot;</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah data (baris): </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah fitur (kolom): </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;df&#39; is not defined
+Jumlah data (baris): 4177
+Jumlah fitur (kolom): 9
 </pre></div>
 </div>
 </div>
@@ -751,11 +1106,150 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 </div>
 </div>
 </section>
+<section id="preprocessing-data">
+<h2>Preprocessing Data<a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
+</section>
+<section id="transformasi-data">
+<h2>Transformasi Data<a class="headerlink" href="#transformasi-data" title="Link to this heading">#</a></h2>
+<p>Transformasi data diperlukan untuk menyiapkan data sebelum digunakan dalam model klasifikasi. Beberapa transformasi penting yang dilakukan pada dataset Abalone antara lain:</p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>One-Hot Encoding (Fitur Kategorikal)</p></li>
+</ol>
+<p>Fitur <code class="docutils literal notranslate"><span class="pre">Sex</span></code> merupakan fitur kategorikal (<code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">I</span></code>). Untuk bisa diproses oleh model machine learning, fitur ini perlu dikonversi menjadi numerik dengan cara <strong>One-Hot Encoding</strong>.</p>
+<p>Contoh hasil encoding:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sex_F</p></th>
+<th class="head"><p>Sex_I</p></th>
+<th class="head"><p>Sex_M</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<ol class="arabic simple" start="2">
+<li><p>Normalisasi Fitur Numerik</p></li>
+</ol>
+<p>Fitur numerik seperti <code class="docutils literal notranslate"><span class="pre">Length</span></code>, <code class="docutils literal notranslate"><span class="pre">Diameter</span></code>, dan <code class="docutils literal notranslate"><span class="pre">Weight</span></code> memiliki rentang yang berbeda-beda. Supaya model tidak berat sebelah, dilakukan <strong>normalisasi</strong> menggunakan <strong>Min-Max Scaling</strong> ke rentang 0–1.</p>
+<p>Contoh transformasi:</p>
+<ul class="simple">
+<li><p>Sebelum: <code class="docutils literal notranslate"><span class="pre">Length</span> <span class="pre">=</span> <span class="pre">0.5</span></code></p></li>
+<li><p>Setelah: <code class="docutils literal notranslate"><span class="pre">Length_scaled</span> <span class="pre">=</span> <span class="pre">0.62</span></code></p></li>
+</ul>
+<hr class="docutils" />
+<ol class="arabic simple" start="3">
+<li><p>Binning Target <code class="docutils literal notranslate"><span class="pre">Rings</span></code> Menjadi Kelas</p></li>
+</ol>
+<p>Fitur <code class="docutils literal notranslate"><span class="pre">Rings</span></code> menunjukkan jumlah cincin (umur). Karena kita akan membuat klasifikasi, maka <code class="docutils literal notranslate"><span class="pre">Rings</span></code> dibagi menjadi 3 kelompok:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas Umur</p></th>
+<th class="head"><p>Rings Range</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Muda</p></td>
+<td><p>1 – 8</p></td>
+<td><p>Abalone muda</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dewasa</p></td>
+<td><p>9 – 11</p></td>
+<td><p>Abalone dewasa</p></td>
+</tr>
+<tr class="row-even"><td><p>Tua</p></td>
+<td><p>12 – 29</p></td>
+<td><p>Abalone tua</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>Ini disebut sebagai <strong>discretization</strong> atau binning, yang mengubah regresi menjadi klasifikasi multikelas.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>✅ Output Akhir:</p>
+<ul class="simple">
+<li><p>Data sudah dalam bentuk numerik</p></li>
+<li><p>Skala nilai konsisten (0–1)</p></li>
+<li><p>Target <code class="docutils literal notranslate"><span class="pre">Rings</span></code> telah dikonversi ke label <code class="docutils literal notranslate"><span class="pre">AgeGroup</span></code> (kategori)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
+
+<span class="c1"># Gabungkan fitur dan target ke satu DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># ✅ One-hot encoding untuk kolom &#39;Sex&#39; (drop_first untuk menghindari dummy trap)</span>
+<span class="n">df_encoded</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># ✅ Binning &#39;Rings&#39; menjadi kelas umur</span>
+<span class="n">df_encoded</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span>
+    <span class="n">df_encoded</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">],</span>
+    <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="n">df_encoded</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># ✅ Normalisasi fitur numerik (selain &#39;Rings&#39; dan &#39;AgeGroup&#39;)</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">numerical_cols</span> <span class="o">=</span> <span class="n">df_encoded</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">,</span> <span class="s1">&#39;AgeGroup&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">df_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
+
+<span class="c1"># ✅ Tampilkan 5 data pertama dengan tabulate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Contoh Data Setelah Transformasi ---&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df_encoded</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+
+<span class="c1"># ✅ Tampilkan distribusi kelas target AgeGroup dengan tabulate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Distribusi Kelas Umur (AgeGroup) ---&quot;</span><span class="p">)</span>
+<span class="n">age_dist</span> <span class="o">=</span> <span class="n">df_encoded</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">age_dist</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">,</span> <span class="s1">&#39;Jumlah&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">age_dist</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">/tmp/ipython-input-7-3421413927.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> 
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># ✅ Normalisasi fitur numerik (selain &#39;Rings&#39; dan &#39;AgeGroup&#39;)</span>
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">numerical_cols</span> <span class="o">=</span> <span class="n">df_encoded</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">,</span> <span class="s1">&#39;AgeGroup&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">df_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
+
+<span class="ne">NameError</span>: name &#39;MinMaxScaler&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="cek-outlier-dengan-zscore">
 <h2>Cek Outlier dengan zscore<a class="headerlink" href="#cek-outlier-dengan-zscore" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">zscore</span>
+
+<span class="c1"># Define numerical columns, excluding &#39;Sex&#39; which is categorical</span>
+<span class="n">numerik_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="c1"># Hitung Z-score untuk semua kolom numerik</span>
 <span class="n">z_scores</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numerik_cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">zscore</span><span class="p">)</span>
@@ -788,213 +1282,205 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 +----+----------------+------------------+
 |  6 | Shell_weight   |               27 |
 +----+----------------+------------------+
+|  7 | Rings          |               62 |
++----+----------------+------------------+
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="visualisasi-data">
-<h2>Visualisasi Data<a class="headerlink" href="#visualisasi-data" title="Link to this heading">#</a></h2>
+<section id="modeling-dan-evaluasi-klasifikasi">
+<h2>Modeling dan Evaluasi Klasifikasi<a class="headerlink" href="#modeling-dan-evaluasi-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Pada tahap ini dilakukan proses pemodelan untuk klasifikasi umur abalone berdasarkan fitur fisik yang tersedia. Target klasifikasi (<code class="docutils literal notranslate"><span class="pre">AgeGroup</span></code>) diperoleh dari hasil binning terhadap fitur <code class="docutils literal notranslate"><span class="pre">Rings</span></code>.</p>
+<hr class="docutils" />
+<p>🧪 1. Persiapan Data</p>
+<p>Langkah-langkah yang dilakukan sebelum modeling:</p>
+<ul class="simple">
+<li><p>Mengambil dataset abalone dari UCI</p></li>
+<li><p>One-Hot Encoding fitur kategorikal <code class="docutils literal notranslate"><span class="pre">Sex</span></code></p></li>
+<li><p>Melakukan binning pada target <code class="docutils literal notranslate"><span class="pre">Rings</span></code> menjadi 3 kelas:</p>
+<ul>
+<li><p><strong>Muda</strong>: 1–8 cincin</p></li>
+<li><p><strong>Dewasa</strong>: 9–11 cincin</p></li>
+<li><p><strong>Tua</strong>: 12–29 cincin</p></li>
+</ul>
+</li>
+<li><p>Normalisasi fitur numerik menggunakan <strong>Min-Max Scaling</strong></p></li>
+<li><p>Membagi data menjadi training dan testing (70:30)</p></li>
+</ul>
+<hr class="docutils" />
+<p>🌳 2. Decision Tree Classifier</p>
+<p>Decision Tree adalah algoritma klasifikasi berbasis pohon yang membagi data berdasarkan fitur yang memberikan informasi paling tinggi.</p>
+<ul class="simple">
+<li><p>Model dilatih menggunakan data training</p></li>
+<li><p>Hasil prediksi diuji menggunakan data testing</p></li>
+<li><p>Akurasi dihitung dan dievaluasi menggunakan <strong>confusion matrix</strong> dan <strong>classification report</strong></p></li>
+</ul>
+<hr class="docutils" />
+<p>🕊️ 3. Naive Bayes Classifier</p>
+<p>Naive Bayes merupakan metode klasifikasi berbasis probabilistik yang mengasumsikan independensi antar fitur.</p>
+<ul class="simple">
+<li><p>Digunakan varian <strong>GaussianNB</strong> untuk data numerik</p></li>
+<li><p>Proses serupa dilakukan seperti pada Decision Tree</p></li>
+<li><p>Evaluasi juga dilakukan dengan <strong>akurasi</strong>, <strong>precision</strong>, <strong>recall</strong>, dan <strong>f1-score</strong></p></li>
+</ul>
+<hr class="docutils" />
+<p>📊 4. Evaluasi Model</p>
+<p>Evaluasi dilakukan dengan 2 cara:</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="akurasi">
+<h1>✅ Akurasi:<a class="headerlink" href="#akurasi" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Decision Tree: contoh <code class="docutils literal notranslate"><span class="pre">85.42%</span></code></p></li>
+<li><p>Naive Bayes: contoh <code class="docutils literal notranslate"><span class="pre">79.17%</span></code></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="classification-report">
+<h1>✅ Classification Report:<a class="headerlink" href="#classification-report" title="Link to this heading">#</a></h1>
+<p>Menampilkan metrik per kelas:</p>
+<ul class="simple">
+<li><p><strong>Precision</strong>: Ketepatan</p></li>
+<li><p><strong>Recall</strong>: Kelengkapan</p></li>
+<li><p><strong>F1-score</strong>: Harmoni antara precision dan recall</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="confusion-matrix">
+<h1>✅ Confusion Matrix:<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h1>
+<p>Matriks yang menunjukkan jumlah prediksi benar dan salah untuk setiap kelas (<code class="docutils literal notranslate"><span class="pre">Muda</span></code>, <code class="docutils literal notranslate"><span class="pre">Dewasa</span></code>, <code class="docutils literal notranslate"><span class="pre">Tua</span></code>).</p>
+<p>Visualisasi ditampilkan dalam bentuk <strong>heatmap</strong> untuk:</p>
+<ul class="simple">
+<li><p>Decision Tree (warna biru)</p></li>
+<li><p>Naive Bayes (warna hijau)</p></li>
+</ul>
+<hr class="docutils" />
+<p>📝 Kesimpulan Sementara:</p>
+<ul class="simple">
+<li><p>Decision Tree memberikan akurasi yang lebih tinggi dibandingkan Naive Bayes pada dataset ini.</p></li>
+<li><p>Model lebih baik dalam mengklasifikasikan kelas <strong>Dewasa</strong>, namun mengalami tantangan dalam membedakan <strong>Muda</strong> dan <strong>Tua</strong> karena distribusi <code class="docutils literal notranslate"><span class="pre">Rings</span></code> yang overlapping.</p></li>
+</ul>
+<section id="lakukan-klasifikasi-menggunakan-naive-bayes">
+<h2>Lakukan Klasifikasi Menggunakan Naive Bayes<a class="headerlink" href="#lakukan-klasifikasi-menggunakan-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Pada tahap ini dilakukan klasifikasi umur abalone berdasarkan fitur-fitur fisiknya menggunakan algoritma <strong>Naive Bayes</strong>, khususnya varian <strong>GaussianNB</strong> yang cocok untuk data numerik kontinu.</p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p><strong>One-Hot Encoding</strong> dilakukan pada fitur <code class="docutils literal notranslate"><span class="pre">Sex</span></code> untuk mengubah data kategorikal menjadi numerik.</p></li>
+<li><p><strong>Binning</strong> diterapkan pada fitur <code class="docutils literal notranslate"><span class="pre">Rings</span></code> untuk membagi abalone menjadi 3 kelompok umur:</p>
+<ul class="simple">
+<li><p>Muda: 1–8 cincin</p></li>
+<li><p>Dewasa: 9–11 cincin</p></li>
+<li><p>Tua: 12–29 cincin</p></li>
+</ul>
+</li>
+<li><p><strong>Min-Max Scaling</strong> diterapkan pada fitur numerik untuk normalisasi ke rentang 0–1.</p></li>
+<li><p>Dataset dibagi menjadi <strong>data latih (70%)</strong> dan <strong>data uji (30%)</strong>.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Modeling: Gaussian Naive Bayes</strong></p>
+<p>Model Naive Bayes dibangun menggunakan data latih dan diuji dengan data uji. Proses ini menghasilkan prediksi kelas umur (<code class="docutils literal notranslate"><span class="pre">AgeGroup</span></code>) yang kemudian dievaluasi.</p>
+<hr class="docutils" />
+<p><strong>Hasil Evaluasi</strong></p>
+<section id="id2">
+<h3>✅ Akurasi<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Model Naive Bayes menghasilkan akurasi sebesar sekitar:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[Contoh</span> <span class="pre">output:</span> <span class="pre">76.85%]</span></code></p>
+</section>
+<section id="id3">
+<h3>📄 Classification Report<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Laporan klasifikasi menunjukkan metrik:</p>
+<ul class="simple">
+<li><p><strong>Precision</strong>: ketepatan prediksi tiap kelas</p></li>
+<li><p><strong>Recall</strong>: kemampuan model menangkap kelas sebenarnya</p></li>
+<li><p><strong>F1-score</strong>: rata-rata harmonis precision dan recall</p></li>
+</ul>
+<p>Contoh format laporan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Precision</p></th>
+<th class="head"><p>Recall</p></th>
+<th class="head"><p>F1-score</p></th>
+<th class="head"><p>Support</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Muda</p></td>
+<td><p>0.74</p></td>
+<td><p>0.81</p></td>
+<td><p>0.77</p></td>
+<td><p>310</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dewasa</p></td>
+<td><p>0.73</p></td>
+<td><p>0.69</p></td>
+<td><p>0.71</p></td>
+<td><p>265</p></td>
+</tr>
+<tr class="row-even"><td><p>Tua</p></td>
+<td><p>0.83</p></td>
+<td><p>0.77</p></td>
+<td><p>0.80</p></td>
+<td><p>276</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Confusion Matrix</strong></p>
+<p>Matriks kebingungan menunjukkan jumlah prediksi benar/salah antar kelas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Pred Muda</p></th>
+<th class="head"><p>Pred Dewasa</p></th>
+<th class="head"><p>Pred Tua</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Actual Muda</p></td>
+<td><p>252</p></td>
+<td><p>36</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>Actual Dewasa</p></td>
+<td><p>35</p></td>
+<td><p>183</p></td>
+<td><p>47</p></td>
+</tr>
+<tr class="row-even"><td><p>Actual Tua</p></td>
+<td><p>26</p></td>
+<td><p>37</p></td>
+<td><p>213</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install jika belum</span>
 
-<span class="c1"># Tema seaborn</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
-
-<span class="c1"># Ambil dataset</span>
-<span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
-
-<span class="c1"># Gabungkan ke satu DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-
-<span class="c1"># (lanjutkan dengan visualisasi batang...)</span>
-
-<span class="c1"># Set style</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
-
-<span class="c1"># 1. Grafik Batang: Distribusi Umur (Rings)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">rings_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">rings_count</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">rings_count</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Cincin (Rings)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Abalone&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribusi Umur Abalone (Rings)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rings_count</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># 2. Grafik Batang: Distribusi Jenis Kelamin (Sex)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">sex_count</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">sex_count</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">sex_count</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;salmon&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jenis Kelamin&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Abalone&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribusi Jenis Kelamin Abalone&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># 3. Grafik Batang: Rata-rata Berat Berdasarkan Jenis Kelamin</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
-<span class="n">mean_weights</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Sex&#39;</span><span class="p">)[[</span><span class="s1">&#39;Whole weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Shucked weight&#39;</span><span class="p">,</span> <span class="s1">&#39;Shell weight&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">mean_weights</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Rata-rata Berat Berdasarkan Jenis Kelamin&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Berat (gram)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">/usr/local/lib/python3.11/dist-packages/matplotlib/style/core.py</span> in <span class="ni">use</span><span class="nt">(style)</span>
-<span class="g g-Whitespace">    </span><span class="mi">128</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">129</span>                 <span class="n">style</span> <span class="o">=</span> <span class="n">_rc_params_in_file</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span>             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-
-<span class="nn">/usr/local/lib/python3.11/dist-packages/matplotlib/__init__.py</span> in <span class="ni">_rc_params_in_file</span><span class="nt">(fname, transform, fail_on_error)</span>
-<span class="g g-Whitespace">    </span><span class="mi">902</span>     <span class="n">rc_temp</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="ne">--&gt; </span><span class="mi">903</span>     <span class="k">with</span> <span class="n">_open_file_or_url</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">904</span>         <span class="k">try</span><span class="p">:</span>
-
-<span class="nn">/usr/lib/python3.11/contextlib.py</span> in <span class="ni">__enter__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">137</span>             <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">138</span>         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-
-<span class="nn">/usr/local/lib/python3.11/dist-packages/matplotlib/__init__.py</span> in <span class="ni">_open_file_or_url</span><span class="nt">(fname)</span>
-<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">880</span>         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">881</span>             <span class="k">yield</span> <span class="n">f</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;whitegrid&#39;
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">OSError</span><span class="g g-Whitespace">                                   </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipython-input-40-796940175.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span> 
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="c1"># Set style</span>
-<span class="ne">---&gt; </span><span class="mi">21</span> <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">sns</span><span class="o">.</span><span class="n">set_palette</span><span class="p">(</span><span class="s2">&quot;pastel&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> 
-
-<span class="nn">/usr/local/lib/python3.11/dist-packages/matplotlib/style/core.py</span> in <span class="ni">use</span><span class="nt">(style)</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span>                 <span class="n">style</span> <span class="o">=</span> <span class="n">_rc_params_in_file</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span>             <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">131</span>                 <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>                     <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">style</span><span class="si">!r}</span><span class="s2"> is not a valid package style, path of style &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span>                     <span class="sa">f</span><span class="s2">&quot;file, URL of style file, or library style name (library &quot;</span>
-
-<span class="ne">OSError</span>: &#39;whitegrid&#39; is not a valid package style, path of style file, URL of style file, or library style name (library styles are listed in `style.available`)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="langkah-langkah-pre-procesing-data">
-<h2>Langkah Langkah Pre-Procesing Data<a class="headerlink" href="#langkah-langkah-pre-procesing-data" title="Link to this heading">#</a></h2>
-<section id="encoding-untuk-fitur-kategorikal">
-<h3>Encoding untuk fitur Kategorikal<a class="headerlink" href="#encoding-untuk-fitur-kategorikal" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-
-<span class="c1"># Load dataset</span>
-<span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
-
-<span class="c1"># Gabungkan ke satu DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
-
-<span class="c1"># ========================</span>
-<span class="c1"># 1. One-Hot Encoding</span>
-<span class="c1"># ========================</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># hasil: kolom &#39;Sex_F&#39; dan &#39;Sex_M&#39; (karena &#39;I&#39; jadi dasar)</span>
-
-<span class="c1"># ========================</span>
-<span class="c1"># 2. Binning Umur</span>
-<span class="c1"># ========================</span>
-<span class="c1"># Kelompokkan umur berdasarkan &#39;Rings&#39;</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
-
-<span class="c1"># ========================</span>
-<span class="c1"># 3. Normalisasi Min-Max</span>
-<span class="c1"># ========================</span>
-<span class="n">fitur_numerik</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">,</span> <span class="s1">&#39;AgeGroup&#39;</span><span class="p">])</span>  <span class="c1"># semua fitur kecuali target</span>
-<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="n">df_scaled</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fitur_numerik</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">fitur_numerik</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-
-<span class="c1"># Gabungkan hasil normalisasi dan target</span>
-<span class="n">df_scaled</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-<span class="n">df_scaled</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># ========================</span>
-<span class="c1"># 4. Reduksi Dimensi (PCA)</span>
-<span class="c1"># ========================</span>
-<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">pca_result</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_scaled</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">,</span> <span class="s1">&#39;AgeGroup&#39;</span><span class="p">]))</span>
-<span class="n">df_scaled</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca_result</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">df_scaled</span><span class="p">[</span><span class="s1">&#39;PC2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pca_result</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Visualisasi PCA</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_scaled</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;PC2&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Set2&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Reduksi Dimensi PCA pada Data Abalone&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/36c3baba5f4930c8b76d30cfea5def5f556524078115a7631d40099a133fb82b.png" src="_images/36c3baba5f4930c8b76d30cfea5def5f556524078115a7631d40099a133fb82b.png" />
-</div>
-</div>
-</section>
-</section>
-<section id="lakukan-klasifikasi">
-<h2>Lakukan Klasifikasi<a class="headerlink" href="#lakukan-klasifikasi" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
+<span class="c1"># Import Library</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tabulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">tabulate</span>
 
-<span class="c1"># Ambil dan siapkan data</span>
+<span class="c1"># Ambil dataset Abalone</span>
 <span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
 
-<span class="c1"># Gabung dan encode</span>
+<span class="c1"># Gabung ke DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># One-hot encoding kolom &#39;Sex&#39;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Binning target menjadi 3 kategori umur</span>
+<span class="c1"># Binning target &#39;Rings&#39; menjadi kelas umur</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
 
 <span class="c1"># Normalisasi fitur</span>
@@ -1008,85 +1494,380 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-pac
 <span class="c1"># Split data</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_class</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="c1"># ============================</span>
-<span class="c1"># 1. Decision Tree Classifier</span>
-<span class="c1"># ============================</span>
-<span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<span class="n">y_pred_dt</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">acc_dt</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">)</span>
-
-<span class="c1"># ============================</span>
-<span class="c1"># 2. Naive Bayes Classifier</span>
-<span class="c1"># ============================</span>
+<span class="c1"># ===============================</span>
+<span class="c1"># 🧪 Klasifikasi Naive Bayes</span>
+<span class="c1"># ===============================</span>
 <span class="n">nb_model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 <span class="n">nb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 <span class="n">y_pred_nb</span> <span class="o">=</span> <span class="n">nb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Evaluasi Akurasi</span>
 <span class="n">acc_nb</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Akurasi Naive Bayes: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">acc_nb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
 
-<span class="c1"># ============================</span>
-<span class="c1"># Hasil Evaluasi</span>
-<span class="c1"># ============================</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi Decision Tree :&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">acc_dt</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Akurasi Naive Bayes   :&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">acc_nb</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+<span class="c1"># Classification Report (as dict → to DataFrame → tabulate)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">report_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">report</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">report_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelas&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📄 Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">report_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Klasifikasi Decision Tree:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Klasifikasi Naive Bayes:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">))</span>
-
-<span class="c1"># Confusion Matrix untuk visualisasi</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
-            <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix - Decision Tree&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">,</span>
-            <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confusion Matrix - Naive Bayes&quot;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Confusion Matrix → ke DataFrame → tabulate</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
+<span class="n">cm_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Actual Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Actual Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Actual Tua&#39;</span><span class="p">],</span>
+                        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Pred Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Pred Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Pred Tua&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Confusion Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">cm_df</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Akurasi Decision Tree : 60.05 %
-Akurasi Naive Bayes   : 56.54 %
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Akurasi Naive Bayes: 56.54%
 
-Klasifikasi Decision Tree:
+📄 Classification Report:
++----+--------------+-------------+----------+------------+-----------+
+|    | Kelas        |   precision |   recall |   f1-score |   support |
++====+==============+=============+==========+============+===========+
+|  0 | Dewasa       |        0.54 |     0.46 |       0.5  |    540    |
++----+--------------+-------------+----------+------------+-----------+
+|  1 | Muda         |        0.68 |     0.79 |       0.73 |    437    |
++----+--------------+-------------+----------+------------+-----------+
+|  2 | Tua          |        0.4  |     0.42 |       0.41 |    277    |
++----+--------------+-------------+----------+------------+-----------+
+|  3 | accuracy     |        0.57 |     0.57 |       0.57 |      0.57 |
++----+--------------+-------------+----------+------------+-----------+
+|  4 | macro avg    |        0.54 |     0.56 |       0.55 |   1254    |
++----+--------------+-------------+----------+------------+-----------+
+|  5 | weighted avg |        0.56 |     0.57 |       0.56 |   1254    |
++----+--------------+-------------+----------+------------+-----------+
 
-              precision    recall  f1-score   support
-
-      Dewasa       0.58      0.57      0.57       540
-        Muda       0.70      0.68      0.69       437
-         Tua       0.50      0.53      0.51       277
-
-    accuracy                           0.60      1254
-   macro avg       0.59      0.59      0.59      1254
-weighted avg       0.60      0.60      0.60      1254
-
-
-Klasifikasi Naive Bayes:
-
-              precision    recall  f1-score   support
-
-      Dewasa       0.54      0.46      0.50       540
-        Muda       0.68      0.79      0.73       437
-         Tua       0.40      0.42      0.41       277
-
-    accuracy                           0.57      1254
-   macro avg       0.54      0.56      0.55      1254
-weighted avg       0.56      0.57      0.56      1254
+📊 Confusion Matrix:
++---------------+-------------+---------------+------------+
+|               |   Pred Muda |   Pred Dewasa |   Pred Tua |
++===============+=============+===============+============+
+| Actual Muda   |         347 |            81 |          9 |
++---------------+-------------+---------------+------------+
+| Actual Dewasa |         129 |           247 |        164 |
++---------------+-------------+---------------+------------+
+| Actual Tua    |          36 |           126 |        115 |
++---------------+-------------+---------------+------------+
 </pre></div>
 </div>
-<img alt="_images/d9017feb004379a9320bdb8a189d14779d58672b733729d6ec862b1a98337363.png" src="_images/d9017feb004379a9320bdb8a189d14779d58672b733729d6ec862b1a98337363.png" />
 </div>
 </div>
+</section>
+</section>
+<section id="klasifikasi-menggunakan-decision-tree">
+<h2>Klasifikasi Menggunakan Decision Tree<a class="headerlink" href="#klasifikasi-menggunakan-decision-tree" title="Link to this heading">#</a></h2>
+<p>Pada bagian ini, dilakukan klasifikasi umur abalone berdasarkan fitur-fitur fisik menggunakan algoritma <strong>Decision Tree Classifier</strong>. Decision Tree bekerja dengan membagi data secara rekursif berdasarkan fitur-fitur yang memberikan informasi paling tinggi.</p>
+<hr class="docutils" />
+<p><strong>Preprocessing Data</strong></p>
+<p>Langkah-langkah pra-pemrosesan data tetap sama seperti sebelumnya:</p>
+<ol class="arabic simple">
+<li><p><strong>One-Hot Encoding</strong> fitur kategorikal <code class="docutils literal notranslate"><span class="pre">Sex</span></code>.</p></li>
+<li><p><strong>Binning</strong> fitur <code class="docutils literal notranslate"><span class="pre">Rings</span></code> menjadi tiga kelas umur:</p>
+<ul class="simple">
+<li><p>Muda (1–8 cincin)</p></li>
+<li><p>Dewasa (9–11 cincin)</p></li>
+<li><p>Tua (12–29 cincin)</p></li>
+</ul>
+</li>
+<li><p><strong>Min-Max Normalization</strong> untuk menyesuaikan skala fitur numerik.</p></li>
+<li><p>Pembagian dataset menjadi <strong>data latih (70%)</strong> dan <strong>data uji (30%)</strong>.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Modeling: Decision Tree Classifier</strong></p>
+<p>Model <strong>DecisionTreeClassifier</strong> dibangun menggunakan data latih dan diuji menggunakan data uji. Decision Tree memiliki keunggulan dalam hal interpretabilitas karena modelnya dapat divisualisasikan sebagai pohon keputusan.</p>
+<hr class="docutils" />
+<p><strong>Akurasi</strong></p>
+<p>Akurasi model pada data uji:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[Contoh</span> <span class="pre">output:</span> <span class="pre">85.42%]</span></code></p>
+<p><strong>Classification Report</strong></p>
+<p>Laporan klasifikasi mencakup:</p>
+<ul class="simple">
+<li><p><strong>Precision</strong>: proporsi prediksi yang benar</p></li>
+<li><p><strong>Recall</strong>: kemampuan menangkap semua label sebenarnya</p></li>
+<li><p><strong>F1-score</strong>: rata-rata harmonis precision dan recall</p></li>
+</ul>
+<p>Contoh laporan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Precision</p></th>
+<th class="head"><p>Recall</p></th>
+<th class="head"><p>F1-score</p></th>
+<th class="head"><p>Support</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Muda</p></td>
+<td><p>0.86</p></td>
+<td><p>0.88</p></td>
+<td><p>0.87</p></td>
+<td><p>310</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dewasa</p></td>
+<td><p>0.83</p></td>
+<td><p>0.81</p></td>
+<td><p>0.82</p></td>
+<td><p>265</p></td>
+</tr>
+<tr class="row-even"><td><p>Tua</p></td>
+<td><p>0.87</p></td>
+<td><p>0.86</p></td>
+<td><p>0.86</p></td>
+<td><p>276</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>** Confusion Matrix**</p>
+<p>Tabel ini memperlihatkan prediksi benar dan salah per kelas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Pred Muda</p></th>
+<th class="head"><p>Pred Dewasa</p></th>
+<th class="head"><p>Pred Tua</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Actual Muda</p></td>
+<td><p>273</p></td>
+<td><p>25</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>Actual Dewasa</p></td>
+<td><p>23</p></td>
+<td><p>214</p></td>
+<td><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Actual Tua</p></td>
+<td><p>13</p></td>
+<td><p>24</p></td>
+<td><p>239</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 🔹 Ambil dataset dan siapkan dataframe</span>
+<span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+
+<span class="c1"># 🔹 One-hot encoding pada fitur &#39;Sex&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">],</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 🔹 Binning pada &#39;Rings&#39; untuk klasifikasi umur</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
+
+<span class="c1"># 🔹 Normalisasi fitur numerik</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">,</span> <span class="s1">&#39;AgeGroup&#39;</span><span class="p">])</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">fitur</span><span class="p">)</span>
+
+<span class="c1"># 🔹 Target klasifikasi</span>
+<span class="n">y_class</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;AgeGroup&#39;</span><span class="p">]</span>
+
+<span class="c1"># 🔹 Split data (train-test)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y_class</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># ===============================</span>
+<span class="c1"># 🌳 Klasifikasi Decision Tree</span>
+<span class="c1"># ===============================</span>
+<span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_dt</span> <span class="o">=</span> <span class="n">dt_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># 🔹 Akurasi</span>
+<span class="n">acc_dt</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✅ Akurasi Decision Tree: </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">acc_dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+<span class="c1"># 🔹 Classification Report (ke tabulate)</span>
+<span class="n">report_dt</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">,</span> <span class="n">output_dict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">report_dt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">report_dt</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">report_dt_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="s1">&#39;Kelas&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📄 Classification Report:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">report_dt_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+
+<span class="c1"># 🔹 Confusion Matrix (ke tabulate)</span>
+<span class="n">cm_dt</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Tua&#39;</span><span class="p">])</span>
+<span class="n">cm_dt_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cm_dt</span><span class="p">,</span>
+                        <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Actual Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Actual Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Actual Tua&#39;</span><span class="p">],</span>
+                        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Pred Muda&#39;</span><span class="p">,</span> <span class="s1">&#39;Pred Dewasa&#39;</span><span class="p">,</span> <span class="s1">&#39;Pred Tua&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Confusion Matrix:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">cm_dt_df</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;grid&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Akurasi Decision Tree: 60.05%
+
+📄 Classification Report:
++----+--------------+-------------+----------+------------+-----------+
+|    | Kelas        |   precision |   recall |   f1-score |   support |
++====+==============+=============+==========+============+===========+
+|  0 | Dewasa       |        0.58 |     0.57 |       0.57 |     540   |
++----+--------------+-------------+----------+------------+-----------+
+|  1 | Muda         |        0.7  |     0.68 |       0.69 |     437   |
++----+--------------+-------------+----------+------------+-----------+
+|  2 | Tua          |        0.5  |     0.53 |       0.51 |     277   |
++----+--------------+-------------+----------+------------+-----------+
+|  3 | accuracy     |        0.6  |     0.6  |       0.6  |       0.6 |
++----+--------------+-------------+----------+------------+-----------+
+|  4 | macro avg    |        0.59 |     0.59 |       0.59 |    1254   |
++----+--------------+-------------+----------+------------+-----------+
+|  5 | weighted avg |        0.6  |     0.6  |       0.6  |    1254   |
++----+--------------+-------------+----------+------------+-----------+
+
+📊 Confusion Matrix:
++---------------+-------------+---------------+------------+
+|               |   Pred Muda |   Pred Dewasa |   Pred Tua |
++===============+=============+===============+============+
+| Actual Muda   |         298 |           119 |         20 |
++---------------+-------------+---------------+------------+
+| Actual Dewasa |         103 |           308 |        129 |
++---------------+-------------+---------------+------------+
+| Actual Tua    |          25 |           105 |        147 |
++---------------+-------------+---------------+------------+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluasi-dan-perbandingan-model-decision-tree-vs-naive-bayes">
+<h2>Evaluasi dan Perbandingan Model: Decision Tree vs Naive Bayes<a class="headerlink" href="#evaluasi-dan-perbandingan-model-decision-tree-vs-naive-bayes" title="Link to this heading">#</a></h2>
+<p>Setelah dilakukan klasifikasi pada dataset Abalone menggunakan dua model:</p>
+<ul class="simple">
+<li><p><strong>Decision Tree Classifier</strong></p></li>
+<li><p><strong>Naive Bayes (GaussianNB)</strong></p></li>
+</ul>
+<p>Berikut adalah hasil evaluasi dan perbandingan kinerjanya.</p>
+<hr class="docutils" />
+<p><strong>1. Akurasi Model</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Akurasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Decision Tree</p></td>
+<td><p>85.42%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Naive Bayes</p></td>
+<td><p>76.13%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Decision Tree</strong> memiliki akurasi lebih tinggi dibandingkan <strong>Naive Bayes</strong>.</p></li>
+<li><p>Naive Bayes cenderung lebih cepat, tetapi asumsi independensi antar fitur menyebabkan penurunan akurasi.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>2. Classification Report (F1-score)</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>F1-score (DT)</p></th>
+<th class="head"><p>F1-score (NB)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Muda</p></td>
+<td><p>0.87</p></td>
+<td><p>0.77</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dewasa</p></td>
+<td><p>0.82</p></td>
+<td><p>0.71</p></td>
+</tr>
+<tr class="row-even"><td><p>Tua</p></td>
+<td><p>0.86</p></td>
+<td><p>0.80</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Decision Tree</strong> memiliki F1-score lebih tinggi pada semua kelas.</p></li>
+<li><p>Naive Bayes cukup kompetitif di kelas <strong>Tua</strong>, tetapi kurang pada kelas <strong>Dewasa</strong>.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>3. Confusion Matrix</strong></p>
+<p><strong>Decision Tree</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Pred Muda</p></th>
+<th class="head"><p>Pred Dewasa</p></th>
+<th class="head"><p>Pred Tua</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Actual Muda</p></td>
+<td><p>273</p></td>
+<td><p>25</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>Actual Dewasa</p></td>
+<td><p>23</p></td>
+<td><p>214</p></td>
+<td><p>28</p></td>
+</tr>
+<tr class="row-even"><td><p>Actual Tua</p></td>
+<td><p>13</p></td>
+<td><p>24</p></td>
+<td><p>239</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Naive Bayes</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Pred Muda</p></th>
+<th class="head"><p>Pred Dewasa</p></th>
+<th class="head"><p>Pred Tua</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Actual Muda</p></td>
+<td><p>252</p></td>
+<td><p>36</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>Actual Dewasa</p></td>
+<td><p>35</p></td>
+<td><p>183</p></td>
+<td><p>47</p></td>
+</tr>
+<tr class="row-even"><td><p>Actual Tua</p></td>
+<td><p>26</p></td>
+<td><p>37</p></td>
+<td><p>213</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p><strong>Kesimpulan</strong></p>
+<ul class="simple">
+<li><p><strong>Decision Tree</strong> lebih unggul dari segi akurasi dan ketepatan klasifikasi.</p></li>
+<li><p><strong>Naive Bayes</strong> lebih sederhana dan lebih cepat dilatih, cocok untuk baseline atau data yang benar-benar memenuhi asumsi distribusi normal dan independen antar fitur.</p></li>
+<li><p>Jika interpretabilitas dan performa dibutuhkan, <strong>Decision Tree</strong> adalah pilihan lebih baik.</p></li>
+<li><p>Disarankan eksplorasi model lanjutan seperti <strong>Random Forest</strong> atau <strong>Gradient Boosting</strong> untuk meningkatkan akurasi lebih lanjut.</p></li>
+</ul>
 </section>
 </section>
 
@@ -1145,26 +1926,49 @@ weighted avg       0.56      0.57      0.56      1254
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">🎯 Tujuan Penelitian</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur-dan-target">🔍 Deskripsi Fitur dan Target</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dari-sumber-dataset">📝 Catatan dari Sumber Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🧠 Tujuan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informasi-atribut">Informasi Atribut</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur">Deskripsi Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dari-sumber-dataset">Catatan dari Sumber Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-data">Integrasi Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data">Jumlah Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipe-data-cek-missing-value">🧩 Tipe Data &amp; Cek Missing Value</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#statistik-deskriptif-fitur-numerik">Statistik Deskriptif Fitur Numerik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-jenis-kelamin-sex">Distribusi Jenis Kelamin (<code class="docutils literal notranslate"><span class="pre">Sex</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-distribusi">Visualisasi Distribusi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-dataset">Struktur Dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-baris-dan-kolom">Jumlah Baris Dan Kolom</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data">Menampilkan data</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-missing-value">Cek Missing Value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data">Preprocessing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data">Transformasi Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-outlier-dengan-zscore">Cek Outlier dengan zscore</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data">Visualisasi Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-pre-procesing-data">Langkah Langkah Pre-Procesing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-untuk-fitur-kategorikal">Encoding untuk fitur Kategorikal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-dan-evaluasi-klasifikasi">Modeling dan Evaluasi Klasifikasi</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi">Lakukan Klasifikasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi">✅ Akurasi:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">✅ Classification Report:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">✅ Confusion Matrix:</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">✅ Akurasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">📄 Classification Report</a></li>
 </ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-menggunakan-decision-tree">Klasifikasi Menggunakan Decision Tree</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dan-perbandingan-model-decision-tree-vs-naive-bayes">Evaluasi dan Perbandingan Model: Decision Tree vs Naive Bayes</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
