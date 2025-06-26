@@ -60,6 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Pra-UAS';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UAS - Analisis dan Prediksi Lokasi Protein Bakteri E. coli" href="UAS%20-%20E.%20Coli.html" />
     <link rel="prev" title="Teknik Binning Menggunakan Data Iris" href="Diskritisasi.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -191,6 +192,7 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="UAS%20-%20E.%20Coli.html">UAS - Analisis dan Prediksi Lokasi Protein Bakteri E. coli</a></li>
 </ul>
 
     </div>
@@ -387,13 +389,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur">Deskripsi Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dari-sumber-dataset">Catatan dari Sumber Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">Pendahuluan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target-variabel">Target Variabel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-statistik-awal">Ringkasan Statistik Awal</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-data">Integrasi Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data">Jumlah Data</a></li>
@@ -419,8 +424,8 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">✅ Classification Report:</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">✅ Confusion Matrix:</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">✅ Akurasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">📄 Classification Report</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">✅ Akurasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📄 Classification Report</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-menggunakan-decision-tree">Klasifikasi Menggunakan Decision Tree</a></li>
@@ -441,10 +446,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="uas-klasifikasi-kelompok-umur-abalone-berdasarkan-karakteristik-fisik">
 <h1><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong><a class="headerlink" href="#uas-klasifikasi-kelompok-umur-abalone-berdasarkan-karakteristik-fisik" title="Link to this heading">#</a></h1>
-<p>Dataset yang digunakan dalam analisis ini adalah <strong>Abalone Dataset</strong> yang diambil dari <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/abalone">UCI Machine Learning Repository</a>.</p>
-<p>Dataset ini berisi informasi tentang ciri-ciri fisik dari abalone (sejenis kerang laut) seperti panjang, diameter, berat, dan jenis kelamin, serta jumlah cincin (<code class="docutils literal notranslate"><span class="pre">Rings</span></code>) yang menunjukkan usia dari abalone tersebut.</p>
+<section id="pendahuluan">
+<h2>Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
+<p>Abalone adalah sejenis moluska laut yang memiliki nilai ekonomi tinggi. Salah satu aspek penting dalam penelitian dan industri perikanan adalah mengetahui umur abalone, karena usia sangat mempengaruhi ukuran dan kualitasnya. Umur abalone umumnya diestimasi dengan menghitung jumlah cincin pada cangkangnya, proses ini memerlukan peralatan khusus dan bersifat destruktif.</p>
+<p>Sebagai alternatif, analisis data dan teknik <em>machine learning</em> dapat digunakan untuk memprediksi kelompok umur abalone berdasarkan ciri-ciri fisiknya, seperti panjang, berat, dan jenis kelamin. Dengan demikian, proses estimasi umur dapat dilakukan secara lebih efisien dan non-invasif.</p>
+<p>Dalam tugas ini, digunakan <strong>Abalone Dataset</strong> dari <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/abalone">UCI Machine Learning Repository</a>. Dataset ini berisi berbagai fitur numerik dan kategorikal yang berkaitan dengan karakteristik abalone, serta satu kolom target berupa jumlah cincin (<code class="docutils literal notranslate"><span class="pre">Rings</span></code>) yang menjadi dasar estimasi usia.</p>
+<p>Proyek ini bertujuan untuk membangun model klasifikasi yang mampu memprediksi <strong>kelompok umur</strong> abalone (<code class="docutils literal notranslate"><span class="pre">Muda</span></code>, <code class="docutils literal notranslate"><span class="pre">Dewasa</span></code>, <code class="docutils literal notranslate"><span class="pre">Tua</span></code>) berdasarkan fitur-fitur fisik tersebut. Proses ini melibatkan tahap eksplorasi data, preprocessing, transformasi target (binning umur), pelatihan model, dan evaluasi performa model klasifikasi.</p>
+<p>Analisis ini diharapkan dapat memberikan pendekatan alternatif yang lebih praktis untuk klasifikasi usia abalone dalam konteks industri maupun penelitian.</p>
 <section id="tujuan-analisis">
-<h2>🎯 Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h2>
+<h3>🎯 Tujuan Analisis<a class="headerlink" href="#tujuan-analisis" title="Link to this heading">#</a></h3>
 <p>Tujuan dari analisis ini adalah untuk:</p>
 <ul class="simple">
 <li><p>Melakukan eksplorasi terhadap karakteristik data abalone</p></li>
@@ -454,7 +464,7 @@ document.write(`
 </ul>
 </section>
 <section id="tools-dan-library">
-<h2>🛠️ Tools dan Library<a class="headerlink" href="#tools-dan-library" title="Link to this heading">#</a></h2>
+<h3>🛠️ Tools dan Library<a class="headerlink" href="#tools-dan-library" title="Link to this heading">#</a></h3>
 <p>Analisis ini dilakukan menggunakan:</p>
 <ul class="simple">
 <li><p>Python (pandas, seaborn, matplotlib)</p></li>
@@ -462,19 +472,10 @@ document.write(`
 <li><p>Tabulate (untuk menampilkan tabel secara rapi di console)</p></li>
 </ul>
 </section>
-<section id="dataset">
-<h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
-<p>Dataset diperoleh dari <a class="reference external" href="https://archive.ics.uci.edu/dataset/1/abalone">https://archive.ics.uci.edu/dataset/1/abalone</a></p>
 </section>
-<section id="tujuan">
-<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
-<p>Dataset ini digunakan untuk <strong>memprediksi umur abalone</strong> berdasarkan pengukuran fisik yang lebih mudah dilakukan.<br />
-Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu menghitung jumlah <strong>cincin</strong> menggunakan mikroskop — metode ini memakan waktu dan membosankan.</p>
-<p>Sebagai gantinya, kita mencoba memprediksi umur hanya dari data numerik.</p>
-</section>
-<hr class="docutils" />
-<section id="deskripsi-fitur">
-<h2>Deskripsi Fitur<a class="headerlink" href="#deskripsi-fitur" title="Link to this heading">#</a></h2>
+<section id="data-understanding">
+<h2>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<p>Dataset <strong>Abalone</strong> terdiri dari 4.177 baris data dengan 9 atribut, yang mencakup informasi fisik dari setiap individu abalone. Berikut adalah deskripsi dari masing-masing fitur dalam dataset:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Fitur</p></th>
@@ -485,19 +486,19 @@ Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Sex</span></code></p></td>
 <td><p>Kategorikal</p></td>
-<td><p>Jenis kelamin abalone: <code class="docutils literal notranslate"><span class="pre">M</span></code> = Male, <code class="docutils literal notranslate"><span class="pre">F</span></code> = Female, <code class="docutils literal notranslate"><span class="pre">I</span></code> = Infant (belum dewasa)</p></td>
+<td><p>Jenis kelamin abalone: <code class="docutils literal notranslate"><span class="pre">M</span></code> (Male), <code class="docutils literal notranslate"><span class="pre">F</span></code> (Female), <code class="docutils literal notranslate"><span class="pre">I</span></code> (Infant)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Length</span></code></p></td>
 <td><p>Numerik</p></td>
-<td><p>Panjang tubuh tanpa cangkang (dalam cm)</p></td>
+<td><p>Panjang abalone (tanpa cangkang), dalam satuan mm</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Diameter</span></code></p></td>
 <td><p>Numerik</p></td>
-<td><p>Diameter tubuh tegak lurus terhadap panjang (dalam cm)</p></td>
+<td><p>Diameter abalone (dalam mm)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Height</span></code></p></td>
 <td><p>Numerik</p></td>
-<td><p>Tinggi tubuh dengan cangkang (dalam cm)</p></td>
+<td><p>Tinggi abalone (dalam mm)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Whole</span> <span class="pre">weight</span></code></p></td>
 <td><p>Numerik</p></td>
@@ -505,70 +506,71 @@ Umur asli diperoleh dengan <strong>mengiris cangkang</strong>, mewarnainya, lalu
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Shucked</span> <span class="pre">weight</span></code></p></td>
 <td><p>Numerik</p></td>
-<td><p>Berat daging abalone setelah dibuka (gram)</p></td>
+<td><p>Berat daging abalone yang sudah dikupas</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Viscera</span> <span class="pre">weight</span></code></p></td>
 <td><p>Numerik</p></td>
-<td><p>Berat organ dalam (termasuk usus, gram)</p></td>
+<td><p>Berat organ dalam abalone</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Shell</span> <span class="pre">weight</span></code></p></td>
 <td><p>Numerik</p></td>
-<td><p>Berat cangkang setelah dikeringkan (gram)</p></td>
+<td><p>Berat cangkang abalone setelah dikeringkan</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Rings</span></code> <em>(Target)</em></p></td>
-<td><p>Integer</p></td>
-<td><p>Jumlah cincin pada cangkang. Digunakan untuk menghitung umur:</p></td>
-</tr>
-<tr class="row-odd"><td><p>📌 <strong>Umur = Rings + 1.5</strong> (dalam tahun)</p></td>
-<td><p></p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Rings</span></code></p></td>
+<td><p>Numerik (Target Asli)</p></td>
+<td><p>Jumlah cincin pada cangkang abalone (umur = Rings + 1.5)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-</section>
-<hr class="docutils" />
-<section id="catatan-dari-sumber-dataset">
-<h2>Catatan dari Sumber Dataset<a class="headerlink" href="#catatan-dari-sumber-dataset" title="Link to this heading">#</a></h2>
+<section id="target-variabel">
+<h3>Target Variabel<a class="headerlink" href="#target-variabel" title="Link to this heading">#</a></h3>
+<p>Dalam konteks klasifikasi ini, variabel <code class="docutils literal notranslate"><span class="pre">Rings</span></code> akan ditransformasi menjadi kategori umur:</p>
 <ul class="simple">
-<li><p>Dataset ini <strong>tidak memiliki missing value</strong> (sudah dibersihkan).</p></li>
-<li><p>Untuk keperluan Artificial Neural Network (ANN), nilai numerik kadang dibagi 200 (normalisasi khusus ANN).</p></li>
-<li><p>Faktor lingkungan seperti <strong>cuaca dan lokasi</strong> juga mempengaruhi umur abalone, namun <strong>tidak tersedia</strong> dalam dataset ini.</p></li>
+<li><p><strong>Muda</strong>: ≤ 8 cincin</p></li>
+<li><p><strong>Dewasa</strong>: 9–10 cincin</p></li>
+<li><p><strong>Tua</strong>: ≥ 11 cincin</p></li>
 </ul>
+<p>Klasifikasi ini menggunakan metode <strong>binning</strong> untuk menyederhanakan prediksi usia menjadi tiga kelompok.</p>
 </section>
-<hr class="docutils" />
-<section id="id1">
-<h2>Tujuan Analisis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="ringkasan-statistik-awal">
+<h3>Ringkasan Statistik Awal<a class="headerlink" href="#ringkasan-statistik-awal" title="Link to this heading">#</a></h3>
+<p>Dataset ini mencakup kombinasi antara fitur kategorikal (<code class="docutils literal notranslate"><span class="pre">Sex</span></code>) dan fitur numerik lainnya. Untuk memahami distribusi awal data, dilakukan eksplorasi seperti:</p>
 <ul class="simple">
-<li><p>Prediksi usia abalone (regresi)</p></li>
-<li><p>Atau klasifikasi umur ke dalam kategori (anak, remaja, dewasa, tua)</p></li>
+<li><p>Distribusi nilai pada setiap fitur numerik</p></li>
+<li><p>Proporsi jenis kelamin abalone</p></li>
+<li><p>Distribusi jumlah cincin (<code class="docutils literal notranslate"><span class="pre">Rings</span></code>)</p></li>
+<li><p>Korelasi antar fitur numerik</p></li>
 </ul>
-</section>
-<section id="integrasi-data">
-<h2>Integrasi Data<a class="headerlink" href="#integrasi-data" title="Link to this heading">#</a></h2>
-<p>Dataset Abalone dari UCI sudah tersedia dalam bentuk <strong>tunggal dan terstruktur</strong>, sehingga tidak membutuhkan integrasi antar banyak sumber data.</p>
-<p>Namun, tetap dilakukan proses <strong>penggabungan antara fitur (<code class="docutils literal notranslate"><span class="pre">features</span></code>) dan target (<code class="docutils literal notranslate"><span class="pre">targets</span></code>)</strong> setelah pengambilan data dari pustaka <code class="docutils literal notranslate"><span class="pre">ucimlrepo</span></code>.</p>
+<p>Visualisasi seperti histogram, boxplot, dan heatmap akan digunakan untuk mengidentifikasi pola, outlier, atau potensi skewness dalam data.</p>
+<hr class="docutils" />
+<p>Pada tahap ini, pemahaman mendalam terhadap struktur dan sebaran data sangat penting untuk menentukan strategi preprocessing dan pemodelan yang tepat pada langkah berikutnya.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ucimlrepo
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>                 <span class="c1"># Untuk manipulasi data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>     <span class="c1"># Untuk visualisasi grafik</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>               <span class="c1"># Untuk visualisasi yang lebih interaktif</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span> <span class="c1"># Untuk mengambil dataset dari UCI</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting ucimlrepo
-  Downloading ucimlrepo-0.0.7-py3-none-any.whl.metadata (5.5 kB)
-Requirement already satisfied: pandas&gt;=1.0.0 in /usr/local/lib/python3.11/dist-packages (from ucimlrepo) (2.2.2)
-Requirement already satisfied: certifi&gt;=2020.12.5 in /usr/local/lib/python3.11/dist-packages (from ucimlrepo) (2025.6.15)
-Requirement already satisfied: numpy&gt;=1.23.2 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2.0.2)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2025.2)
-Requirement already satisfied: tzdata&gt;=2022.7 in /usr/local/lib/python3.11/dist-packages (from pandas&gt;=1.0.0-&gt;ucimlrepo) (2025.2)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.11/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.0.0-&gt;ucimlrepo) (1.17.0)
-Downloading ucimlrepo-0.0.7-py3-none-any.whl (8.0 kB)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing collected packages: ucimlrepo
-Successfully installed ucimlrepo-0.0.7
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">/tmp/ipython-input-1-1494874319.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>     <span class="c1"># Untuk visualisasi grafik</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>               <span class="c1"># Untuk visualisasi yang lebih interaktif</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span> <span class="c1"># Untuk mengambil dataset dari UCI</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;ucimlrepo&#39;
+
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NOTE</span>: If your import is failing due to a missing package, you can
+<span class="n">manually</span> <span class="n">install</span> <span class="n">dependencies</span> <span class="n">using</span> <span class="n">either</span> <span class="o">!</span>pip<span class="w"> </span>or<span class="w"> </span>!apt.
+
+<span class="n">To</span> <span class="n">view</span> <span class="n">examples</span> <span class="n">of</span> <span class="n">installing</span> <span class="n">some</span> <span class="n">common</span> <span class="n">dependencies</span><span class="p">,</span> <span class="n">click</span> <span class="n">the</span>
+<span class="s2">&quot;Open Examples&quot;</span> <span class="n">button</span> <span class="n">below</span><span class="o">.</span>
+<span class="gt">---------------------------------------------------------------------------</span>
 </pre></div>
 </div>
 </div>
@@ -577,17 +579,23 @@ Successfully installed ucimlrepo-0.0.7
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
 
-<span class="c1"># fetch dataset</span>
+<span class="c1"># Fetch dataset Abalone (id = 1)</span>
 <span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># data (as pandas dataframes)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
+<span class="c1"># Data fitur dan target</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
-
-<span class="c1"># metadata</span>
+<span class="c1"># Metadata (informasi dataset)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Metadata (informasi dataset)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">abalone</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
 
-<span class="c1"># variable information</span>
+<span class="c1"># Informasi tiap variabel (kolom)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">abalone</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -615,6 +623,33 @@ Successfully installed ucimlrepo-0.0.7
 6  gut weight (after bleeding)  grams             no  
 7            after being dried  grams             no  
 8  +1.5 gives the age in years   None             no  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="integrasi-data">
+<h2>Integrasi Data<a class="headerlink" href="#integrasi-data" title="Link to this heading">#</a></h2>
+<p>Dataset Abalone dari UCI sudah tersedia dalam bentuk <strong>tunggal dan terstruktur</strong>, sehingga tidak membutuhkan integrasi antar banyak sumber data.</p>
+<p>Namun, tetap dilakukan proses <strong>penggabungan antara fitur (<code class="docutils literal notranslate"><span class="pre">features</span></code>) dan target (<code class="docutils literal notranslate"><span class="pre">targets</span></code>)</strong> setelah pengambilan data dari pustaka <code class="docutils literal notranslate"><span class="pre">ucimlrepo</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>ucimlrepo
+<span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
+
+<span class="c1"># fetch dataset</span>
+<span class="n">abalone</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># data (as pandas dataframes)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">abalone</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>
+
+<span class="c1"># metadata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">abalone</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+
+<span class="c1"># variable information</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">abalone</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -915,7 +950,7 @@ Jumlah kolom: 9
 </pre></div>
 </div>
 <img alt="_images/ca2404dafc9d1937495833a0a0ca28568788a1c7771f277b2cce45beab5bdf3d.png" src="_images/ca2404dafc9d1937495833a0a0ca28568788a1c7771f277b2cce45beab5bdf3d.png" />
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipython-input-3-362771847.py:50: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipython-input-5-362771847.py:50: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1227,16 +1262,31 @@ Jumlah fitur (kolom): 9
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipython-input-7-3421413927.py</span> in <span class="ni">&lt;cell line: 0&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> 
-<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="c1"># ✅ Normalisasi fitur numerik (selain &#39;Rings&#39; dan &#39;AgeGroup&#39;)</span>
-<span class="ne">---&gt; </span><span class="mi">20</span> <span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="n">numerical_cols</span> <span class="o">=</span> <span class="n">df_encoded</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Rings&#39;</span><span class="p">,</span> <span class="s1">&#39;AgeGroup&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="n">df_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Contoh Data Setelah Transformasi ---
++----+----------+------------+-----------+----------------+------------------+------------------+----------------+---------+---------+---------+------------+
+|    |   Length |   Diameter |    Height |   Whole_weight |   Shucked_weight |   Viscera_weight |   Shell_weight |   Rings |   Sex_I |   Sex_M | AgeGroup   |
++====+==========+============+===========+================+==================+==================+================+=========+=========+=========+============+
+|  0 | 0.513514 |   0.521008 | 0.0840708 |      0.181335  |        0.150303  |        0.132324  |      0.147982  |      15 |       0 |       1 | Tua        |
++----+----------+------------+-----------+----------------+------------------+------------------+----------------+---------+---------+---------+------------+
+|  1 | 0.371622 |   0.352941 | 0.079646  |      0.0791571 |        0.0662408 |        0.0631995 |      0.0682611 |       7 |       0 |       1 | Muda       |
++----+----------+------------+-----------+----------------+------------------+------------------+----------------+---------+---------+---------+------------+
+|  2 | 0.614865 |   0.613445 | 0.119469  |      0.239065  |        0.171822  |        0.185648  |      0.207773  |       9 |       0 |       0 | Dewasa     |
++----+----------+------------+-----------+----------------+------------------+------------------+----------------+---------+---------+---------+------------+
+|  3 | 0.493243 |   0.521008 | 0.110619  |      0.182044  |        0.14425   |        0.14944   |      0.152965  |      10 |       0 |       1 | Dewasa     |
++----+----------+------------+-----------+----------------+------------------+------------------+----------------+---------+---------+---------+------------+
+|  4 | 0.344595 |   0.336134 | 0.0707965 |      0.0718966 |        0.0595158 |        0.0513496 |      0.0533134 |       7 |       1 |       0 | Muda       |
++----+----------+------------+-----------+----------------+------------------+------------------+----------------+---------+---------+---------+------------+
 
-<span class="ne">NameError</span>: name &#39;MinMaxScaler&#39; is not defined
+--- Distribusi Kelas Umur (AgeGroup) ---
++----+------------+----------+
+|    | AgeGroup   |   Jumlah |
++====+============+==========+
+|  0 | Dewasa     |     1810 |
++----+------------+----------+
+|  1 | Muda       |     1407 |
++----+------------+----------+
+|  2 | Tua        |      960 |
++----+------------+----------+
 </pre></div>
 </div>
 </div>
@@ -1380,13 +1430,13 @@ Jumlah fitur (kolom): 9
 <p>Model Naive Bayes dibangun menggunakan data latih dan diuji dengan data uji. Proses ini menghasilkan prediksi kelas umur (<code class="docutils literal notranslate"><span class="pre">AgeGroup</span></code>) yang kemudian dievaluasi.</p>
 <hr class="docutils" />
 <p><strong>Hasil Evaluasi</strong></p>
-<section id="id2">
-<h3>✅ Akurasi<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h3>✅ Akurasi<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Model Naive Bayes menghasilkan akurasi sebesar sekitar:</p>
 <p><code class="docutils literal notranslate"><span class="pre">[Contoh</span> <span class="pre">output:</span> <span class="pre">76.85%]</span></code></p>
 </section>
-<section id="id3">
-<h3>📄 Classification Report<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h3>📄 Classification Report<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>Laporan klasifikasi menunjukkan metrik:</p>
 <ul class="simple">
 <li><p><strong>Precision</strong>: ketepatan prediksi tiap kelas</p></li>
@@ -1910,6 +1960,15 @@ Jumlah fitur (kolom): 9
         <p class="prev-next-title">Teknik Binning Menggunakan Data Iris</p>
       </div>
     </a>
+    <a class="right-next"
+       href="UAS%20-%20E.%20Coli.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UAS - Analisis dan Prediksi Lokasi Protein Bakteri E. coli</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -1927,13 +1986,16 @@ Jumlah fitur (kolom): 9
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-fitur">Deskripsi Fitur</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#catatan-dari-sumber-dataset">Catatan dari Sumber Dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">Pendahuluan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target-variabel">Target Variabel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-statistik-awal">Ringkasan Statistik Awal</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrasi-data">Integrasi Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data">Eksplorasi data</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data">Jumlah Data</a></li>
@@ -1959,8 +2021,8 @@ Jumlah fitur (kolom): 9
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">✅ Classification Report:</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">✅ Confusion Matrix:</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">✅ Akurasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">📄 Classification Report</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">✅ Akurasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📄 Classification Report</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-menggunakan-decision-tree">Klasifikasi Menggunakan Decision Tree</a></li>

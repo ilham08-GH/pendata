@@ -25,28 +25,22 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd                 # Untuk manipulasi data
-import matplotlib.pyplot as plt     # Untuk visualisasi grafik
-import seaborn as sns               # Untuk visualisasi yang lebih interaktif
-from ucimlrepo import fetch_ucirepo # Untuk mengambil dataset dari UCI
+class_counts = y_clean.value_counts().sort_values(ascending=False)
+
+# Tampilkan jumlah data per kelas
+print("Jumlah sampel per kelas:")
+print(class_counts)
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipython-input-1-1494874319.py[0m in [0;36m<cell line: 0>[0;34m()[0m
-[1;32m      2[0m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m     [0;31m# Untuk visualisasi grafik[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      3[0m [0;32mimport[0m [0mseaborn[0m [0;32mas[0m [0msns[0m               [0;31m# Untuk visualisasi yang lebih interaktif[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 4[0;31m [0;32mfrom[0m [0mucimlrepo[0m [0;32mimport[0m [0mfetch_ucirepo[0m [0;31m# Untuk mengambil dataset dari UCI[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;31mModuleNotFoundError[0m: No module named 'ucimlrepo'
+[0;31mNameError[0m                                 Traceback (most recent call last)
+[0;32m/tmp/ipython-input-8-2351878614.py[0m in [0;36m<cell line: 0>[0;34m()[0m
+[0;32m----> 1[0;31m [0mclass_counts[0m [0;34m=[0m [0my_clean[0m[0;34m.[0m[0mvalue_counts[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0msort_values[0m[0;34m([0m[0mascending[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;34m[0m[0m
+[1;32m      3[0m [0;31m# Tampilkan jumlah data per kelas[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mprint[0m[0;34m([0m[0;34m"Jumlah sampel per kelas:"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m [0mprint[0m[0;34m([0m[0mclass_counts[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31m---------------------------------------------------------------------------[0;32m
-NOTE: If your import is failing due to a missing package, you can
-manually install dependencies using either !pip or !apt.
-
-To view examples of installing some common dependencies, click the
-"Open Examples" button below.
-[0;31m---------------------------------------------------------------------------[0m
-
+[0;31mNameError[0m: name 'y_clean' is not defined
 
