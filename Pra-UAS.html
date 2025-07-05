@@ -189,9 +189,6 @@
 <li class="toctree-l1"><a class="reference internal" href="Decision%20Tree.html">Perhitungan Information Gain Manual (Dataset BMI Kompleks)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Diskritisasi.html">Teknik Binning Menggunakan Data Iris</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="UAS%20-%20E.%20Coli.html">UAS - Analisis dan Prediksi Lokasi Protein Bakteri E. coli</a></li>
 </ul>
 
@@ -388,7 +385,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">Pendahuluan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
@@ -418,22 +414,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data">Transformasi Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-outlier-dengan-zscore">Cek Outlier dengan zscore</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-dan-evaluasi-klasifikasi">Modeling dan Evaluasi Klasifikasi</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi">✅ Akurasi:</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">✅ Classification Report:</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">✅ Confusion Matrix:</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">✅ Akurasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📄 Classification Report</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-menggunakan-decision-tree">Klasifikasi Menggunakan Decision Tree</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dan-perbandingan-model-decision-tree-vs-naive-bayes">Evaluasi dan Perbandingan Model: Decision Tree vs Naive Bayes</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -1377,27 +1361,20 @@ Jumlah fitur (kolom): 9
 <hr class="docutils" />
 <p>📊 4. Evaluasi Model</p>
 <p>Evaluasi dilakukan dengan 2 cara:</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="akurasi">
-<h1>✅ Akurasi:<a class="headerlink" href="#akurasi" title="Link to this heading">#</a></h1>
+<p>✅ Akurasi:</p>
 <ul class="simple">
 <li><p>Decision Tree: contoh <code class="docutils literal notranslate"><span class="pre">85.42%</span></code></p></li>
 <li><p>Naive Bayes: contoh <code class="docutils literal notranslate"><span class="pre">79.17%</span></code></p></li>
 </ul>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="classification-report">
-<h1>✅ Classification Report:<a class="headerlink" href="#classification-report" title="Link to this heading">#</a></h1>
-<p>Menampilkan metrik per kelas:</p>
+<p>✅ Classification Report:
+Menampilkan metrik per kelas:</p>
 <ul class="simple">
 <li><p><strong>Precision</strong>: Ketepatan</p></li>
 <li><p><strong>Recall</strong>: Kelengkapan</p></li>
 <li><p><strong>F1-score</strong>: Harmoni antara precision dan recall</p></li>
 </ul>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="confusion-matrix">
-<h1>✅ Confusion Matrix:<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h1>
-<p>Matriks yang menunjukkan jumlah prediksi benar dan salah untuk setiap kelas (<code class="docutils literal notranslate"><span class="pre">Muda</span></code>, <code class="docutils literal notranslate"><span class="pre">Dewasa</span></code>, <code class="docutils literal notranslate"><span class="pre">Tua</span></code>).</p>
+<p>✅ Confusion Matrix:
+Matriks yang menunjukkan jumlah prediksi benar dan salah untuk setiap kelas (<code class="docutils literal notranslate"><span class="pre">Muda</span></code>, <code class="docutils literal notranslate"><span class="pre">Dewasa</span></code>, <code class="docutils literal notranslate"><span class="pre">Tua</span></code>).</p>
 <p>Visualisasi ditampilkan dalam bentuk <strong>heatmap</strong> untuk:</p>
 <ul class="simple">
 <li><p>Decision Tree (warna biru)</p></li>
@@ -1409,6 +1386,7 @@ Jumlah fitur (kolom): 9
 <li><p>Decision Tree memberikan akurasi yang lebih tinggi dibandingkan Naive Bayes pada dataset ini.</p></li>
 <li><p>Model lebih baik dalam mengklasifikasikan kelas <strong>Dewasa</strong>, namun mengalami tantangan dalam membedakan <strong>Muda</strong> dan <strong>Tua</strong> karena distribusi <code class="docutils literal notranslate"><span class="pre">Rings</span></code> yang overlapping.</p></li>
 </ul>
+</section>
 <section id="lakukan-klasifikasi-menggunakan-naive-bayes">
 <h2>Lakukan Klasifikasi Menggunakan Naive Bayes<a class="headerlink" href="#lakukan-klasifikasi-menggunakan-naive-bayes" title="Link to this heading">#</a></h2>
 <p>Pada tahap ini dilakukan klasifikasi umur abalone berdasarkan fitur-fitur fisiknya menggunakan algoritma <strong>Naive Bayes</strong>, khususnya varian <strong>GaussianNB</strong> yang cocok untuk data numerik kontinu.</p>
@@ -1430,14 +1408,11 @@ Jumlah fitur (kolom): 9
 <p>Model Naive Bayes dibangun menggunakan data latih dan diuji dengan data uji. Proses ini menghasilkan prediksi kelas umur (<code class="docutils literal notranslate"><span class="pre">AgeGroup</span></code>) yang kemudian dievaluasi.</p>
 <hr class="docutils" />
 <p><strong>Hasil Evaluasi</strong></p>
-<section id="id1">
-<h3>✅ Akurasi<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Model Naive Bayes menghasilkan akurasi sebesar sekitar:</p>
+<p>✅ Akurasi
+Model Naive Bayes menghasilkan akurasi sebesar sekitar:</p>
 <p><code class="docutils literal notranslate"><span class="pre">[Contoh</span> <span class="pre">output:</span> <span class="pre">76.85%]</span></code></p>
-</section>
-<section id="id2">
-<h3>📄 Classification Report<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>Laporan klasifikasi menunjukkan metrik:</p>
+<p>📄 Classification Report
+Laporan klasifikasi menunjukkan metrik:</p>
 <ul class="simple">
 <li><p><strong>Precision</strong>: ketepatan prediksi tiap kelas</p></li>
 <li><p><strong>Recall</strong>: kemampuan model menangkap kelas sebenarnya</p></li>
@@ -1606,7 +1581,6 @@ Jumlah fitur (kolom): 9
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="klasifikasi-menggunakan-decision-tree">
 <h2>Klasifikasi Menggunakan Decision Tree<a class="headerlink" href="#klasifikasi-menggunakan-decision-tree" title="Link to this heading">#</a></h2>
@@ -1985,7 +1959,6 @@ Jumlah fitur (kolom): 9
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#"><strong>UAS - Klasifikasi Kelompok Umur Abalone Berdasarkan Karakteristik Fisik</strong></a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">Pendahuluan</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-analisis">🎯 Tujuan Analisis</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-dan-library">🛠️ Tools dan Library</a></li>
@@ -2015,22 +1988,10 @@ Jumlah fitur (kolom): 9
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformasi-data">Transformasi Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-outlier-dengan-zscore">Cek Outlier dengan zscore</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-dan-evaluasi-klasifikasi">Modeling dan Evaluasi Klasifikasi</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#akurasi">✅ Akurasi:</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">✅ Classification Report:</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">✅ Confusion Matrix:</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">✅ Akurasi</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📄 Classification Report</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lakukan-klasifikasi-menggunakan-naive-bayes">Lakukan Klasifikasi Menggunakan Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-menggunakan-decision-tree">Klasifikasi Menggunakan Decision Tree</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-dan-perbandingan-model-decision-tree-vs-naive-bayes">Evaluasi dan Perbandingan Model: Decision Tree vs Naive Bayes</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
